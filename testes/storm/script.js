@@ -28,11 +28,8 @@ function gerarNuvens() {
             Nuvens.appendChild(nuvem);
             zindexMinimo = zindex;
     }
-    for(let i = 0; i < 10; i++){
-        setTimeout(() => {
-            trovoar();
-        }, 2000)
-    }
+
+    trovoar();
 }
 
 function gerarNumeroAleatorio(limite) {
@@ -46,15 +43,17 @@ function trovoar() {
     const numeroAleatorio = gerarNumeroAleatorio(quantidadeNuvem); // gera um numero aleatório
     const nuvemEscolhida = divNuvem[numeroAleatorio]; // ele escolhe uma nuvem aleatóriamente
     const bound = nuvemEscolhida.getBoundingClientRect();
-    const meioNuvem = bound.left + bound.width / 2;
-    const nuvemBottom = bound.bottom;
+    const meioNuvem = bound.left + bound.width / 2; // medida do meio da nuvem
+    const nuvemBottom = bound.bottom; // eixo de baixo da nuvem
     raio(meioNuvem, nuvemBottom);
 }
 
 function raio(meioNuvem, nuvemBottom) {
     var controle = 1;
+    var geradorRaio = 0;
+    var bodyHeight = body.clientHeight;
     var marginTop = 0;
-    for(let i = 0; i < 11; i++) {
+    for(let i = 0; i < bodyHeight; i = geradorRaio) {
         if(controle == 1) {
             const raio = document.createElement('div');
             raio.classList.add('raio');
@@ -68,6 +67,8 @@ function raio(meioNuvem, nuvemBottom) {
             controle++;
             marginTop = nuvemBottom + 49;
             body.appendChild(raio);
+            setTimeout(() => raio.style.display = 'none', 1700);
+            geradorRaio += 60;
         } else {
                 const raio = document.createElement('div');
                 raio.classList.add('raio');
@@ -81,6 +82,8 @@ function raio(meioNuvem, nuvemBottom) {
                 controle++;
                 marginTop += 49;    
                 body.appendChild(raio);
+                setTimeout(() => raio.style.display = 'none', 1700);
+                geradorRaio += 60;
         }
     }
     

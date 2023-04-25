@@ -34,7 +34,7 @@ footer {
     background-color: yellow;
     height: 3px;
     width: 70px;
-    animation: pisca 1.5s infinite;
+    animation: pisca 1.5s;
 }
 
 @keyframes pisca {
