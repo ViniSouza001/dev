@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./frontend/styles/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <h1 class="titulo">Restaurante do Paraguai</h1>
+            <img src="./frontend/assets/login.jpg" alt="img_login">
+        </aside>
+        <aside id="login">
+            <h1 class="titulo">Login</h1>
+            <form action="">
+                <div class="inputs">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="inpEmail" placeholder="Digite seu email" />
+                </div>
+                <div class="inputs">
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" id="inpSenha" placeholder="Digite sua senha" />
+                </div>
+                <div class="paragrafos">
+                    <p id="eSenha">Esqueceu sua senha?</p>
+                    <p id="nConta">Não tem uma conta? Cadastre-se</p>
+                </div>
+                <button type="submit" id="btn_login" onclick="autenticar()" onmouseenter="entrar()">Login</button>
+            </form>
+        </aside>
+    </div>
+</body>
+<script src="./frontend/scripts/login.js"></script>
+</html>

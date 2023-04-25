@@ -1,0 +1,69 @@
+body {
+    background-color: #0b0726;
+    font: normal 15pt Arial;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.titulo {
+    color: #17eb1b;
+}
+
+img {
+    width: 400px;
+    border-radius: 10px;
+}
+
+.container {
+    display: flex;
+    gap: 10rem;
+    margin: auto;
+    background-color: #2b235e;
+    border-radius: 20px;
+    color: #fff;
+    justify-content: space-evenly;
+    padding: 50px;
+}
+#login {
+    display: flex;
+    flex-direction: column;
+    background-color: #453c85;
+    border-radius: 10px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 20px;
+    text-align: center;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+input {
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: #2b235e;
+    color: #fff;
+    font: normal 10pt Arial;
+}
+
+button {
+    font: normal 12pt Arial;
+    padding: 10px;
+    background-color: #17eb1b;
+    border-radius: 10px;
+    cursor: pointer;
+}

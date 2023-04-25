@@ -1,0 +1,43 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background-image: linear-gradient(to bottom, black, gray);
+    overflow: hidden;
+    margin: 0;
+}
+
+.nuvens {
+    display: flex;
+}
+
+.nuvem {
+    background-image: linear-gradient(to bottom, black, gray);
+    border-bottom-right-radius: 200px;
+    position: absolute;
+    height: 20vh;
+}
+
+footer {
+    width: 100vw;
+    height: 10vh;
+    bottom: 0;
+    background-color: green;
+    position: absolute;
+    z-index: 1;
+}
+
+.raio{
+    position: absolute;
+    border-radius: 10px;
+    background-color: yellow;
+    height: 3px;
+    width: 70px;
+    animation: pisca 1.5s infinite;
+}
+
+@keyframes pisca {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
