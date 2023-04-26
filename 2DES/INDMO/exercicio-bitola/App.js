@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native';
 
 export default function App() {
   const [comprimento, setComprimento] = useState(0);
@@ -19,8 +20,8 @@ export default function App() {
   }
 
   return (
-
     <View style={styles.container}>
+      <Image style={styles.image} source={require('./assets/formula.jpg')} />
       <View style={styles.div} >
         <Text style={styles.texto} >Digite o comprimento do fio (M)</Text>
       <TextInput style={styles.input} onChangeText={ (val) => {setComprimento(Number(val))} } />
@@ -28,10 +29,13 @@ export default function App() {
 
       <View style={styles.div} >
         <Text style={styles.texto} >Digite a corrente em ampere</Text>
+        <View style={styles.divFlex}>
+          <Image style={styles.icon} source={require('./assets/amper.png')}/>
         <TextInput style={styles.input} onChangeText = {(val) => { setCorrente(Number(val)) }} />
+        </View>
       </View>
 
-      <TouchableOpacity onPress={() => calcular()} style={styles.button} >
+      <TouchableOpacity onPress={calcular} style={styles.button} >
         <Text>Calcular</Text>
       </TouchableOpacity>
       <Text style={styles.texto} id='resultado1'>220V: {Math.floor(resultado220)}mm</Text>
@@ -49,19 +53,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: "#500088",
-    gap: "2rem"
+    gap: "3rem",
+    flexDirection: 'column'
   },
   input: {
     backgroundColor: "#fff",
     borderRadius: "10px",
-    padding: "10px",
+    padding: "10px"
   },
   texto: {
     color: "#fff",
     fontSize: "20px",
   },
   div: {
-    flexDirection: "row",
     gap: "1rem",
     alignItems: "center",
   },
@@ -69,5 +73,19 @@ const styles = StyleSheet.create({
     margin: "10px",
     backgroundColor: "#fff",
     padding: "10px"
+  },
+  image: {
+    width: "350px",
+    height: "250px"
+  },
+  icon: {
+    width: '30px',
+    height: '30px',
+  },
+  divFlex: {
+    display: 'flex',
+    gap: '10px',
+    flexDirection: 'row',
+    alignItems: "center",
   }
 });
