@@ -7,7 +7,7 @@ export default function App() {
   const [peso, setPeso] = useState(0);
   const [altura, setAltura] = useState(0);
   const [imc, setImc] = useState(0);
-  const [diagnostico, setDiagnostico] = useState(0);
+  const [diagnostico, setDiagnostico] = useState('');
   const calcular = () => {
     if(isNaN(peso) || isNaN(altura)) {
       alert('Coloque apenas números!!');
@@ -18,7 +18,7 @@ export default function App() {
       else if(conta < 24.9) setDiagnostico('Normal');
       else if(conta < 29.9) setDiagnostico('Sobrepeso');
       else if (conta < 39.9) setDiagnostico('Obesidade');
-      else setDiagnostico('');
+      else setDiagnostico('Obesidade grave');
     }
   }
 
