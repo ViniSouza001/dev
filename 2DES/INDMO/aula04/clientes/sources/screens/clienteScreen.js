@@ -1,11 +1,19 @@
 import React from 'react'
-import { View, FlatList, StyleSheet } from 'react-native';
-import clientes from '../mocks/clientesMocks';
+import { View, FlatList, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import Clientes from '../mocks/clientesMocks';
 
 export default function ClientesScreen ({navigation}) {
     return (
         <View styles={styles.container}>
-            <Text styles={styles.text}>Lista de Clientes</Text>
+            <FlatList
+            data={Clientes}
+            style={styles.list}
+            renderItem={({item}) => <TouchableOpacity style={styles.container}>
+                <Image style={styles.img} source={item.avatar} />
+                <Text>CPF: {item.cpf}</Text>
+                <Text>Nome: {item.nome} {item.sobrenome}</Text>
+                <Text>Telefone: {item.telefone}</Text>
+            </TouchableOpacity>} />
         </View>
     )
 }
@@ -14,13 +22,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderBottomColor: '#000',
+        borderBottomWidth: '1px',
+        margin: '10px'
     },
     list: {
         width: '100%',
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        display: 'flex',
+    },
+    item: {
+        margin: 10
+    },
+    img: {
+        width: 100,
+        height: 150,
+        margin: 5
     },
     text: {
-        fontSize: 20
+        margin: '10px'
     }
 })
