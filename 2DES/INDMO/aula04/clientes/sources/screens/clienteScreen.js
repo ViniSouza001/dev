@@ -3,12 +3,22 @@ import { View, FlatList, StyleSheet, Text, Image, TouchableOpacity } from 'react
 import Clientes from '../mocks/clientesMocks';
 
 export default function ClientesScreen ({navigation}) {
+
+    const abrirDetalhes = (dados) => {
+        navigation.navigate('Detalhes', {dados});
+        console.log(dados)
+    }
+
     return (
         <View styles={styles.container}>
             <FlatList
             data={Clientes}
             style={styles.list}
-            renderItem={({item}) => <TouchableOpacity style={styles.container}>
+            renderItem={({item}) => 
+            <TouchableOpacity 
+            style={styles.container}
+            onPress={()=> {abrirDetalhes(item)}}
+            >
                 <Image style={styles.img} source={item.avatar} />
                 <Text>CPF: {item.cpf}</Text>
                 <Text>Nome: {item.nome} {item.sobrenome}</Text>
