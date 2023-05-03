@@ -49,7 +49,7 @@ const clientes = [
 ]
 ```
 
-2. Construção do código para formatar as informações
+2. Construção do código para adicionar as informações
 
 ```jsx
 <FlatList
