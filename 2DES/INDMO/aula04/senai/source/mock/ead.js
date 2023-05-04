@@ -38,6 +38,16 @@ const cursos = [
         unidade: 'Escola Senai Jaguariúna',
         carga: '160 horas',
         valor: null
+    },
+    {
+        nome: 'Eletropneumática',
+        modalidade: 'Presencial',
+        area: 'Automação da manufatura',
+        telefone: '19 3837-6300',
+        email: 'senaijaguariuna@sp.senai.br',
+        unidade: 'Escola Senai Jaguariúna',
+        carga: '40 horas',
+        valor: null
     }
 ]
 
