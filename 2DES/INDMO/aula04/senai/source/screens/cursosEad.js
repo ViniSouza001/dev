@@ -25,8 +25,12 @@ const styles = StyleSheet.create({
     },
     item: {
         display: 'flex',
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-between',
+        marginTop: 15
     },
     list: {
-
+        padding: '20px'
     }
 })
