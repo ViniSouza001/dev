@@ -7,7 +7,8 @@ const cursos = [
         email: 'senaijaguariuna@sp.senai.br',
         unidade: 'Escola Senai Jaguariúna',
         carga: '40 horas',
-        valor: null
+        valor: null,
+        link: 'https://jaguariuna.sp.senai.br/curso/55550/513/automacao-hidraulica-industrial'
     },
     {
         nome: 'Desmistificando a industria 4.0',
@@ -17,7 +18,8 @@ const cursos = [
         email: 'senaijaguariuna@sp.senai.br',
         unidade: 'Escola Senai Jaguariúna',
         carga: '40 horas',
-        valor: 'Gratuito'
+        valor: 'Gratuito',
+        link: 'https://jaguariuna.sp.senai.br/curso/86817/513/desvendando-a-industria-40'
     },
     {
         nome: 'Veículos elétricos e híbridos',
@@ -27,7 +29,8 @@ const cursos = [
         email: 'senaijaguariuna@sp.senai.br',
         unidade: 'Escola Senai Jaguariúna',
         carga: '20 horas',
-        valor: null
+        valor: null,
+        link: 'https://jaguariuna.sp.senai.br/curso/96083/513/veiculos-eletricos-e-hibridos'
     },
     {
         nome: 'Eletricista instalador',
@@ -37,7 +40,8 @@ const cursos = [
         email: 'senaijaguariuna@sp.senai.br',
         unidade: 'Escola Senai Jaguariúna',
         carga: '160 horas',
-        valor: null
+        valor: null,
+        link: 'https://jaguariuna.sp.senai.br/curso/96362/513/eletricista-instalador'
     },
     {
         nome: 'Eletropneumática',
@@ -47,7 +51,8 @@ const cursos = [
         email: 'senaijaguariuna@sp.senai.br',
         unidade: 'Escola Senai Jaguariúna',
         carga: '40 horas',
-        valor: null
+        valor: null,
+        link: 'https://jaguariuna.sp.senai.br/curso/55554/513/eletropneumatica'
     }
 ]
 

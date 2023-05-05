@@ -1,10 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native';
 
 export default function App({ navigation }) {
 
-    const paginaEAD = ()=> {
-        navigation.navigate('Cursos EAD');
+    const PaginaEAD = ()=> {
+        navigation.navigate('Cursos formação inicial e continuada');
+    }
+
+    const PaginaIndustriais = () => {
+      navigation.navigate('Cursos Industriais')
+    }
+
+    const PaginaTecnicos = () => {
+      navigation.navigate("Cursos Técnicos");
     }
 
   return (
@@ -13,16 +21,22 @@ export default function App({ navigation }) {
         <Text style={styles.logo}>Senai</Text>
       </View>
       <View style={styles.card}>
-        <Image style={styles.img} source={require('../../assets/img/ead.png')}></Image>
-        <Text style={styles.txt} onPress={() => {paginaEAD()}}>Formação inicial e continuada</Text>
+        <TouchableHighlight onPress={()=> {PaginaEAD()}}>
+          <Image style={styles.img} source={require('../../assets/img/ead.png')}></Image>
+        </TouchableHighlight>
+        <Text style={styles.txt} onPress={() => {PaginaEAD()}}>Formação inicial e continuada</Text>
       </View>
       <View style={styles.card}>
+      <TouchableHighlight onPress={()=> {PaginaTecnicos()}}>
         <Image style={styles.img} source={require('../../assets/img/curso-tecnico.png')}></Image>
-        <Text style={styles.txt}>Cursos técnicos</Text>
+      </TouchableHighlight>
+        <Text style={styles.txt} onPress={() => {PaginaTecnicos()}}>Cursos técnicos</Text>
       </View>
       <View style={styles.card}>
+      <TouchableHighlight onPress={()=> {PaginaIndustriais()}}>
         <Image style={styles.img} source={require('../../assets/img/aprendizagem-industrial.png')}></Image>
-        <Text style={styles.txt}>Aprendizagem industrial</Text>
+      </TouchableHighlight>
+        <Text style={styles.txt} onPress={() => {PaginaIndustriais()}}>Aprendizagem industrial</Text>
       </View>
       <StatusBar style="auto"/>
     </View>

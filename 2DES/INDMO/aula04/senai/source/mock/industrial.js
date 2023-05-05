@@ -7,7 +7,8 @@ const cursos = [
         email: 'senaijaguariuna@sp.senai.br',
         unidade: 'Escola Senai Jaguariúna',
         carga: '1600 horas',
-        valor: null
+        valor: null,
+        link: 'https://jaguariuna.sp.senai.br/curso/94691/513/eletricista-de-manutencao-eletroeletronica'
     },
     {
         nome: 'Mecânico de bombas',
@@ -17,7 +18,8 @@ const cursos = [
         email: 'senaijaguariuna@sp.senai.br',
         unidade: 'Escola Senai Jaguariúna',
         carga: '800 horas',
-        valor: null
+        valor: null,
+        link: 'https://jaguariuna.sp.senai.br/curso/82897/513/mecanico-de-bombas-motores-compressores-e-equipamentos-de-transmissao'
     },
     {
         nome: 'Mecânico de usinagem',
@@ -27,6 +29,9 @@ const cursos = [
         email: 'senaijaguariuna@sp.senai.br',
         unidade: 'Escola Senai Jaguariúna',
         carga: '1600 horas',
-        valor: null
+        valor: null,
+        link: 'https://jaguariuna.sp.senai.br/curso/76298/513/mecanico-de-usinagem'
     }
 ]
+
+export default cursos;
