@@ -15,7 +15,6 @@
  Elimina a necessidade de conceder a permissão no nível de objeto individual e simplifica as camadas de segurança.
 </div>
 
-
 ## Gatilho (Trigger)
 <div>
 <img align="center" src="https://64.media.tumblr.com/ca926951ecb6980a71f9b08cef7f5953/tumblr_pclhvhLxfk1xbwp7jo3_r1_400.gif" width="50px">
@@ -29,3 +28,6 @@
 <img align="center" src="https://64.media.tumblr.com/ca926951ecb6980a71f9b08cef7f5953/tumblr_pclhvhLxfk1xbwp7jo3_r1_400.gif" width="50px">
 - É executado sempre que há uma tentativa de modificar os dados de uma tabela que é protegida por ele.
 </div>
+
+## Visão (Relatório)
+- Relatório de todos os dados dos pedidos, dados dos itens, nome do cliente e nome das pizzas.
