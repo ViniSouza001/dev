@@ -1,6 +1,9 @@
 # Programação em banco de dados
 ## Índices
-- Desempenho em consultas.
+<div>
+<img align="center" src="https://64.media.tumblr.com/ca926951ecb6980a71f9b08cef7f5953/tumblr_pclhvhLxfk1xbwp7jo3_r1_400.gif" width="50px">
+ Desempenho em consultas.
+</div>
 
 ## Procedimentos
 <div>
