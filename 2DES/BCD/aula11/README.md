@@ -34,3 +34,18 @@
 <img align="center" src="https://64.media.tumblr.com/ca926951ecb6980a71f9b08cef7f5953/tumblr_pclhvhLxfk1xbwp7jo3_r1_400.gif" width="50px">
  Relatório de todos os dados dos pedidos, dados dos itens, nome do cliente e nome das pizzas.
 </div>
+<div>
+<img align="center" src="https://64.media.tumblr.com/ca926951ecb6980a71f9b08cef7f5953/tumblr_pclhvhLxfk1xbwp7jo3_r1_400.gif" width="50px">
+ Agrupar os pedidos e calcular o valor total
+</div>
+
+## Desafio
+<div>
+<img align="center" src="https://64.media.tumblr.com/ca926951ecb6980a71f9b08cef7f5953/tumblr_pclhvhLxfk1xbwp7jo3_r1_400.gif" width="50px">
+ Criar um procedimento chamado 'PedidoDeUmItem'
+</div>
+
+<div>
+<img align="center" src="https://64.media.tumblr.com/ca926951ecb6980a71f9b08cef7f5953/tumblr_pclhvhLxfk1xbwp7jo3_r1_400.gif" width="50px">
+ Parâmetros: (cliente_id int, pizza_id int, quantidade int)
+</div>
