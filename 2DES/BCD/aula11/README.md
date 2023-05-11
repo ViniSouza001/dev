@@ -47,5 +47,5 @@
 
 <div>
 <img align="center" src="https://64.media.tumblr.com/ca926951ecb6980a71f9b08cef7f5953/tumblr_pclhvhLxfk1xbwp7jo3_r1_400.gif" width="50px">
- Parâmetros: (cliente_id int, pizza_id int, quantidade int)
+ Parâmetros: (cliente_id int, pizza_id int, quantidade int);
 </div>
