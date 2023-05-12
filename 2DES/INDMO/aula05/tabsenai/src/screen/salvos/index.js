@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native"
 
 export default function Salvos() {
+
     return (
-        <View style={styles.container} >
+        <View style={styles.container}>
             <Text style={styles.title}>
                 SALVOS
             </Text>
@@ -15,11 +16,12 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#f1f1f1',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     title: {
         color: '#121214',
         fontSize: 20,
-        fontWeight: 'bold'
-    }
+        fontWeight: 'bold',
+
+    },
 })

@@ -1,9 +1,9 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const Tab = createBottomTabNavigator();
 import Salvos from './screens/salvos';
 import Destaques from './screens/destaques';
-import { Ionicons } from '@expo/vector-icons'
-import { Platform } from 'react-native'
+import { Ionicons } from '@expo/vector-icons';
+import { Platform } from 'react-native';
 
 export default function Routes() {
     return (
@@ -32,7 +32,7 @@ export default function Routes() {
                 tabBarIcon: ({focused, size, color}) => {
                     if(focused) {
                         return <Ionicons
-                        name='Home'
+                        name='home'
                         color={color}
                         size={size} />
                     }
@@ -54,7 +54,7 @@ export default function Routes() {
                     if(focused) {
                         return(
                             <Ionicons
-                                name='Bookmark'
+                                name='bookmark'
                                 size={size}
                                 color={color} 
                             />
@@ -63,7 +63,7 @@ export default function Routes() {
                     else {
                         return (
                             <Ionicons
-                                name='Bookmark-outline'
+                                name='bookmark-outline'
                                 size={size}
                                 color={color}
                             />
