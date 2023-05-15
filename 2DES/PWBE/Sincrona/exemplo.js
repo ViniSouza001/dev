@@ -11,7 +11,7 @@ function retornaParametro(parametros) {
 }
 
 function procedimento(parametro) {
-    setTimeout(() => console.log(parametro), 10000)
+    setTimeout(() => console.log(parametro), 1000);
 }
 
 console.log(retornaInt());
