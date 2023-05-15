@@ -43,8 +43,7 @@ Isso quer dizer que, quando o código é executado, o JavaScript começa no iní
 <img align="center" src="https://64.media.tumblr.com/ff2ec7a3596e6aa2abca06a04827dcf3/tumblr_pclhvhLxfk1xbwp7jo4_r1_400.gif" width="50px" />
 Simplicidade: torna o código mais fácil de ser compreendido e depurado;
 </div>
-<img align="center" src="https://64.media.tumblr.com/ff2ec7a3596e6aa2abca06a04827dcf3/tumblr_pclhvhLxfk1xbwp7jo4_r1_400.gif" width="50px" />
-Fluxo de controle intuitivo: A execução segue uma sequência linear de instruções, que pode facilitar o desenvolvimento e
+<img align="center" src="https://64.media.tumblr.com/ff2ec7a3596e6aa2abca06a04827dcf3/tumblr_pclhvhLxfk1xbwp7jo4_r1_400.gif" width="50px" />Fluxo de controle intuitivo: A execução segue uma sequência linear de instruções, que pode facilitar o desenvolvimento e
 entendimento do código;
 </div>
 
