@@ -20,5 +20,5 @@ class Aluguel {
 }
 
 var veiculos = [
-    new Veiculo('RGB-1234', 'Corolla', 'Toyota', 2010, 90.5)
-]
+    new Veiculo('RGB-1234', 'Corolla', 'Toyota', 2010, 90.5),
+];
