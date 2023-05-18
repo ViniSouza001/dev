@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0; padding: 0;
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    }
+
+img {
+    width: 150px;
+}
+
+nav{
+    display: flex;
+    right: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+ul {
+    margin-right: 20px;
+    list-style: none;
+    display: flex;
+    font: normal 15pt Arial;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    margin: 20px;
+    text-decoration: underline;
+}
