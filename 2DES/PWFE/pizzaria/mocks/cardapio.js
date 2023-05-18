@@ -38,7 +38,7 @@ const cardapio = [
     {
        "id": 7,
        "nome":"Bauru",
-       "descricao":"Molho de tomate fresco, presunto cozido picado, mussarela especial, rodelas de tomate, oregano e aze",
+       "descricao":"Molho de tomate fresco, presunto cozido picado, mussarela especial, rodelas de tomate, oregano e azeitona",
        "preco": 31.97
     },
     {
