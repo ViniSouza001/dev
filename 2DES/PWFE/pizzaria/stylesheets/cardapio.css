@@ -7,6 +7,7 @@ body {
     margin: 0; padding: 0;
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
+    background-color: #fcf4c7;
 }
 
 header {
@@ -47,8 +48,8 @@ main {
     gap: 4rem;
     flex-wrap: wrap;
     width: 100vw;
-    height: 80vh;
     justify-content: center;
+    padding: 20px;
 }
 
 .card {
@@ -59,9 +60,17 @@ main {
     margin: 1rem;
     padding: 15px;
     padding-bottom: 0;
-    box-shadow: 5px 5px #bab486;
+    box-shadow: 5px 4px #bab486;
     border-radius: 10px;
     background-color: #faf2b9;
+}
+
+.card > h1 {
+    cursor: pointer;
+}
+
+.card > h1:hover {
+    text-decoration: underline;
 }
 
 .info {
@@ -74,4 +83,26 @@ main {
 footer {
     text-align: center;
     bottom: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #faf4d7;
+    text-align: center;
+}
+
+.notOverflow {
+    overflow: hidden;
+}
+
+#header_window {
+    display: flex;
+    align-items: flex-end;
 }
