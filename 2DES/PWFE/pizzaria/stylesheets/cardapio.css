@@ -69,6 +69,17 @@ nav{
     transform: translateY(-50%);
 }
 
+#ancora {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#ancora > img {
+    width: 50px;
+}
+
 ul {
     margin-right: 20px;
     list-style: none;

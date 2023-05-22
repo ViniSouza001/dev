@@ -73,8 +73,8 @@ function menuLateral() {
     pedidos.forEach(item => {
         listaHTML += `
             <li>
-            <p class="informacoes">ID: ${item.id}</p>
-            <p class="informacoes">Pizza: ${item.nome}</p>
+            <p>ID: ${item.id}</p>
+            <p>Pizza: ${item.nome}</p>
             </li>
             <hr>
         `;
@@ -82,7 +82,7 @@ function menuLateral() {
     let btnAdicionar = document.createElement('button');
     btnAdicionar.classList.add('btnPedidos');
     btnAdicionar.textContent = 'Adicionar aos pedidos'
-    btnAdicionar.addEventListener('click', adicionarPedidos)
+    btnAdicionar.addEventListener('click', adicionarPedidos())
     
     
     listaPedidos.innerHTML = listaHTML; // Atribui a string com os itens do pedido a listaPedidos.innerHTML
@@ -90,6 +90,6 @@ function menuLateral() {
 }
 
 function adicionarPedidos() {
-    alert('CLICADO!');
+    alert('Adicionado ao carrinho com sucesso');
     localStorage.setItem('Itens', pedidos);
 }
