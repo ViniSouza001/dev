@@ -21,6 +21,34 @@ img {
     width: 150px;
 }
 
+#cart_img {
+    position: fixed;
+    left: 0;
+    width: 70px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+#menuLateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 15vw;
+    background-color: #ebe5ab;
+    height: 100vh;
+    left: -20vw;
+    transition: 0.3s;
+}
+
+#menuLateral.aparecer {
+    left: 0;
+}
+
+#menuLateral > h1 {
+    margin-top: 120px;
+    margin-left: 20px;
+}
+
 nav{
     display: flex;
     right: 0;
@@ -65,6 +93,24 @@ main {
     background-color: #faf2b9;
 }
 
+#listaPedidos {
+    margin: 0;padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow-y: auto;
+}
+
+#listaPedidos > li > p {
+    padding-left: 20px;
+}
+
+#listaPedidos > li {
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+
 .card > h1 {
     cursor: pointer;
 }
@@ -93,6 +139,7 @@ footer {
     position: fixed;
     top: 50%;
     left: 50%;
+    width: 35%;
     transform: translate(-50%, -50%);
     background-color: #fae5ac;
     text-align: center;
@@ -140,4 +187,15 @@ footer {
 .informacoes {
     font-size: 18px;
     font-weight: bold;
+}
+
+.btnPedidos {
+    border-radius: 10px;
+    background-color: transparent;
+    font-size: 20px;
+    padding: 10px;
+    width: 80%;
+    align-self: center;
+    text-align: center;
+    cursor: pointer;
 }

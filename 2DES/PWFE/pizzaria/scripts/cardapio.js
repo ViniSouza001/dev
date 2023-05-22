@@ -1,5 +1,7 @@
 const body = document.querySelector('body');
 const main = document.querySelector('main');
+const pedidos = [];
+let pizzaPosition = 0;
 
 adicionarCard();
 function adicionarCard() {
@@ -29,7 +31,6 @@ function displays() {
 function showInformations(posicao) {
     const window = document.querySelector('.window');
     const existingInfo = document.querySelector('.informacoes');
-    
 
     // Remover informações existentes, se houver
     if (existingInfo != null) {
@@ -48,9 +49,47 @@ function showInformations(posicao) {
         <p>R$ ${cardapio[posicao].preco}</p>
     `;
     informacoes.classList.add('informacoes');
+    pizzaPosition = posicao;
     window.appendChild(informacoes);
 }
 
 function addCart() {
-    alert('carrinho')
+    pedidos.push(cardapio[pizzaPosition]);
+    console.log(pedidos);
+}
+
+function menuLateral() {
+    var menuLateral = document.querySelector('#menuLateral');
+    // Menu alternar entre esconder e aparecer
+    if (menuLateral.classList.contains('aparecer')) {
+        menuLateral.classList.remove('aparecer');
+    } else {
+        menuLateral.classList.add('aparecer');
+    }
+
+    const listaPedidos = document.querySelector('#listaPedidos');
+    let listaHTML = ''; // String para armazenar os itens do pedido
+
+    pedidos.forEach(item => {
+        listaHTML += `
+            <li>
+            <p>ID: ${item.id}</p>
+            <p>Pizza: ${item.nome}</p>
+            </li>
+            <hr>
+        `;
+    });
+    let btnAdicionar = document.createElement('button');
+    btnAdicionar.classList.add('btnPedidos');
+    btnAdicionar.textContent = 'Adicionar aos pedidos'
+    btnAdicionar.addEventListener('click', adicionarPedidos)
+    
+    
+    listaPedidos.innerHTML = listaHTML; // Atribui a string com os itens do pedido a listaPedidos.innerHTML
+    listaPedidos.appendChild(btnAdicionar);
+}
+
+function adicionarPedidos() {
+    alert('CLICADO!');
+    localStorage.setItem('Itens', pedidos);
 }
