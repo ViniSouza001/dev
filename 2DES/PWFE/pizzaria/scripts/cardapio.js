@@ -73,8 +73,8 @@ function menuLateral() {
     pedidos.forEach(item => {
         listaHTML += `
             <li>
-            <p>ID: ${item.id}</p>
-            <p>Pizza: ${item.nome}</p>
+            <p class="informacoes">ID: ${item.id}</p>
+            <p class="informacoes">Pizza: ${item.nome}</p>
             </li>
             <hr>
         `;

@@ -33,11 +33,23 @@ img {
     position: fixed;
     top: 0;
     left: 0;
-    width: 15vw;
+    width: 20vw;
     background-color: #ebe5ab;
     height: 100vh;
     left: -20vw;
     transition: 0.3s;
+    overflow: auto;
+}
+
+#menuLateral::-webkit-scrollbar{
+    width: 0.5em; /* largura do scroll vertical */
+    height: 0.5em; /* altura do scroll horizontal */
+    background-color: #bab486;
+}
+
+#menuLateral::-webkit-scrollbar-thumb {
+    background-color: #fadf93;
+    border-radius: 10px;
 }
 
 #menuLateral.aparecer {
@@ -99,11 +111,10 @@ main {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    overflow-y: auto;
 }
 
 #listaPedidos > li > p {
-    padding-left: 20px;
+    padding-left: 17px;
 }
 
 #listaPedidos > li {
@@ -199,3 +210,4 @@ footer {
     text-align: center;
     cursor: pointer;
 }
+
