@@ -94,8 +94,12 @@ footer {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #faf4d7;
+    background-color: #fae5ac;
     text-align: center;
+    border-radius: 10px;
+    z-index: 2;
+    padding-bottom: 20px;
+    padding: 5px;
 }
 
 .notOverflow {
@@ -104,5 +108,36 @@ footer {
 
 #header_window {
     display: flex;
-    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+}
+
+#header_window > h1 {
+    cursor: pointer;
+    margin-left: 20px;
+    font-size: 25px;
+}
+
+#header_window > img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#black {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.informacoes {
+    font-size: 18px;
+    font-weight: bold;
 }
