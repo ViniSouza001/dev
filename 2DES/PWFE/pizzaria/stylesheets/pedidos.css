@@ -2,22 +2,27 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
+    font: normal 15pt Arial;
+    /* background-image: url('../assets/pizzas.jpg'); */
 }
 
 table {
     font: normal 13pt Arial;
+    padding-bottom: 30px;
+}
+
+thead {
+    
 }
 
 th {
     text-align: center;
     font: normal 15pt Arial;
+    
 }
 
 td {
     width: 250px;
     text-align: center;
-}
-
-td {
     padding-top: 20px;
 }

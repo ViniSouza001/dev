@@ -54,7 +54,13 @@ function showInformations(posicao) {
 }
 
 function addCart() {
-    pedidos.push(cardapio[pizzaPosition]);
+    const dataAtual = new Date();
+
+    const pedido = {
+        pizza: cardapio[pizzaPosition],
+        dataHora: dataAtual
+    }
+    pedidos.push(pedido);
     console.log(pedidos);
 }
 
@@ -73,8 +79,8 @@ function menuLateral() {
     pedidos.forEach(item => {
         listaHTML += `
             <li>
-            <p>ID: ${item.id}</p>
-            <p>Pizza: ${item.nome}</p>
+            <p>ID: ${item.pizza.id}</p>
+            <p>Pizza: ${item.pizza.nome}</p>
             </li>
             <hr>
         `;
@@ -90,6 +96,6 @@ function menuLateral() {
 
 function adicionarPedidos() {
     alert('Adicionado ao carrinho com sucesso');
-    localStorage.clear
+    localStorage.clear;
     localStorage.setItem('Itens', JSON.stringify(pedidos));
 }
