@@ -87,6 +87,10 @@ ul {
     font: normal 15pt Arial;
 }
 
+li {
+    list-style: none;
+}
+
 a {
     color: #000;
     text-decoration: none;
@@ -220,5 +224,6 @@ footer {
     align-self: center;
     text-align: center;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 

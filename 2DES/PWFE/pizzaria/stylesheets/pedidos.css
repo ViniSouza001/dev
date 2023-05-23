@@ -4,8 +4,20 @@ body {
     flex-direction: column;
 }
 
-table thead tr {
-    display: flex;
-    gap: 2rem;
+table {
+    font: normal 13pt Arial;
+}
+
+th {
+    text-align: center;
     font: normal 15pt Arial;
+}
+
+td {
+    width: 250px;
+    text-align: center;
+}
+
+td {
+    padding-top: 20px;
 }

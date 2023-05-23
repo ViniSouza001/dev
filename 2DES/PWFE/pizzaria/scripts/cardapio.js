@@ -82,8 +82,7 @@ function menuLateral() {
     let btnAdicionar = document.createElement('button');
     btnAdicionar.classList.add('btnPedidos');
     btnAdicionar.textContent = 'Adicionar aos pedidos'
-    btnAdicionar.addEventListener('click', adicionarPedidos())
-    
+    btnAdicionar.addEventListener('click', adicionarPedidos)
     
     listaPedidos.innerHTML = listaHTML; // Atribui a string com os itens do pedido a listaPedidos.innerHTML
     listaPedidos.appendChild(btnAdicionar);
@@ -91,5 +90,6 @@ function menuLateral() {
 
 function adicionarPedidos() {
     alert('Adicionado ao carrinho com sucesso');
-    localStorage.setItem('Itens', pedidos);
+    localStorage.clear
+    localStorage.setItem('Itens', JSON.stringify(pedidos));
 }
