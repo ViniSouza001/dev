@@ -95,7 +95,7 @@ function menuLateral() {
 }
 
 function adicionarPedidos() {
-    alert('Adicionado ao carrinho com sucesso');
+    alert('Adicionado aos pedidos com sucesso');
     localStorage.clear;
     localStorage.setItem('Itens', JSON.stringify(pedidos));
 }
