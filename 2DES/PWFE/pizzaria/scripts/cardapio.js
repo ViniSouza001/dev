@@ -65,14 +65,7 @@ function addCart() {
 }
 
 function menuLateral() {
-    var menuLateral = document.querySelector('#menuLateral');
-    // Menu alternar entre esconder e aparecer
-    if (menuLateral.classList.contains('aparecer')) {
-        menuLateral.classList.remove('aparecer');
-    } else {
-        menuLateral.classList.add('aparecer');
-    }
-
+    fecharMenu();
     const listaPedidos = document.querySelector('#listaPedidos');
     let listaHTML = ''; // String para armazenar os itens do pedido
 
@@ -91,7 +84,7 @@ function menuLateral() {
     btnRemover.textContent = 'Limpar carrinho'
     btnRemover.addEventListener('click', () => {
         pedidos.splice(0, pedidos.length);
-        listaPedidos.innerHTML = ''
+        fecharMenu();
     })
     btnAdicionar.classList.add('btnPedidos');
     btnAdicionar.textContent = 'Adicionar aos pedidos';
@@ -101,6 +94,18 @@ function menuLateral() {
     listaPedidos.appendChild(btnRemover);
     listaPedidos.appendChild(btnAdicionar);
 }
+
+function fecharMenu() { // abrir e fechar o menu lateral
+    var menuLateral = document.querySelector('#menuLateral');
+    // Menu alternar entre esconder e aparecer
+    if (menuLateral.classList.contains('aparecer')) {
+        menuLateral.classList.remove('aparecer');
+    } else {
+        menuLateral.classList.add('aparecer');
+    }
+}
+
+function remover
 
 function adicionarPedidos() {
     alert('Adicionado aos pedidos com sucesso');
