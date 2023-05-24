@@ -21,8 +21,9 @@ header {
     width: 100%;
     height: 12vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    margin: auto;
     background-color: #ec9128;
     color: white;
     box-shadow: 1px 1px 5px #000;
@@ -126,6 +127,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding-top: 5px;
     background-color: #ec9128;
     color: white;

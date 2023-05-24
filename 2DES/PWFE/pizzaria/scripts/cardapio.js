@@ -86,11 +86,19 @@ function menuLateral() {
         `;
     });
     let btnAdicionar = document.createElement('button');
+    let btnRemover = document.createElement('button');
+    btnRemover.classList.add('btnPedidos');
+    btnRemover.textContent = 'Limpar carrinho'
+    btnRemover.addEventListener('click', () => {
+        pedidos.splice(0, pedidos.length);
+        listaPed
+    })
     btnAdicionar.classList.add('btnPedidos');
-    btnAdicionar.textContent = 'Adicionar aos pedidos'
-    btnAdicionar.addEventListener('click', adicionarPedidos)
-    
+    btnAdicionar.textContent = 'Adicionar aos pedidos';
+    btnAdicionar.addEventListener('click', adicionarPedidos);
+
     listaPedidos.innerHTML = listaHTML; // Atribui a string com os itens do pedido a listaPedidos.innerHTML
+    listaPedidos.appendChild(btnRemover);
     listaPedidos.appendChild(btnAdicionar);
 }
 

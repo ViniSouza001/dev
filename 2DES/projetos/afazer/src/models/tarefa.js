@@ -24,6 +24,10 @@ class Task {
     delete() {
         return `DELETE FROM tarefas WHERE id = ${this.id}`
     }
+
+    list() {
+        return `SELECT * FROM tarefas WHERE DATE(quando) = CURDATE()`
+    }
 }
 
 module.exports = Task

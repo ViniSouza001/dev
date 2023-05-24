@@ -39,11 +39,21 @@ const excluir = (req, res) => {
     })
 }
 
+const list = (req, res) => {
+    con.query(new Task(req.params).list, (err, result) => {
+        if(err) 
+            res.status(500).send(err).end();
+        else
+            res.status(200).send(result).end();
+    })
+}
+
 
 
 module.exports = {
     cadastrar,
     listar,
     alterar,
-    excluir
+    excluir,
+    list
 }
