@@ -91,7 +91,7 @@ function menuLateral() {
     btnRemover.textContent = 'Limpar carrinho'
     btnRemover.addEventListener('click', () => {
         pedidos.splice(0, pedidos.length);
-        listaPed
+        listaPedidos.innerHTML = ''
     })
     btnAdicionar.classList.add('btnPedidos');
     btnAdicionar.textContent = 'Adicionar aos pedidos';
