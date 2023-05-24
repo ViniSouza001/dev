@@ -61,7 +61,6 @@ function addCart() {
         dataHora: dataAtual
     }
     pedidos.push(pedido);
-    console.log(pedidos);
 }
 
 function menuLateral() {
@@ -105,10 +104,25 @@ function fecharMenu() { // abrir e fechar o menu lateral
     }
 }
 
-function remover
+function removerPedido() {
+    
+}
 
 function adicionarPedidos() {
-    alert('Adicionado aos pedidos com sucesso');
-    localStorage.clear;
-    localStorage.setItem('Itens', JSON.stringify(pedidos));
+    if(pedidos.length === 0)  
+        alert('Você não pode fazer pedidos com seu carrinho vazio!');
+    else {
+        alert('Adicionado aos pedidos com sucesso');
+        if(localStorage.getItem('Itens') === null) 
+            localStorage.setItem('Itens', JSON.stringify(pedidos));
+        else
+            // cria um json com os pedidos que já foram feitos anteriormente
+            var dadosExistentes = JSON.parse(localStorage.getItem('Itens')); 
+            console.log(dadosExistentes);
+            // dadosExistentes.forEach(item => {
+            //     pedidos.push(item); // adiciona os pedidos junto ao vetor pedidos
+            // });
+            // localStorage.removeItem('Itens'); // limpa o local storage 
+            // localStorage.setItem('Itens', JSON.stringify(pedidos)); // adiciona o vetor com todos os pedidos antigos e os novos
+    }
 }
