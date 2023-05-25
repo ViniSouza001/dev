@@ -109,20 +109,23 @@ function removerPedido() {
 }
 
 function adicionarPedidos() {
-    if(pedidos.length === 0)  
-        alert('Você não pode fazer pedidos com seu carrinho vazio!');
-    else {
-        alert('Adicionado aos pedidos com sucesso');
-        if(localStorage.getItem('Itens') === null) 
-            localStorage.setItem('Itens', JSON.stringify(pedidos));
-        else
-            // cria um json com os pedidos que já foram feitos anteriormente
-            var dadosExistentes = JSON.parse(localStorage.getItem('Itens')); 
-            console.log(dadosExistentes);
-            // dadosExistentes.forEach(item => {
-            //     pedidos.push(item); // adiciona os pedidos junto ao vetor pedidos
-            // });
-            // localStorage.removeItem('Itens'); // limpa o local storage 
-            // localStorage.setItem('Itens', JSON.stringify(pedidos)); // adiciona o vetor com todos os pedidos antigos e os novos
+    if (pedidos.length === 0) {
+      alert('Você não pode fazer pedidos com seu carrinho vazio!');
+    } else {
+      alert('Adicionado aos pedidos com sucesso');
+      fecharMenu();
+      if (localStorage.getItem('Itens') === null) {
+        localStorage.setItem('Itens', JSON.stringify(pedidos));
+      } else {
+        var dadosExistentes = JSON.parse(localStorage.getItem('Itens'));
+        console.log(dadosExistentes);
+        // Adicione os pedidos existentes ao vetor pedidos
+        dadosExistentes.forEach(item => {
+          pedidos.push(item);
+        });
+        // Limpe o Local Storage e salve os pedidos atualizados
+        localStorage.removeItem('Itens');
+        localStorage.setItem('Itens', JSON.stringify(pedidos));
+      }
     }
-}
+  }
