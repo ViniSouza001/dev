@@ -4,23 +4,22 @@ import users from '../mock/users';
 
 const ListUsers = ({ navigation }) => {
     const handleUsuarioPress = ({ item }) => {
-        navigation.navigate('Informações', { item })
+        navigation.navigate('Informações', {item})
     }
     const renderItem = ({ item }) => (
         <TouchableOpacity style={styles.item} onPress={() => { handleUsuarioPress(item) }}>
                 <Image style={styles.img} source={item.foto} />
                 <View>
-                <Text style={styles.titulo}>{item.id}</Text>
-                <Text style={styles.text}>{item.nome}</Text>
+                <Text style={styles.id}>ID: {item.id}</Text>
+                <Text style={styles.text}>Nome: {item.nome}</Text>
                 </View>
             </TouchableOpacity>
-
     )
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.text}>Usuários</Text>
+                <Text>Usuários</Text>
             </View>
             <FlatList
                 data={users}
@@ -38,8 +37,10 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: "Arial",
-        fontSize: 25,
-        color: '#000'
+        fontSize: 15,
+        color: '#000',
+        marginTop: 20,
+        fontWeight: 'bold'
     },
     list: {
         width: '100%',
@@ -47,14 +48,16 @@ const styles = StyleSheet.create({
     },
     item: {
         borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
+        borderBottomColor: '#000',
         paddingVertical: 10,
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        gap: '1rem',
     },
-    titulo: {
+    id: {
         color: '#000',
-        fontSize: 30
+        fontSize: 15,
+        fontWeight: 'bold'
     },
     img: {
         width: 100,

@@ -12,21 +12,16 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-        name='Lista'
+        name='ListUsers'
         component={ScreenList}
         options={{title: 'Usuários'}}
         />
+        <Stack.Screen
+          name='Informações'
+          component={ScreenUser}
+          options={{title: 'Informações'}}
+        />
       </Stack.Navigator>
-
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
