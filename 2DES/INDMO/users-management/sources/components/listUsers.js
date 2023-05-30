@@ -5,13 +5,13 @@ import users from '../mock/users';
 
 const ListUsers = ({ navigation }) => {
 
-    const handleUsuarioPress = (item) => {
-        console.log(item)
+    const informacoesUsuario = (item) => {
+        console.log(navigation)
         navigation.navigate('Informacoes', { item })
     }
 
     const renderItem = ({ item }) => (
-        <TouchableOpacity style={styles.item} onPress={() => handleUsuarioPress(item) }>
+        <TouchableOpacity style={styles.item} onPress={() => informacoesUsuario(item) }>
                 <Image style={styles.img} source={item.foto} />
                 <View>
                     <Text style={styles.id}>ID: {item.id}</Text>
