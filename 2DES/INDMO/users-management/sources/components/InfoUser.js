@@ -6,7 +6,13 @@ const InfoUser = ({route}) => {
 
     return (
         <View style={styles.container}>
-            <Image source={item.foto}/>
+            <Text>Hello world</Text>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+
+})
+
+export default InfoUser

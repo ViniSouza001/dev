@@ -1,5 +1,6 @@
 import InfoUser from '../components/InfoUser';
-import { View } from 'react-native-web';
+import React from 'react';
+import { View, Text } from 'react-native';
 
 export default function ScreenList() {
     return (

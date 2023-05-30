@@ -1,27 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import ScreenList from './sources/screens/list.js';
-import ScreenUser from './sources/screens/user.js';
+import ListUsers from './sources/screens/list.js';
+import InfoUser from './sources/screens/user.js';
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-        name='ListUsers'
-        component={ScreenList}
-        options={{title: 'Usuários'}}
+      <Stack.Screen
+          name='ListUsers'
+          component={ListUsers}
+          options={{ title: 'Usuários' }}
         />
         <Stack.Screen
-          name='Informações'
-          component={ScreenUser}
-          options={{title: 'Informações'}}
+          name='Informacoes'
+          component={InfoUser}
+          options={{ title: 'Informações' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
+
+export default App;

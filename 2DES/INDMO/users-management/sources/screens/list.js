@@ -1,5 +1,5 @@
 import ListUsers from '../components/listUsers';
-import { View } from 'react-native-web';
+import { View } from 'react-native';
 
 export default function ScreenList() {
     return (

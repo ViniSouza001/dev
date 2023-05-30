@@ -2,25 +2,26 @@ import { View, FlatList, StyleSheet, Text, TouchableOpacity, Image } from "react
 import React from 'react';
 import users from '../mock/users';
 
+
 const ListUsers = ({ navigation }) => {
-    const handleUsuarioPress = ({ item }) => {
-        navigation.navigate('Informações', {item})
+
+    const handleUsuarioPress = (item) => {
+        console.log(item)
+        navigation.navigate('Informacoes', { item })
     }
+
     const renderItem = ({ item }) => (
-        <TouchableOpacity style={styles.item} onPress={() => { handleUsuarioPress(item) }}>
+        <TouchableOpacity style={styles.item} onPress={() => handleUsuarioPress(item) }>
                 <Image style={styles.img} source={item.foto} />
                 <View>
-                <Text style={styles.id}>ID: {item.id}</Text>
-                <Text style={styles.text}>Nome: {item.nome}</Text>
+                    <Text style={styles.id}>ID: {item.id}</Text>
+                    <Text style={styles.text}>Nome: {item.nome}</Text>
                 </View>
             </TouchableOpacity>
-    )
+    );
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Text>Usuários</Text>
-            </View>
             <FlatList
                 data={users}
                 renderItem={renderItem}
