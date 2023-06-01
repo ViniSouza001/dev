@@ -5,7 +5,7 @@ const dados = [
         nome: 'Jurandyr da Silva',
         email: 'teste1@gmail.com',
         senha: 'senha123',
-        nasto: '',
+        nasto: '2005-07-13',
         endereco: {
             cep: '13920-000',
             numero: 23,

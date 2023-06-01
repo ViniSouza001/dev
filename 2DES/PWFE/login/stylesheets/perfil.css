@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../assets/background.jpg');
+}
+ 
+img {
+    width: 150px;
+    margin: 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: right;
+    background-color: rgba(255,255,255, 0.7);
+    border-radius: 20px;
+    padding: 15px;
+    margin-top: 150px;
+}
+
+ul > li {
+    text-align: start;
+    list-style: none;
+    font: normal 13pt Arial;
+    margin-top: 10px;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    gap: 1rem;
+}
+
+div > img, div > h2 {
+    width: 50px;
+    cursor: pointer;
+}
