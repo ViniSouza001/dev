@@ -47,13 +47,13 @@ CALL atualizaValorPedido(27);
 SELECT * FROM pedidos WHERE pedido_id = 27;
 
 
-
-
 -- TAREFA
 -- A cliente Sara Luzia de Melo quer duas pizzas napolitanas
 -- Registre esse pedido
--- DESAFIO:
--- 
+-- DESAFIO: Criar um procedimento armazenado que recebe três parâmetros (cliente_id, pizza_id e quantidade)
+-- e registre um pedido de um item calculando um total
+DROP PROCEDURE IF EXISTS pedidoDeUmItem;
+
 
 SELECT * FROM pizzas WHERE nome = 'Napolitana';
 -- cliente_id: 91;
