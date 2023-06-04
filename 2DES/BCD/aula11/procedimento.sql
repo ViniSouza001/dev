@@ -48,12 +48,28 @@ SELECT * FROM pedidos WHERE pedido_id = 27;
 
 
 
+-- DROP PROCEDURE IF EXISTS atualizaValorPedido;
+-- CREATE PROCEDURE atualizaValorPedido(id int)
+-- UPDATE pedidos
+--     SET valor = (SELECT SUM(valor * quantidade) FROM itens_pedido WHERE pedido_id = id)
+--         WHERE pedido_id = id;
 
--- TAREFA
--- A cliente Sara Luzia de Melo quer duas pizzas napolitanas
--- Registre esse pedido
--- DESAFIO:
--- 
+-- DESAFIO: crie um procedimento armazenado que receba três parâmetros (cliente_id
+-- pizza_id e quantidade) e resgistre um pedido de um item calculando o total
+-- pedidoItem(cli_id int, piz_id int, qnt int);
+-- "Thamires de Campo Luz" quer uma pizza Vienense (96, 41, 1)
+-- "Everton Jose de Souza" quer duas Toscana (105, 39, 2)
+-- "Silvia Roberta de Jesus Garci" quer uma Canadense e 2 cubanas
+DELIMITER $
+DROP PROCEDURE IF EXISTS pedidoItem $
+CREATE PROCEDURE pedidoItem(cli_id INT, piz_id INT, qtd INT)
+BEGIN
+    SELECT c.nome, p.nome, SUM(p.valor * qtd) AS total
+    FROM clientes c, pizzas p
+    WHERE c.cliente_id = cli_id AND p.pizza_id = piz_id;
+END $
+DELIMITER ;
+CALL pedidoItem(105, 39, 2);
 
 SELECT * FROM pizzas WHERE nome = 'Napolitana';
 -- cliente_id: 91;

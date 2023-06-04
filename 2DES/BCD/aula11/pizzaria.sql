@@ -5,8 +5,8 @@ drop database if exists Pizzaria;
 create database Pizzaria charset=UTF8 collate utf8_general_ci;
 use Pizzaria;
 
-create table Clientes(
-	Cliente_id integer primary key auto_increment,
+create table clientes(
+	cliente_id integer primary key auto_increment,
 	nome varchar(30) not null,
 	logradouro varchar(30) not null,
 	numero decimal(5,0),
@@ -15,39 +15,39 @@ create table Clientes(
 	referencia varchar(30)
 );
 
-create table Pizzas(
+create table pizzas(
 	pizza_id integer primary key auto_increment,
 	nome varchar(30) not null,
 	descricao varchar(100) not null,
 	valor decimal(8,2) not null
 );
 
-create table Telefones(
+create table telefones(
 	cliente_id integer not null,
 	telefone varchar(15) not null,
-	foreign key (cliente_id) references Clientes(cliente_id) on delete cascade
+	foreign key (cliente_id) references clientes(cliente_id) on delete cascade
 );
 
-create table Pedidos(
+create table pedidos(
 	pedido_id integer primary key auto_increment,
 	cliente_id integer not null,
 	data date not null,
 	hora time not null,
 	valor decimal(8,2),
-	foreign key (cliente_id) references Clientes(cliente_id)
+	foreign key (cliente_id) references clientes(cliente_id)
 );
 
-create table Itens_Pedido(
+create table itens_pedido(
 	pedido_id integer,
 	pizza_id integer not null,
 	quantidade integer not null,
 	valor decimal(8,2) not null,
-	foreign key (pedido_id) references Pedidos(pedido_id) on delete cascade,
-	foreign key (pizza_id) references Pizzas(pizza_id)
+	foreign key (pedido_id) references pedidos(pedido_id) on delete cascade,
+	foreign key (pizza_id) references pizzas(pizza_id)
 );
 
 -- Comandos DML para alimentar o banco de dados com registros
-insert into Clientes(nome, logradouro, numero, complemento, bairro, referencia) values
+insert into clientes(nome, logradouro, numero, complemento, bairro, referencia) values
 ("Adelcio Biazi","Rua Wellington Martins",1204,"Fundos","Dom Bosco","Igreja"),
 ("Adriano da Silva Ferreira","Rua Walter Paulo Costenaro",1206,null,"Bela Vista","Farmácia"),
 ("Alisson Linhares de Carvalho","Rua Viviane Mello Bonadia dos Santos",1208,null,"Zambom",null),
@@ -154,7 +154,7 @@ insert into Clientes(nome, logradouro, numero, complemento, bairro, referencia) 
 ("Edinilson da Silva Vida","Rua Adriano da Silva Ferreira",259,null,"Zambom",null),
 ("Everton Jose de Souza","Rua Adelcio Biazi",260,null,"Zambom",null);
 
-insert into Telefones(cliente_id, Telefone) values
+insert into telefones(cliente_id, Telefone) values
 (1,"19993452345"),
 (1,"19984212444"),
 (2,"19932342344"),
@@ -426,223 +426,223 @@ insert into Telefones(cliente_id, Telefone) values
 (105,"1930029060"),
 (105,"1930032703");
 -- Inseridos dados de teste sempre recentes utilizando as funções Date_sub() e curdate()
-insert into Pedidos(cliente_id, data, hora) values(1,DATE_SUB(curdate(),INTERVAL 10 DAY),"13:54:00");
-insert into Pedidos(cliente_id, data, hora) values(2,DATE_SUB(curdate(),INTERVAL 10 DAY),"12:12:00");
-insert into Pedidos(cliente_id, data, hora) values(2,DATE_SUB(curdate(),INTERVAL 10 DAY),"14:12:00");
-insert into Pedidos(cliente_id, data, hora) values(3,DATE_SUB(curdate(),INTERVAL 10 DAY),"14:15:00");
-insert into Pedidos(cliente_id, data, hora) values(3,DATE_SUB(curdate(),INTERVAL 9 DAY),"17:15:00");
-insert into Pedidos(cliente_id, data, hora) values(4,DATE_SUB(curdate(),INTERVAL 9 DAY),"15:25:00");
-insert into Pedidos(cliente_id, data, hora) values(4,DATE_SUB(curdate(),INTERVAL 9 DAY),"18:20:00");
-insert into Pedidos(cliente_id, data, hora) values(5,DATE_SUB(curdate(),INTERVAL 8 DAY),"18:25:00");
-insert into Pedidos(cliente_id, data, hora) values(6,DATE_SUB(curdate(),INTERVAL 8 DAY),"21:30:00");
-insert into Pedidos(cliente_id, data, hora) values(7,DATE_SUB(curdate(),INTERVAL 8 DAY),"24:35:00");
-insert into Pedidos(cliente_id, data, hora) values(8,DATE_SUB(curdate(),INTERVAL 8 DAY),"20:40:00");
-insert into Pedidos(cliente_id, data, hora) values(9,DATE_SUB(curdate(),INTERVAL 8 DAY),"23:45:00");
-insert into Pedidos(cliente_id, data, hora) values(10,DATE_SUB(curdate(),INTERVAL 7 DAY),"22:50:00");
-insert into Pedidos(cliente_id, data, hora) values(10,DATE_SUB(curdate(),INTERVAL 7 DAY),"23:55:00");
-insert into Pedidos(cliente_id, data, hora) values(11,DATE_SUB(curdate(),INTERVAL 7 DAY),"13:59:00");
-insert into Pedidos(cliente_id, data, hora) values(11,DATE_SUB(curdate(),INTERVAL 7 DAY),"09:54:00");
-insert into Pedidos(cliente_id, data, hora) values(11,DATE_SUB(curdate(),INTERVAL 7 DAY),"08:21:00");
-insert into Pedidos(cliente_id, data, hora) values(12,DATE_SUB(curdate(),INTERVAL 7 DAY),"09:20:00");
-insert into Pedidos(cliente_id, data, hora) values(13,DATE_SUB(curdate(),INTERVAL 6 DAY),"09:05:00");
-insert into Pedidos(cliente_id, data, hora) values(11,DATE_SUB(curdate(),INTERVAL 6 DAY),"14:12:00");
-insert into Pedidos(cliente_id, data, hora) values(11,DATE_SUB(curdate(),INTERVAL 6 DAY),"11:12:00");
-insert into Pedidos(cliente_id, data, hora) values(12,DATE_SUB(curdate(),INTERVAL 6 DAY),"13:10:00");
-insert into Pedidos(cliente_id, data, hora) values(13,DATE_SUB(curdate(),INTERVAL 5 DAY),"13:00:00");
-insert into Pedidos(cliente_id, data, hora) values(15,DATE_SUB(curdate(),INTERVAL 5 DAY),"15:00:00");
-insert into Pedidos(cliente_id, data, hora) values(16,DATE_SUB(curdate(),INTERVAL 5 DAY),"16:01:00");
-insert into Pedidos(cliente_id, data, hora) values(17,DATE_SUB(curdate(),INTERVAL 5 DAY),"17:02:00");
+insert into pedidos(cliente_id, data, hora) values(1,DATE_SUB(curdate(),INTERVAL 10 DAY),"13:54:00");
+insert into pedidos(cliente_id, data, hora) values(2,DATE_SUB(curdate(),INTERVAL 10 DAY),"12:12:00");
+insert into pedidos(cliente_id, data, hora) values(2,DATE_SUB(curdate(),INTERVAL 10 DAY),"14:12:00");
+insert into pedidos(cliente_id, data, hora) values(3,DATE_SUB(curdate(),INTERVAL 10 DAY),"14:15:00");
+insert into pedidos(cliente_id, data, hora) values(3,DATE_SUB(curdate(),INTERVAL 9 DAY),"17:15:00");
+insert into pedidos(cliente_id, data, hora) values(4,DATE_SUB(curdate(),INTERVAL 9 DAY),"15:25:00");
+insert into pedidos(cliente_id, data, hora) values(4,DATE_SUB(curdate(),INTERVAL 9 DAY),"18:20:00");
+insert into pedidos(cliente_id, data, hora) values(5,DATE_SUB(curdate(),INTERVAL 8 DAY),"18:25:00");
+insert into pedidos(cliente_id, data, hora) values(6,DATE_SUB(curdate(),INTERVAL 8 DAY),"21:30:00");
+insert into pedidos(cliente_id, data, hora) values(7,DATE_SUB(curdate(),INTERVAL 8 DAY),"24:35:00");
+insert into pedidos(cliente_id, data, hora) values(8,DATE_SUB(curdate(),INTERVAL 8 DAY),"20:40:00");
+insert into pedidos(cliente_id, data, hora) values(9,DATE_SUB(curdate(),INTERVAL 8 DAY),"23:45:00");
+insert into pedidos(cliente_id, data, hora) values(10,DATE_SUB(curdate(),INTERVAL 7 DAY),"22:50:00");
+insert into pedidos(cliente_id, data, hora) values(10,DATE_SUB(curdate(),INTERVAL 7 DAY),"23:55:00");
+insert into pedidos(cliente_id, data, hora) values(11,DATE_SUB(curdate(),INTERVAL 7 DAY),"13:59:00");
+insert into pedidos(cliente_id, data, hora) values(11,DATE_SUB(curdate(),INTERVAL 7 DAY),"09:54:00");
+insert into pedidos(cliente_id, data, hora) values(11,DATE_SUB(curdate(),INTERVAL 7 DAY),"08:21:00");
+insert into pedidos(cliente_id, data, hora) values(12,DATE_SUB(curdate(),INTERVAL 7 DAY),"09:20:00");
+insert into pedidos(cliente_id, data, hora) values(13,DATE_SUB(curdate(),INTERVAL 6 DAY),"09:05:00");
+insert into pedidos(cliente_id, data, hora) values(11,DATE_SUB(curdate(),INTERVAL 6 DAY),"14:12:00");
+insert into pedidos(cliente_id, data, hora) values(11,DATE_SUB(curdate(),INTERVAL 6 DAY),"11:12:00");
+insert into pedidos(cliente_id, data, hora) values(12,DATE_SUB(curdate(),INTERVAL 6 DAY),"13:10:00");
+insert into pedidos(cliente_id, data, hora) values(13,DATE_SUB(curdate(),INTERVAL 5 DAY),"13:00:00");
+insert into pedidos(cliente_id, data, hora) values(15,DATE_SUB(curdate(),INTERVAL 5 DAY),"15:00:00");
+insert into pedidos(cliente_id, data, hora) values(16,DATE_SUB(curdate(),INTERVAL 5 DAY),"16:01:00");
+insert into pedidos(cliente_id, data, hora) values(17,DATE_SUB(curdate(),INTERVAL 5 DAY),"17:02:00");
 
-insert into Pizzas(nome, descricao, valor) values("À Moda da Casa","Molho de tomate fresco, mussarela especial, presunto cozido picado, ovos, cebola fatiada, cobertura de catupiry, orégano e azeitonas pretas",32.93);
-insert into Pizzas(nome, descricao, valor) values("Alho e Óleo","Molho de tomate fresco, alho crocante coberto com parmesão, orégano e azeitonas pretas",32.77);
-insert into Pizzas(nome, descricao, valor) values("Aliche","Molho especial de tomate fresco, filés de aliche importado, orégano e azeitonas pretas",32.61);
-insert into Pizzas(nome, descricao, valor) values("Ao Funghi","Molho de tomate fresco, mussarela especial, champignon fatiado, manjericão fresco, orégano e azeitonas pretas",32.45);
-insert into Pizzas(nome, descricao, valor) values("Atum","Molho de tomate fresco, atum especial sólido, cebola fatiada, orégano e azeitonas pretas",32.29);
-insert into Pizzas(nome, descricao, valor) values("Baiana","Molho de tomate fresco, calabresa moída levemente apimentada, ovos cozidos picados, cebola fatiada, orégano e azeitonas pretas",32.13);
-insert into Pizzas(nome, descricao, valor) values("Bauru","Molho de tomate fresco, presunto cozido picado, mussarela especial, rodelas de tomate, orégano e azeitonas pretas",31.97);
-insert into Pizzas(nome, descricao, valor) values("Caipira","Molho de tomate fresco, frango desfiado levemente temperado, cobertura de catupiry, milho verde, orégano e azeitonas pretas",31.81);
-insert into Pizzas(nome, descricao, valor) values("Calabresa","Molho de tomate fresco, calabresa especial fatiada, rodelas de cebola, orégano e azeitonas pretas",31.65);
-insert into Pizzas(nome, descricao, valor) values("Camponesa","Molho de tomate fresco, cobertura de catupiry, milho verde, orégano e azeitonas pretas",31.49);
-insert into Pizzas(nome, descricao, valor) values("Canadense","Molho de tomate fresco, lombo canadense fatiado, cobertura de catupiry, rodelas de cebola, orégano e azeitonas pretas",31.33);
-insert into Pizzas(nome, descricao, valor) values("Capri","Molho de tomate fresco, fatias de lombo canadense, mussarela especial, rodelas de tomate, manjericão fresco, orégano e azeitonas pretas",31.17);
-insert into Pizzas(nome, descricao, valor) values("Catupiry","Molho de tomate fresco, cobertura de catupiry, orégano e azeitonas pretas",31.01);
-insert into Pizzas(nome, descricao, valor) values("Cubana","Molho de tomate fresco, peito de frango desfiado levemente temperado, coberto com mussarela especial, polvilhado de parmesão, orégano e azeitonas pretas",30.85);
-insert into Pizzas(nome, descricao, valor) values("Escarola","Molho de tomate fresco, escarola refogada alho e óleo, filés de aliche importada, coberta com mussarela especial, orégano e azeitonas pretas",35.49);
-insert into Pizzas(nome, descricao, valor) values("Firense","Molho de tomate fresco, atum sólido especial, milho verde, coberto com catupiry, orégano e azeitonas pretas",35.33);
-insert into Pizzas(nome, descricao, valor) values("Frango","Molho de tomate fresco, peito de frango desfiado levemente temperado, coberto com catupiry, orégano e azeitonas pretas",35.17);
-insert into Pizzas(nome, descricao, valor) values("Gramute","Molho de tomate fresco, mussarela especial, presunto cozido picado, champignon fatiado, orégano e azeitonas pretas",35.01);
-insert into Pizzas(nome, descricao, valor) values("Gratinada","Molho de tomate fresco, cobertura de catupiry, camada de provolone , salpicada de parmesão, orégano e azeitonas pretas",34.85);
-insert into Pizzas(nome, descricao, valor) values("Grega","Molho de tomate fresco, palmito macio em rodelas, ervilhas, cobertura de mussarela especial, orégano e azeitonas pretas",34.69);
-insert into Pizzas(nome, descricao, valor) values("Imperial","Molho de tomate fresco, mussarela especial, atum sólido, champignon fatiado, orégano e azeitonas pretas",34.53);
-insert into Pizzas(nome, descricao, valor) values("Margherita","Molho de tomate fresco, mussarela especial, rodelas de tomate, salpicada de parmesão, manjericão fresco, orégano e azeitonas pretas",34.37);
-insert into Pizzas(nome, descricao, valor) values("Matriciana","Molho de tomate fresco, mussarela especial, champignon fatiado, cobertura de parmesão, orégano e azeitonas pretas",34.21);
-insert into Pizzas(nome, descricao, valor) values("Mexicana","Molho de tomate fresco, mussarela especial, presunto cozido picado, milho verde, orégano e azeitonas pretas",34.05);
-insert into Pizzas(nome, descricao, valor) values("Moda do Clientes","Molho de tomate fresco, livre escolha dos ingredientes ( máx.4 ), orégano e azeitonas pretas",33.89);
-insert into Pizzas(nome, descricao, valor) values("Mussarela","Molho de tomate fresco, cobertura de mussarela especial, orégano e azeitonas pretas",33.73);
-insert into Pizzas(nome, descricao, valor) values("Napolitalho","Molho de tomate fresco, mussarela especial, rodelas de tomate, queijo parmesão, alho crocante, orégano e azeitonas pretas",33.57);
-insert into Pizzas(nome, descricao, valor) values("Napolitana","Molho de tomate fresco, mussarela especial, rodelas de tomate, queijo parmesão, orégano e azeitonas pretas",33.41);
-insert into Pizzas(nome, descricao, valor) values("Oba Oba","Molho de tomate fresco, peito de frango desfiado levemente temperado, mussarela especial, bacon fatiado, orégano e azeitonas pretas",33.25);
-insert into Pizzas(nome, descricao, valor) values("Palmito","Molho de tomate fresco, palmito macio em rodelas, coberto com catupiry, orégano e azeitonas pretas",33.09);
-insert into Pizzas(nome, descricao, valor) values("Portuguesa","Molho de tomate fresco, presunto cozido, ovos picados, rodelas de cebola, cobertura de mussarela especial, orégano e azeitonas pretas",30.69);
-insert into Pizzas(nome, descricao, valor) values("Provolone","Molho de tomate fresco, coberto com queijo provolone, champignon fatiado, rodelas de tomate, orégano e azeitonas pretas",30.53);
-insert into Pizzas(nome, descricao, valor) values("Quatro Queijos","Molho de tomate fresco, mussarela especial, camada de catupiry, provolone, salpicado com gorgonzola, orégano e azeitonas pretas",30.37);
-insert into Pizzas(nome, descricao, valor) values("Romana","Molho de tomate fresco, mussarela especial, rodelas de tomate, filés de aliche importado, orégano e azeitonas pretas",30.21);
-insert into Pizzas(nome, descricao, valor) values("Rústica","Molho de tomate fresco, calabresa especial fatiada, alho crocante, rodelas de cebola, orégano e azeitonas pretas",30.05);
-insert into Pizzas(nome, descricao, valor) values("Se Liga","molho de tomate fresco, fatias de lombo canadense, cobertura de provolone, orégano e azeitonas pretas",29.89);
-insert into Pizzas(nome, descricao, valor) values("Siciliana","Molho de tomate fresco, mussarela especial, fatias de bacon, champignon fatiado, orégano e azeitonas pretas",29.73);
-insert into Pizzas(nome, descricao, valor) values("Torino","Molho de tomate fresco, calabresa especial fatiada, palmito macio em rodelas, orégano e azeitonas pretas",29.57);
-insert into Pizzas(nome, descricao, valor) values("Toscana","Molho de tomate fresco, calabresa moída especial, cobertura de mussarela, orégano e azeitonas pretas",29.41);
-insert into Pizzas(nome, descricao, valor) values("Veneza","Molho de tomate fresco, presunto cozido picado, azeitona verde fatiada, cobertura de mussarela especial e orégano",29.25);
-insert into Pizzas(nome, descricao, valor) values("Vienense","Molho de tomate fresco, mussarela especial, calabresa especial fatiada, rodelas de cebola, orégano e azeitonas pretas",29.09);
+insert into pizzas(nome, descricao, valor) values("À Moda da Casa","Molho de tomate fresco, mussarela especial, presunto cozido picado, ovos, cebola fatiada, cobertura de catupiry, orégano e azeitonas pretas",32.93);
+insert into pizzas(nome, descricao, valor) values("Alho e Óleo","Molho de tomate fresco, alho crocante coberto com parmesão, orégano e azeitonas pretas",32.77);
+insert into pizzas(nome, descricao, valor) values("Aliche","Molho especial de tomate fresco, filés de aliche importado, orégano e azeitonas pretas",32.61);
+insert into pizzas(nome, descricao, valor) values("Ao Funghi","Molho de tomate fresco, mussarela especial, champignon fatiado, manjericão fresco, orégano e azeitonas pretas",32.45);
+insert into pizzas(nome, descricao, valor) values("Atum","Molho de tomate fresco, atum especial sólido, cebola fatiada, orégano e azeitonas pretas",32.29);
+insert into pizzas(nome, descricao, valor) values("Baiana","Molho de tomate fresco, calabresa moída levemente apimentada, ovos cozidos picados, cebola fatiada, orégano e azeitonas pretas",32.13);
+insert into pizzas(nome, descricao, valor) values("Bauru","Molho de tomate fresco, presunto cozido picado, mussarela especial, rodelas de tomate, orégano e azeitonas pretas",31.97);
+insert into pizzas(nome, descricao, valor) values("Caipira","Molho de tomate fresco, frango desfiado levemente temperado, cobertura de catupiry, milho verde, orégano e azeitonas pretas",31.81);
+insert into pizzas(nome, descricao, valor) values("Calabresa","Molho de tomate fresco, calabresa especial fatiada, rodelas de cebola, orégano e azeitonas pretas",31.65);
+insert into pizzas(nome, descricao, valor) values("Camponesa","Molho de tomate fresco, cobertura de catupiry, milho verde, orégano e azeitonas pretas",31.49);
+insert into pizzas(nome, descricao, valor) values("Canadense","Molho de tomate fresco, lombo canadense fatiado, cobertura de catupiry, rodelas de cebola, orégano e azeitonas pretas",31.33);
+insert into pizzas(nome, descricao, valor) values("Capri","Molho de tomate fresco, fatias de lombo canadense, mussarela especial, rodelas de tomate, manjericão fresco, orégano e azeitonas pretas",31.17);
+insert into pizzas(nome, descricao, valor) values("Catupiry","Molho de tomate fresco, cobertura de catupiry, orégano e azeitonas pretas",31.01);
+insert into pizzas(nome, descricao, valor) values("Cubana","Molho de tomate fresco, peito de frango desfiado levemente temperado, coberto com mussarela especial, polvilhado de parmesão, orégano e azeitonas pretas",30.85);
+insert into pizzas(nome, descricao, valor) values("Escarola","Molho de tomate fresco, escarola refogada alho e óleo, filés de aliche importada, coberta com mussarela especial, orégano e azeitonas pretas",35.49);
+insert into pizzas(nome, descricao, valor) values("Firense","Molho de tomate fresco, atum sólido especial, milho verde, coberto com catupiry, orégano e azeitonas pretas",35.33);
+insert into pizzas(nome, descricao, valor) values("Frango","Molho de tomate fresco, peito de frango desfiado levemente temperado, coberto com catupiry, orégano e azeitonas pretas",35.17);
+insert into pizzas(nome, descricao, valor) values("Gramute","Molho de tomate fresco, mussarela especial, presunto cozido picado, champignon fatiado, orégano e azeitonas pretas",35.01);
+insert into pizzas(nome, descricao, valor) values("Gratinada","Molho de tomate fresco, cobertura de catupiry, camada de provolone , salpicada de parmesão, orégano e azeitonas pretas",34.85);
+insert into pizzas(nome, descricao, valor) values("Grega","Molho de tomate fresco, palmito macio em rodelas, ervilhas, cobertura de mussarela especial, orégano e azeitonas pretas",34.69);
+insert into pizzas(nome, descricao, valor) values("Imperial","Molho de tomate fresco, mussarela especial, atum sólido, champignon fatiado, orégano e azeitonas pretas",34.53);
+insert into pizzas(nome, descricao, valor) values("Margherita","Molho de tomate fresco, mussarela especial, rodelas de tomate, salpicada de parmesão, manjericão fresco, orégano e azeitonas pretas",34.37);
+insert into pizzas(nome, descricao, valor) values("Matriciana","Molho de tomate fresco, mussarela especial, champignon fatiado, cobertura de parmesão, orégano e azeitonas pretas",34.21);
+insert into pizzas(nome, descricao, valor) values("Mexicana","Molho de tomate fresco, mussarela especial, presunto cozido picado, milho verde, orégano e azeitonas pretas",34.05);
+insert into pizzas(nome, descricao, valor) values("Moda do clientes","Molho de tomate fresco, livre escolha dos ingredientes ( máx.4 ), orégano e azeitonas pretas",33.89);
+insert into pizzas(nome, descricao, valor) values("Mussarela","Molho de tomate fresco, cobertura de mussarela especial, orégano e azeitonas pretas",33.73);
+insert into pizzas(nome, descricao, valor) values("Napolitalho","Molho de tomate fresco, mussarela especial, rodelas de tomate, queijo parmesão, alho crocante, orégano e azeitonas pretas",33.57);
+insert into pizzas(nome, descricao, valor) values("Napolitana","Molho de tomate fresco, mussarela especial, rodelas de tomate, queijo parmesão, orégano e azeitonas pretas",33.41);
+insert into pizzas(nome, descricao, valor) values("Oba Oba","Molho de tomate fresco, peito de frango desfiado levemente temperado, mussarela especial, bacon fatiado, orégano e azeitonas pretas",33.25);
+insert into pizzas(nome, descricao, valor) values("Palmito","Molho de tomate fresco, palmito macio em rodelas, coberto com catupiry, orégano e azeitonas pretas",33.09);
+insert into pizzas(nome, descricao, valor) values("Portuguesa","Molho de tomate fresco, presunto cozido, ovos picados, rodelas de cebola, cobertura de mussarela especial, orégano e azeitonas pretas",30.69);
+insert into pizzas(nome, descricao, valor) values("Provolone","Molho de tomate fresco, coberto com queijo provolone, champignon fatiado, rodelas de tomate, orégano e azeitonas pretas",30.53);
+insert into pizzas(nome, descricao, valor) values("Quatro Queijos","Molho de tomate fresco, mussarela especial, camada de catupiry, provolone, salpicado com gorgonzola, orégano e azeitonas pretas",30.37);
+insert into pizzas(nome, descricao, valor) values("Romana","Molho de tomate fresco, mussarela especial, rodelas de tomate, filés de aliche importado, orégano e azeitonas pretas",30.21);
+insert into pizzas(nome, descricao, valor) values("Rústica","Molho de tomate fresco, calabresa especial fatiada, alho crocante, rodelas de cebola, orégano e azeitonas pretas",30.05);
+insert into pizzas(nome, descricao, valor) values("Se Liga","molho de tomate fresco, fatias de lombo canadense, cobertura de provolone, orégano e azeitonas pretas",29.89);
+insert into pizzas(nome, descricao, valor) values("Siciliana","Molho de tomate fresco, mussarela especial, fatias de bacon, champignon fatiado, orégano e azeitonas pretas",29.73);
+insert into pizzas(nome, descricao, valor) values("Torino","Molho de tomate fresco, calabresa especial fatiada, palmito macio em rodelas, orégano e azeitonas pretas",29.57);
+insert into pizzas(nome, descricao, valor) values("Toscana","Molho de tomate fresco, calabresa moída especial, cobertura de mussarela, orégano e azeitonas pretas",29.41);
+insert into pizzas(nome, descricao, valor) values("Veneza","Molho de tomate fresco, presunto cozido picado, azeitona verde fatiada, cobertura de mussarela especial e orégano",29.25);
+insert into pizzas(nome, descricao, valor) values("Vienense","Molho de tomate fresco, mussarela especial, calabresa especial fatiada, rodelas de cebola, orégano e azeitonas pretas",29.09);
 
--- Insert com select para pegar o valor da Pizzas e copiar para o valor doítem Pedidos
+-- Insert com select para pegar o valor da pizzas e copiar para o valor doítem pedidos
 -- OBS: Supondo que as Pizzass tenham sido vendidas pelo preço cadastrado
 
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(1,1,1, (select valor from Pizzas where pizza_id = 1));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(1,3,2, (select valor from Pizzas where pizza_id = 3));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(1,5,3, (select valor from Pizzas where pizza_id = 5));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(1,7,4, (select valor from Pizzas where pizza_id = 7));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(1,8,5, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(1,11,1, (select valor from Pizzas where pizza_id = 11));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(1,13,2, (select valor from Pizzas where pizza_id = 13));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(2,1,3, (select valor from Pizzas where pizza_id = 1));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(2,3,4, (select valor from Pizzas where pizza_id = 3));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(2,5,5, (select valor from Pizzas where pizza_id = 5));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(2,7,1, (select valor from Pizzas where pizza_id = 7));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(2,8,2, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(2,11,3, (select valor from Pizzas where pizza_id = 11));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(2,13,4, (select valor from Pizzas where pizza_id = 13));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(3,7,5, (select valor from Pizzas where pizza_id = 7));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(3,5,1, (select valor from Pizzas where pizza_id = 5));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(3,8,2, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(3,9,3, (select valor from Pizzas where pizza_id = 9));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(3,3,4, (select valor from Pizzas where pizza_id = 3));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(3,10,5, (select valor from Pizzas where pizza_id = 10));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(3,16,1, (select valor from Pizzas where pizza_id = 16));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(4,22,2, (select valor from Pizzas where pizza_id = 22));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(4,23,3, (select valor from Pizzas where pizza_id = 23));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(4,8,4, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(4,11,5, (select valor from Pizzas where pizza_id = 11));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(4,13,1, (select valor from Pizzas where pizza_id = 13));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(4,7,2, (select valor from Pizzas where pizza_id = 7));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(4,5,3, (select valor from Pizzas where pizza_id = 5));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(5,8,4, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(5,9,5, (select valor from Pizzas where pizza_id = 9));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(5,3,1, (select valor from Pizzas where pizza_id = 3));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(5,10,2, (select valor from Pizzas where pizza_id = 10));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(5,16,3, (select valor from Pizzas where pizza_id = 16));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(5,22,4, (select valor from Pizzas where pizza_id = 22));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(5,23,5, (select valor from Pizzas where pizza_id = 23));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(6,8,1, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(6,11,2, (select valor from Pizzas where pizza_id = 11));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(6,17,3, (select valor from Pizzas where pizza_id = 17));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(6,16,4, (select valor from Pizzas where pizza_id = 16));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(6,15,5, (select valor from Pizzas where pizza_id = 15));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(6,14,1, (select valor from Pizzas where pizza_id = 14));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(6,13,2, (select valor from Pizzas where pizza_id = 13));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(7,12,3, (select valor from Pizzas where pizza_id = 12));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(7,11,4, (select valor from Pizzas where pizza_id = 11));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(7,10,5, (select valor from Pizzas where pizza_id = 10));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(7,9,10, (select valor from Pizzas where pizza_id = 9));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(7,8,2, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(7,7,3, (select valor from Pizzas where pizza_id = 7));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(7,6,4, (select valor from Pizzas where pizza_id = 6));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(8,5,5, (select valor from Pizzas where pizza_id = 5));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(8,4,1, (select valor from Pizzas where pizza_id = 4));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(8,3,1, (select valor from Pizzas where pizza_id = 3));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(8,2,2, (select valor from Pizzas where pizza_id = 2));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(9,1,3, (select valor from Pizzas where pizza_id = 1));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(9,1,4, (select valor from Pizzas where pizza_id = 1));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(9,3,5, (select valor from Pizzas where pizza_id = 3));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(9,5,10, (select valor from Pizzas where pizza_id = 5));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(10,7,2, (select valor from Pizzas where pizza_id = 7));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(10,8,3, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(10,1,4, (select valor from Pizzas where pizza_id = 1));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(10,3,5, (select valor from Pizzas where pizza_id = 3));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(11,5,1, (select valor from Pizzas where pizza_id = 5));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(11,7,1, (select valor from Pizzas where pizza_id = 7));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(11,8,2, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(11,11,3, (select valor from Pizzas where pizza_id = 11));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(12,13,4, (select valor from Pizzas where pizza_id = 13));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(13,1,5, (select valor from Pizzas where pizza_id = 1));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(14,3,1, (select valor from Pizzas where pizza_id = 3));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(15,5,2, (select valor from Pizzas where pizza_id = 5));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(16,7,3, (select valor from Pizzas where pizza_id = 7));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(17,8,11, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(18,22,5, (select valor from Pizzas where pizza_id = 22));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(19,1,1, (select valor from Pizzas where pizza_id = 1));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(20,3,1, (select valor from Pizzas where pizza_id = 3));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(20,5,2, (select valor from Pizzas where pizza_id = 5));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(20,7,3, (select valor from Pizzas where pizza_id = 7));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(20,8,4, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(21,11,5, (select valor from Pizzas where pizza_id = 11));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(21,13,1, (select valor from Pizzas where pizza_id = 13));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(21,1,2, (select valor from Pizzas where pizza_id = 1));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(21,3,3, (select valor from Pizzas where pizza_id = 3));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(22,5,4, (select valor from Pizzas where pizza_id = 5));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(22,7,5, (select valor from Pizzas where pizza_id = 7));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(22,8,1, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(22,25,1, (select valor from Pizzas where pizza_id = 25));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(23,24,2, (select valor from Pizzas where pizza_id = 24));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(23,23,3, (select valor from Pizzas where pizza_id = 23));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(23,22,4, (select valor from Pizzas where pizza_id = 22));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(23,21,5, (select valor from Pizzas where pizza_id = 21));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(24,20,1, (select valor from Pizzas where pizza_id = 20));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(25,19,2, (select valor from Pizzas where pizza_id = 19));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,18,3, (select valor from Pizzas where pizza_id = 18));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,17,4, (select valor from Pizzas where pizza_id = 17));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,16,5, (select valor from Pizzas where pizza_id = 16));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,15,1, (select valor from Pizzas where pizza_id = 15));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,14,1, (select valor from Pizzas where pizza_id = 14));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,13,2, (select valor from Pizzas where pizza_id = 13));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,12,3, (select valor from Pizzas where pizza_id = 12));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,11,4, (select valor from Pizzas where pizza_id = 11));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,10,5, (select valor from Pizzas where pizza_id = 10));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,9,11, (select valor from Pizzas where pizza_id = 9));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,8,2, (select valor from Pizzas where pizza_id = 8));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,7,3, (select valor from Pizzas where pizza_id = 7));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,6,13, (select valor from Pizzas where pizza_id = 6));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,5,5, (select valor from Pizzas where pizza_id = 5));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,4,1, (select valor from Pizzas where pizza_id = 4));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,3,1, (select valor from Pizzas where pizza_id = 3));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,2,2, (select valor from Pizzas where pizza_id = 2));
-insert into Itens_Pedido(pedido_id, pizza_id, quantidade, valor) values(26,1,3, (select valor from Pizzas where pizza_id = 1));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(1,1,1, (select valor from pizzas where pizza_id = 1));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(1,3,2, (select valor from pizzas where pizza_id = 3));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(1,5,3, (select valor from pizzas where pizza_id = 5));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(1,7,4, (select valor from pizzas where pizza_id = 7));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(1,8,5, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(1,11,1, (select valor from pizzas where pizza_id = 11));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(1,13,2, (select valor from pizzas where pizza_id = 13));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(2,1,3, (select valor from pizzas where pizza_id = 1));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(2,3,4, (select valor from pizzas where pizza_id = 3));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(2,5,5, (select valor from pizzas where pizza_id = 5));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(2,7,1, (select valor from pizzas where pizza_id = 7));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(2,8,2, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(2,11,3, (select valor from pizzas where pizza_id = 11));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(2,13,4, (select valor from pizzas where pizza_id = 13));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(3,7,5, (select valor from pizzas where pizza_id = 7));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(3,5,1, (select valor from pizzas where pizza_id = 5));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(3,8,2, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(3,9,3, (select valor from pizzas where pizza_id = 9));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(3,3,4, (select valor from pizzas where pizza_id = 3));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(3,10,5, (select valor from pizzas where pizza_id = 10));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(3,16,1, (select valor from pizzas where pizza_id = 16));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(4,22,2, (select valor from pizzas where pizza_id = 22));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(4,23,3, (select valor from pizzas where pizza_id = 23));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(4,8,4, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(4,11,5, (select valor from pizzas where pizza_id = 11));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(4,13,1, (select valor from pizzas where pizza_id = 13));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(4,7,2, (select valor from pizzas where pizza_id = 7));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(4,5,3, (select valor from pizzas where pizza_id = 5));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(5,8,4, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(5,9,5, (select valor from pizzas where pizza_id = 9));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(5,3,1, (select valor from pizzas where pizza_id = 3));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(5,10,2, (select valor from pizzas where pizza_id = 10));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(5,16,3, (select valor from pizzas where pizza_id = 16));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(5,22,4, (select valor from pizzas where pizza_id = 22));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(5,23,5, (select valor from pizzas where pizza_id = 23));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(6,8,1, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(6,11,2, (select valor from pizzas where pizza_id = 11));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(6,17,3, (select valor from pizzas where pizza_id = 17));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(6,16,4, (select valor from pizzas where pizza_id = 16));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(6,15,5, (select valor from pizzas where pizza_id = 15));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(6,14,1, (select valor from pizzas where pizza_id = 14));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(6,13,2, (select valor from pizzas where pizza_id = 13));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(7,12,3, (select valor from pizzas where pizza_id = 12));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(7,11,4, (select valor from pizzas where pizza_id = 11));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(7,10,5, (select valor from pizzas where pizza_id = 10));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(7,9,10, (select valor from pizzas where pizza_id = 9));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(7,8,2, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(7,7,3, (select valor from pizzas where pizza_id = 7));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(7,6,4, (select valor from pizzas where pizza_id = 6));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(8,5,5, (select valor from pizzas where pizza_id = 5));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(8,4,1, (select valor from pizzas where pizza_id = 4));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(8,3,1, (select valor from pizzas where pizza_id = 3));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(8,2,2, (select valor from pizzas where pizza_id = 2));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(9,1,3, (select valor from pizzas where pizza_id = 1));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(9,1,4, (select valor from pizzas where pizza_id = 1));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(9,3,5, (select valor from pizzas where pizza_id = 3));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(9,5,10, (select valor from pizzas where pizza_id = 5));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(10,7,2, (select valor from pizzas where pizza_id = 7));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(10,8,3, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(10,1,4, (select valor from pizzas where pizza_id = 1));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(10,3,5, (select valor from pizzas where pizza_id = 3));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(11,5,1, (select valor from pizzas where pizza_id = 5));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(11,7,1, (select valor from pizzas where pizza_id = 7));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(11,8,2, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(11,11,3, (select valor from pizzas where pizza_id = 11));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(12,13,4, (select valor from pizzas where pizza_id = 13));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(13,1,5, (select valor from pizzas where pizza_id = 1));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(14,3,1, (select valor from pizzas where pizza_id = 3));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(15,5,2, (select valor from pizzas where pizza_id = 5));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(16,7,3, (select valor from pizzas where pizza_id = 7));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(17,8,11, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(18,22,5, (select valor from pizzas where pizza_id = 22));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(19,1,1, (select valor from pizzas where pizza_id = 1));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(20,3,1, (select valor from pizzas where pizza_id = 3));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(20,5,2, (select valor from pizzas where pizza_id = 5));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(20,7,3, (select valor from pizzas where pizza_id = 7));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(20,8,4, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(21,11,5, (select valor from pizzas where pizza_id = 11));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(21,13,1, (select valor from pizzas where pizza_id = 13));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(21,1,2, (select valor from pizzas where pizza_id = 1));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(21,3,3, (select valor from pizzas where pizza_id = 3));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(22,5,4, (select valor from pizzas where pizza_id = 5));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(22,7,5, (select valor from pizzas where pizza_id = 7));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(22,8,1, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(22,25,1, (select valor from pizzas where pizza_id = 25));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(23,24,2, (select valor from pizzas where pizza_id = 24));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(23,23,3, (select valor from pizzas where pizza_id = 23));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(23,22,4, (select valor from pizzas where pizza_id = 22));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(23,21,5, (select valor from pizzas where pizza_id = 21));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(24,20,1, (select valor from pizzas where pizza_id = 20));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(25,19,2, (select valor from pizzas where pizza_id = 19));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,18,3, (select valor from pizzas where pizza_id = 18));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,17,4, (select valor from pizzas where pizza_id = 17));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,16,5, (select valor from pizzas where pizza_id = 16));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,15,1, (select valor from pizzas where pizza_id = 15));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,14,1, (select valor from pizzas where pizza_id = 14));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,13,2, (select valor from pizzas where pizza_id = 13));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,12,3, (select valor from pizzas where pizza_id = 12));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,11,4, (select valor from pizzas where pizza_id = 11));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,10,5, (select valor from pizzas where pizza_id = 10));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,9,11, (select valor from pizzas where pizza_id = 9));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,8,2, (select valor from pizzas where pizza_id = 8));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,7,3, (select valor from pizzas where pizza_id = 7));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,6,13, (select valor from pizzas where pizza_id = 6));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,5,5, (select valor from pizzas where pizza_id = 5));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,4,1, (select valor from pizzas where pizza_id = 4));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,3,1, (select valor from pizzas where pizza_id = 3));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,2,2, (select valor from pizzas where pizza_id = 2));
+insert into itens_pedido(pedido_id, pizza_id, quantidade, valor) values(26,1,3, (select valor from pizzas where pizza_id = 1));
 
--- Exemplo de Update para preencher o valor do Pedidos somando as Pizzass
+-- Exemplo de Update para preencher o valor do pedidos somando as Pizzass
 -- OBS: Somente exemplo, por ser um campo calculado, não é necessário existir na tabela.
 
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 1) where pedido_id = 1;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 2) where pedido_id = 2;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 3) where pedido_id = 3;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 4) where pedido_id = 4;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 5) where pedido_id = 5;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 6) where pedido_id = 6;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 7) where pedido_id = 7;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 8) where pedido_id = 8;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 9) where pedido_id = 9;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 10) where pedido_id = 10;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 11) where pedido_id = 11;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 12) where pedido_id = 12;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 13) where pedido_id = 13;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 14) where pedido_id = 14;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 15) where pedido_id = 15;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 16) where pedido_id = 16;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 17) where pedido_id = 17;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 18) where pedido_id = 18;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 19) where pedido_id = 19;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 20) where pedido_id = 20;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 21) where pedido_id = 21;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 22) where pedido_id = 22;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 23) where pedido_id = 23;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 24) where pedido_id = 24;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 25) where pedido_id = 25;
-update Pedidos set valor=(select sum(quantidade * valor) from Itens_Pedido where pedido_id = 26) where pedido_id = 26;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 1) where pedido_id = 1;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 2) where pedido_id = 2;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 3) where pedido_id = 3;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 4) where pedido_id = 4;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 5) where pedido_id = 5;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 6) where pedido_id = 6;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 7) where pedido_id = 7;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 8) where pedido_id = 8;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 9) where pedido_id = 9;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 10) where pedido_id = 10;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 11) where pedido_id = 11;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 12) where pedido_id = 12;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 13) where pedido_id = 13;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 14) where pedido_id = 14;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 15) where pedido_id = 15;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 16) where pedido_id = 16;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 17) where pedido_id = 17;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 18) where pedido_id = 18;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 19) where pedido_id = 19;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 20) where pedido_id = 20;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 21) where pedido_id = 21;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 22) where pedido_id = 22;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 23) where pedido_id = 23;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 24) where pedido_id = 24;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 25) where pedido_id = 25;
+update pedidos set valor=(select sum(quantidade * valor) from itens_pedido where pedido_id = 26) where pedido_id = 26;
 
-select * from Clientes;
-select * from Pizzas;
-select * from Telefones;
-select * from Pedidos;
-select * from Itens_Pedido;
+select * from clientes;
+select * from pizzas;
+select * from telefones;
+select * from pedidos;
+select * from itens_pedido;
 
 -- Mostrar todas as tabelas no fim do script
 show tables;
