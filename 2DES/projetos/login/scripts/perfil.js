@@ -1,5 +1,4 @@
 const usuario = JSON.parse(window.localStorage.getItem('usuario'));
-console.log(usuario);
 const body = document.querySelector('body');
 const telefones = usuario.telefones.map(element => element)
 const listaTelefones = telefones.join(', ')
@@ -20,7 +19,6 @@ function carregar(){
 };
 
 function validaComplemento(argumento) {
-    console.log('validaComplemento')
     if(argumento == null) {
         return ', sem complemento';
     } else {
