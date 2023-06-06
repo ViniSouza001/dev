@@ -44,3 +44,12 @@ insert into telefones VALUES
 (3, '19 99520-3047');
 
 select * from users;
+
+CREATE VIEW listarInfo AS
+SELECT u.*, t.telefone, e.cep, e.numero, e.complemento
+from users u
+join telefones t on t.user_id = u.id
+join enderecos e on e.user_id = u.id
+where u.id = 2;
+
+select * from listarInfo;
