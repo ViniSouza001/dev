@@ -8,12 +8,9 @@ class Usuario {
         this.nasto = u.nasto   
     }
 
-    readAll() {
+    readInfo() {
         return `
-        SELECT u.*, e.cep, e.numero, e.complemento
-        from users u
-        join enderecos e on e.user_id = u.id
-        where u.id = ${this.id};
+        SELECT id, nome,cpf, email, senha,nasto from users where email = '${this.email}' and senha = password('${this.senha}');
         `
     }
 
