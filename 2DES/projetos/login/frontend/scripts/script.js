@@ -15,3 +15,9 @@ function authenticate() {
     })
     if(err) document.querySelector('#erro').style.display = 'block';
 }
+
+const formulario = document.querySelector('form');
+formulario.addEventListener('submit', (e) => {
+    e.preventDefault()
+    fetch('http://localhost:3000/listar/')
+})

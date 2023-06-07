@@ -12,6 +12,17 @@ const listarInfo = (req, res) => {
     })
 }
 
+const listarTel = (req, res) => {
+    let user = new Usuario(req.params)
+    con.query(user.readTel(), (err, result) => {
+        if(err){
+            res.json(err).status(400).end()
+        } else {
+            res.json(result).status(200).end()
+        }
+    })
+}
+
 const alterar = (req, res) => {
     let user = new Usuario(req.body)
     con.query(user.alterar(), (err, result) => {
@@ -30,5 +41,6 @@ const teste = (req, res) => {
 module.exports = {
     listarInfo,
     alterar,
-    teste
+    teste,
+    listarTel
 }

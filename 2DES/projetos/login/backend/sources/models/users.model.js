@@ -10,11 +10,16 @@ class Usuario {
 
     readAll() {
         return `
-        SELECT u.*, t.telefone, e.cep, e.numero, e.complemento
+        SELECT u.*, e.cep, e.numero, e.complemento
         from users u
-        join telefones t on t.user_id = u.id
         join enderecos e on e.user_id = u.id
-        where u.id = ${id};
+        where u.id = ${this.id};
+        `
+    }
+
+    readTel() {
+        return `
+        SELECT * FROM telefones WHERE user_id = ${this.id};
         `
     }
 
