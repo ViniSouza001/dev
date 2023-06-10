@@ -4,8 +4,8 @@ const router = require('./sources/routes/routes');
 const cors = require('cors')
 
 app.use(cors())
-app.use(router)
 app.use(express.json());
+app.use(router)
 
 const PORT = 3000;
 app.listen(PORT, () => {

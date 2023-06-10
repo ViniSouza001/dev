@@ -10,19 +10,25 @@ class Usuario {
 
     readInfo() {
         return `
-        SELECT id, nome,cpf, email, senha,nasto from users where email = '${this.email}' and senha = password('${this.senha}');
+            SELECT id, nome,cpf, email, senha,nasto from users where email = '${this.email}' and senha = password('${this.senha}');
         `
     }
 
     readTel() {
         return `
-        SELECT * FROM telefones WHERE user_id = ${this.id};
+            SELECT telefone FROM telefones WHERE user_id = ${this.id};
+        `
+    }
+
+    readAddress() {
+        return `
+            SELECT cep, numero, complemento FROM enderecos WHERE user_id = ${this.id}
         `
     }
 
     alterar() {
         return `
-            UPDATE users VALUES ('${cpf}', '${nome}', '${email}', '${senha}', '${nasto}') WHERE id = ${id}
+            UPDATE users SET nome = '${this.nome}', cpf = '${this.cpf}', email = '${this.email}', senha = password('${this.senha}'), nasto = '${this.nasto}' WHERE id = ${this.id};
         `
     }
 }

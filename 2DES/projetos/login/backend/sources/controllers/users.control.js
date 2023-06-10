@@ -3,15 +3,15 @@ const con = require('../dao/connection')
 
 const listarInfo = (req, res) => {
     let user = new Usuario(req.body)
-    con.query(user.readInfo(), (err, result) => {
+    con.query(user.readInfo(), (err, response) => {
         if(err) {
-            res.status(401).json(err).end()
+            res.status(404).json(err).end()
         } else {
             if(response.length === 0) {
-                res.status(401).json({'msg': 'Matricula ou senha inválidos'}).end()
+                res.status(404).json({'msg': 'Matricula ou senha inválidos'}).end()
             } else {
-                let usuario = result[0]
-                res.status(200).json(usuario).end();
+                let usuario = response[0]
+                res.status(200).json(response).end();
             }
         }
     })
@@ -19,22 +19,33 @@ const listarInfo = (req, res) => {
 
 const listarTel = (req, res) => {
     let user = new Usuario(req.params)
-    con.query(user.readTel(), (err, result) => {
+    con.query(user.readTel(), (err, response) => {
         if(err){
             res.json(err).status(400).end()
         } else {
-            res.json(result).status(200).end()
+            res.json(response).status(200).end()
+        }
+    })
+}
+
+const listarEndereco = (req, res) => {
+    const user = new Usuario(req.params)
+    con.query(user.readAddress(), (err, response) => {
+        if(err) {
+            res.json({error: err}).status(404).end()
+        } else {
+            res.json(response).status(200).end()
         }
     })
 }
 
 const alterar = (req, res) => {
     let user = new Usuario(req.body)
-    con.query(user.alterar(), (err, result) => {
+    con.query(user.alterar(), (err, response) => {
         if(err) {
             res.json(err).status(400).end()
         } else {
-            res.json(result).status(200).end()
+            res.json(response).status(200).end()
         }
     })
 }
@@ -47,5 +58,6 @@ module.exports = {
     listarInfo,
     alterar,
     teste,
-    listarTel
+    listarTel,
+    listarEndereco
 }

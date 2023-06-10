@@ -52,4 +52,6 @@ join telefones t on t.user_id = u.id
 join enderecos e on e.user_id = u.id
 where u.id = 2;
 
+SELECT telefone FROM telefones WHERE user_id = 3;
+
 select * from listarInfo;

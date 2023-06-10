@@ -1,29 +1,56 @@
 const usuario = JSON.parse(window.localStorage.getItem('usuario'));
 const body = document.querySelector('body');
-const telefones = usuario.telefones.map(element => element)
-const listaTelefones = telefones.join(', ')
+
 body.addEventListener('load', carregar())
 function carregar(){
+    const { id, cpf, nome, email, nasto } = usuario[0]
     const main = document.querySelector('main');
     const lista = document.createElement('ul');
+    const nascimentoFormatado = nasto.slice(0, 10);
+
+    // chama a função que retorna um fetch dos telefones do usuário
     lista.innerHTML = `
-        <li>ID: ${usuario.id}</li>
-        <li>CPF: ${usuario.cpf}</li>
-        <li>Nome: ${usuario.nome}</li>
-        <li>E-mail: ${usuario.email}</li>
-        <li>Nascimento: ${usuario.nasto}</li>
-        <li>CEP: ${usuario.endereco.cep}, N° ${usuario.endereco.numero}${validaComplemento(usuario.endereco.complemento)}</li>
-        <li>Telefones: ${listaTelefones}</li>
+    <li>ID: ${id}</li>
+    <li>CPF: ${addInput(cpf)}</li>
+    <li>Nome: ${addInput(nome)}</li>
+    <li>E-mail: ${addInput(email)}</li>
+    <li>Nascimento: ${addInputData(nascimentoFormatado)}</li>
     `
-    main.appendChild(lista);
+    // irá procurar os telefones do usuário e adicionar na lista
+    fetchTelefones(id) // chama a função
+    .then(listaTelefones => { // retorna uma Promisse
+        // formata os telefones com vírgula e espaço (', ')
+        const telefonesFormatados = formataTelefone(listaTelefones);
+        lista.innerHTML += `
+            <li>Telefones: ${addInput(telefonesFormatados)}</li>
+        `
+    })
+    
+    // irá procurar e listar o(s) endereco(s) do usuário (cep, numero, e complemento)
+    fetchEnderecos(id)
+    .then(enderecos => {
+        const { cep, numero, complemento } = enderecos[0]
+        lista.innerHTML += `
+            <li>CEP: ${addInput(cep)}</li>
+            <li>Número: ${addInput(numero)}</li>
+            <li>${validaComplemento(complemento)}</li>
+        `
+    })
+        main.appendChild(lista);
 };
 
+function formataTelefone(telefones) {
+    // caso o usuário tenha mais de um telefone, irá ser formatado com ponto e vírgula
+    return telefones.join(', ')
+}
+
 function validaComplemento(argumento) {
-    if(argumento == null) {
-        return ', sem complemento';
-    } else {
-        return `, Complemento: ${argumento}`
-    }
+    response = ''
+    argumento == null 
+    ? response = `Complemento: ${addInput('Sem complemento')}`
+    : response = `Complemento: ${addInput(argumento)}`
+    return response
+    
 }
 
 function exit() {
@@ -33,4 +60,19 @@ function exit() {
     const url = './login.html';
     history.replaceState(stateObj, title, url);
     location.reload();
+}
+
+function addInputData(value) {
+    var input = `<input class="inputs" type="date" value="${value}" />`
+    return input
+}
+
+function addInput(value) {
+    return `<input class="inputs" type="text" value="${value}" />`
+}
+
+
+// alterar informações do perfil
+function alterar() {
+
 }
