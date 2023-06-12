@@ -2,7 +2,8 @@ const usuario = JSON.parse(window.localStorage.getItem('usuario'))
 const body = document.querySelector('body')
 const form = document.querySelector('form');
 const lista = document.createElement('ul');
-
+const janela = document.querySelector('.window')
+const mensagem = document.querySelector('#mensagem')
 
 var idUser = 0;
 
@@ -72,16 +73,16 @@ function exit() {
 }
 
 function addInputData(value, nome) {
-    var input = `<input onfocus="inputFocus(this)" id='${nome}' class="inputs" type="date" value="${value}" />`
+    var input = `<input onfocus="inputFocus()" onblur="inputNoFocus()" id='${nome}' class="inputs" type="date" value="${value}" />`
     return input
 }
 
 function addInput(value, nome) {
-    return `<input onfocus="inputFocus(this)" onblur="inputNoFocus(this)" id="${nome}" class="inputs" type="text" value="${value}" autocomplete="username" />`
+    return `<input onfocus="inputFocus()" onblur="inputNoFocus()" id="${nome}" class="inputs" type="text" value="${value}" autocomplete="username" />`
 }
 
 function addInputPassword(nome) {
-    return `<input id="${nome}" class="inputs" type="password" autocomplete="new-password"/>`
+    return `<input id="${nome}" onfocus="inputFocus()" onblur="inputNoFocus()" class="inputs" type="password" autocomplete="new-password"/>`
 }
 
 
@@ -142,11 +143,12 @@ function inputFocus() {
 }
 
 function inputNoFocus() {
-    setTimeout(() => {
-        const button = document.querySelector('button')
+    // setTimeout(() => {
+        
+    // }, 500);
+    const button = document.querySelector('button')
         button.disabled = false
         button.classList.remove('disabled')
-    }, 1000);
 }
 
 // se a senha e a verificação são iguais
@@ -167,4 +169,11 @@ function verificarSenha() {
     if(senha.includes(" ") || confirmSenha.includes(" ")) return false
 
     return true
+}
+
+
+// abrir e fechar janela de mensagem
+function toggleWindow() {
+    janela.classList.toggle('hide')
+
 }

@@ -63,10 +63,23 @@ button {
 button.disabled {
     padding: 15px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, .5);
     margin: 20px;
     font-size: 19px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     cursor: default;
+}
+
+.hide {
+    display: none;
+}
+
+.window {
+    display: flex;
+    flex-direction: column;
+}
+
+.window > header {
+
 }
