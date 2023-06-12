@@ -21,7 +21,7 @@ create table enderecos (
 
 create table telefones (
 	user_id int not null,
-	telefone varchar(50) not null,
+	telefone varchar(100) not null,
 	foreign key (user_id) references users(id)
 );
 
@@ -36,12 +36,9 @@ insert into enderecos VALUES
 (3, "13922-364", 'A3', "Bloco 5");
 
 insert into telefones VALUES
-(1, '19 99245-4968'),
-(1, '19 99874-5324'),
+(1, '19 99245-4968, 19 99874-5324'),
 (2, '15 99324-7890'),
-(3, '19 99932-6348'),
-(3, '19 98954-5248'),
-(3, '19 99520-3047');
+(3, '19 99932-6348, 19 98954-5248, 19 99520-3047');
 
 select * from users;
 

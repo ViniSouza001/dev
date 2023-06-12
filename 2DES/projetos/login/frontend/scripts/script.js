@@ -27,7 +27,7 @@ function verification() {
         } else {
             localStorage.setItem("usuario", JSON.stringify(dados))
             const stateObj = {tela: 'Perfil'}
-            const title = "Aoba!"
+            const title = "Perfil"
             const url = './perfil.html'
             history.replaceState(stateObj, title, url)
             location.reload()

@@ -31,9 +31,15 @@ class Usuario {
     }
 
     alterarUser() {
-        return `
-            UPDATE users SET nome = '${this.nome}', cpf = '${this.cpf}', email = '${this.email}', nasto = '${this.nasto}' WHERE id = ${this.id};
-        `
+        if(this.senha == undefined) {
+            return `
+                UPDATE users SET nome = '${this.nome}', cpf = '${this.cpf}', email = '${this.email}', nasto = '${this.nasto}' WHERE id = ${this.id};
+            `
+        } else {
+            return `
+                UPDATE users SET nome = '${this.nome}', cpf = '${this.cpf}', email = '${this.email}', senha = password("${this.senha}") , nasto = '${this.nasto}' WHERE id = ${this.id};
+            `
+        }
     }
 
     alterarTelefone() {

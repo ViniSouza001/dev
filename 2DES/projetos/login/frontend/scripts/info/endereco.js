@@ -29,4 +29,5 @@ function alterarEndereco() {
     .then(retorno => {
        atualizar()
     })
+    .catch(err => {console.log(err)})
 }

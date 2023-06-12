@@ -1,6 +1,6 @@
 const usuario = JSON.parse(window.localStorage.getItem('usuario'))
 const body = document.querySelector('body')
-const main = document.querySelector('main');
+const form = document.querySelector('form');
 const lista = document.createElement('ul');
 
 
@@ -40,10 +40,11 @@ function carregar(){
             <li>CEP: ${addInput(cep, 'cep')}</li>
             <li>Número: ${addInput(numero, 'numero')}</li>
             <li>${validaComplemento(complemento, 'complemento')}</li>
-        `
-    })
-        
-        verificarSenha()
+            <li>Senha: ${addInputPassword('senha')}</li>
+            <li>Confirmar senha: ${addInputPassword('confirma')}</li>
+            `
+        })
+        form.appendChild(lista)
 };
 
 
@@ -56,8 +57,8 @@ function formataTelefone(telefones) {
 function validaComplemento(argumento) {
     response = ''
     argumento == null 
-    ? response = `Complemento: ${addInput('Sem complemento')}`
-    : response = `Complemento: ${addInput(argumento, 'complemento')}`
+    ? response = `Complemento: ${addInput('Sem complemento', "complemento")}`
+    : response = `Complemento: ${addInput(argumento, "complemento")}`
     return response
 }
 
@@ -76,46 +77,48 @@ function addInputData(value, nome) {
 }
 
 function addInput(value, nome) {
-    return `<input onfocus="inputFocus(this)" onblur="inputNoFocus(this)" id="${nome}" class="inputs" type="text" value="${value}" />`
+    return `<input onfocus="inputFocus(this)" onblur="inputNoFocus(this)" id="${nome}" class="inputs" type="text" value="${value}" autocomplete="username" />`
 }
 
 function addInputPassword(nome) {
-    return `<input id="${nome}" class="inputs" type="password" />`
+    return `<input id="${nome}" class="inputs" type="password" autocomplete="new-password"/>`
 }
 
-// inputs
-var inpCpf = document.querySelector('#cpf')
-var inpNome = document.querySelector('#nome')
-var inpEmail = document.querySelector('#email')
-var inpNasto = document.querySelector('#nasto')
 
 // alterar informações do perfil
 function alterar() {
-    var inpCpf = document.querySelector('#cpf')
-    var inpNome = document.querySelector('#nome')
-    var inpEmail = document.querySelector('#email')
-    var inpNasto = document.querySelector('#nasto')
-    const data = {
-        'id': idUser,
-        'cpf': inpCpf.value,
-        'nome': inpNome.value,
-        'email': inpEmail.value,
-        'nasto': inpNasto.value,
-    }
+    let confirmSenha = verificarSenha()
+    if(confirmSenha) {
+        var inpCpf = document.querySelector('#cpf')
+        var inpNome = document.querySelector('#nome')
+        var inpEmail = document.querySelector('#email')
+        var inpNasto = document.querySelector('#nasto')
+        let inpSenha = document.querySelector('#senha')
+        const data = {
+            'id': idUser,
+            'cpf': inpCpf.value,
+            'nome': inpNome.value,
+            'email': inpEmail.value,
+            'nasto': inpNasto.value,
+            'senha': inpSenha.value
+        }
 
-    const info = {
-        'method': 'PUT',
-        'headers': {
-            'Content-Type': 'application/json'
-        },
-        'body': JSON.stringify(data)
-    }
+        const info = {
+            'method': 'PUT',
+            'headers': {
+                'Content-Type': 'application/json'
+            },
+            'body': JSON.stringify(data)
+        }
 
-    fetch('http://localhost:3000/alterar', info)
-    .then(response => {return response.json()})
-    .then(retorno => {
-        alterarTelefone()
-    })
+        fetch('http://localhost:3000/alterar', info)
+        .then(response => {return response.json()})
+        .then(retorno => {
+            alterarTelefone()
+        })
+    } else {
+        alert('Sua senha e confirmação de senha não conferem')
+    }
 }
 
 function atualizar() {
@@ -124,8 +127,11 @@ function atualizar() {
     .then(response => {return response.json()})
     .then(informations => {
         localStorage.setItem('usuario', JSON.stringify(informations))
-        console.log(informations);
-        location.reload()
+        const stateObj = {tela: 'Perfil'}
+            const title = "Perfil"
+            const url = './perfil.html'
+            history.replaceState(stateObj, title, url)
+            location.reload()
     })
 }
 
@@ -143,11 +149,22 @@ function inputNoFocus() {
     }, 1000);
 }
 
+// se a senha e a verificação são iguais
 function verificarSenha() {
-    lista.innerHTML += `
-        <li>Senha: ${addInputPassword('senha')}</li>
-        <li>Confirmar senha: ${addInputPassword('confirma')}</li>
+    let senha = document.querySelector('#senha').value
+    let confirmSenha = document.querySelector('#confirma').value
+
+    if(senha.length == 0 || confirmSenha.length == 0) return true
+
+    // se as senhas forem diferentes
+    if(senha != confirmSenha) return false
     
-    `
-    main.appendChild(lista)
+    // permite que a senha tenha letras (maiúsculas e minusculas), números e caracteres especiais
+    const regex = /^(?=.*[a-zA-Z\d@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+    if(!regex.test(senha)) return false
+
+    // verifica se a senha contém espaços em branco
+    if(senha.includes(" ") || confirmSenha.includes(" ")) return false
+
+    return true
 }
