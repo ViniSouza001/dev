@@ -11,7 +11,7 @@ const listarInfo = (req, res) => {
                 res.status(404).json({'msg': 'Matricula ou senha inválidos'}).end()
             } else {
                 let usuario = response[0]
-                res.status(200).json(response).end();
+                res.status(202).json(response).end();
             }
         }
     })
@@ -41,7 +41,7 @@ const listarEndereco = (req, res) => {
 
 const alterar = (req, res) => {
     let user = new Usuario(req.body)
-    con.query(user.alterar(), (err, response) => {
+    con.query(user.alterarUser(), (err, response) => {
         if(err) {
             res.json(err).status(400).end()
         } else {
@@ -50,8 +50,41 @@ const alterar = (req, res) => {
     })
 }
 
+const alterarTelefone = (req, res) => {
+    let telefone = new Usuario(req.body)
+    con.query(telefone.alterarTelefone(), (err, result) => {
+        if (err) {
+            res.status(400).json({error: err}).end()
+        } else {
+            res.status(200).json(result).end()
+        }
+    })
+}
+
+const alterarEndereco = (req, res) => {
+    let endereco = new Usuario(req.body)
+    con.query(endereco.alterarEndereco(), (err, result) => {
+        if(err) {
+            res.status(400).json({error: err}).end()
+        } else {
+            res.json(result).status(200).end()
+        }
+    })
+}
+
+const atualizarInfo = (req, res) => {
+    let info = new Usuario(req.params)
+    con.query(info.atualizarInfo(), (err, result) => {
+        if(err) {
+            res.status(404).json({error: err}).end()
+        } else {
+            res.json(result).status(200).end()
+        }
+    })
+}
+
 const teste = (req, res) => {
-    res.json('Home')
+    res.json('Servidor rodando!')
 }
 
 module.exports = {
@@ -59,5 +92,8 @@ module.exports = {
     alterar,
     teste,
     listarTel,
-    listarEndereco
+    listarEndereco,
+    alterarTelefone,
+    alterarEndereco,
+    atualizarInfo
 }

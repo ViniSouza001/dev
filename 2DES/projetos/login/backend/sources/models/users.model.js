@@ -5,7 +5,11 @@ class Usuario {
         this.cpf = u.cpf
         this.email = u.email
         this.senha = u.senha
-        this.nasto = u.nasto   
+        this.nasto = u.nasto
+        this.telefone = u.telefone
+        this.cep = u.cep
+        this.numero = u.numero
+        this.complemento = u.complemento
     }
 
     readInfo() {
@@ -26,9 +30,34 @@ class Usuario {
         `
     }
 
-    alterar() {
+    alterarUser() {
         return `
-            UPDATE users SET nome = '${this.nome}', cpf = '${this.cpf}', email = '${this.email}', senha = password('${this.senha}'), nasto = '${this.nasto}' WHERE id = ${this.id};
+            UPDATE users SET nome = '${this.nome}', cpf = '${this.cpf}', email = '${this.email}', nasto = '${this.nasto}' WHERE id = ${this.id};
+        `
+    }
+
+    alterarTelefone() {
+        return `
+            UPDATE telefones SET telefone = '${this.telefone}' where user_id = ${this.id};
+        `
+    }
+
+    alterarEndereco() {
+        if(this.complemento == undefined) {
+            return `
+                UPDATE enderecos SET cep = '${this.cep}', numero = '${this.numero}' where user_id = ${this.id}
+            `
+        } else {
+            return `
+                UPDATE enderecos SET cep = '${this.cep}', numero = '${this.numero}', complemento = "${this.complemento}" where user_id = ${this.id}
+            `
+        }
+        
+    }
+
+    atualizarInfo() {
+        return `
+            SELECT * FROM users WHERE id = ${this.id};
         `
     }
 }
