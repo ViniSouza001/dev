@@ -7,7 +7,7 @@ body {
     height: 100vh;
     overflow-x: hidden;
     justify-content: center;
-    background-image: linear-gradient(135deg, #61315b, #131463);
+    background-image: linear-gradient(180deg, #61315b, #131463);
     overflow: hidden;
 }
 

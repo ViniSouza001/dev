@@ -88,22 +88,28 @@ function addInputPassword(nome) {
 
 // alterar informações do perfil
 function alterar() {
+
     let confirmSenha = verificarSenha()
-    if(confirmSenha) {
+    /*
+     * índices
+     * confirmSenha === 0: senhas inválidas (diferentes)
+     * confirmSenha === 1: senhas aceitas (alterar)
+     * confirmSenha === 2: senhas vazias (continuam as mesmas)
+     * confirmSenha === 3: senhas não podem conter espaço
+     */
+
+    if(confirmSenha === 2) {
         var inpCpf = document.querySelector('#cpf')
         var inpNome = document.querySelector('#nome')
         var inpEmail = document.querySelector('#email')
         var inpNasto = document.querySelector('#nasto')
-        let inpSenha = document.querySelector('#senha')
         const data = {
             'id': idUser,
             'cpf': inpCpf.value,
             'nome': inpNome.value,
             'email': inpEmail.value,
-            'nasto': inpNasto.value,
-            'senha': inpSenha.value
+            'nasto': inpNasto.value
         }
-
         const info = {
             'method': 'PUT',
             'headers': {
@@ -117,9 +123,69 @@ function alterar() {
         .then(retorno => {
             alterarTelefone()
         })
-    } else {
+    } else if (confirmSenha === 1) {
+        var inpCpf = document.querySelector('#cpf')
+        var inpNome = document.querySelector('#nome')
+        var inpEmail = document.querySelector('#email')
+        var inpNasto = document.querySelector('#nasto')
+        let inpSenha = document.querySelector('#senha')
+        const data = {
+            'id': idUser,
+            'cpf': inpCpf.value,
+            'nome': inpNome.value,
+            'email': inpEmail.value,
+            'nasto': inpNasto.value,
+            'senha': inpSenha.value
+        }
+        const info = {
+            'method': 'PUT',
+            'headers': {
+                'Content-Type': 'application/json'
+            },
+            'body': JSON.stringify(data)
+        }
+
+        fetch('http://localhost:3000/alterar', info)
+        .then(response => {return response.json()})
+        .then(retorno => {
+            alterarTelefone()
+        })
+    } else if (confirmSenha === 3){
+        toggleWindow('A senha não pode conter espaços em branco!')
+    }
+    else {
         toggleWindow('Suas senhas não coincidem :(')
     }
+}
+
+// se a senha e a verificação são iguais
+function verificarSenha() {
+    let senha = document.querySelector('#senha').value
+    console.log(senha);
+    let confirmSenha = document.querySelector('#confirma').value
+    let teste = 'aoba'
+    /*
+     * índice
+     * return 0: senhas inválidas (diferentes)
+     * return 1: senhas aceitas (alterar)
+     * return 2: inputs vazios (senhas continuam as mesmas)
+     * return 3: senhas não podem conter espaço
+     */
+
+    if(senha.length == 0 || confirmSenha.length == 0) return 2
+
+    // se as senhas forem diferentes
+    if(senha != confirmSenha) return 0
+    
+    // permite que a senha tenha letras (maiúsculas e minusculas), números e caracteres especiais
+    const regex = /^(?=.*[a-zA-Z\d@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+    if(!regex.test(senha)) return 0
+
+    if(senha.includes(' ') || confirmSenha.includes(' ')) {
+        return 3;
+    }
+
+    return 1
 }
 
 function atualizar() {
@@ -150,27 +216,6 @@ function inputNoFocus() {
         button.disabled = false
         button.classList.remove('disabled')
 }
-
-// se a senha e a verificação são iguais
-function verificarSenha() {
-    let senha = document.querySelector('#senha').value
-    let confirmSenha = document.querySelector('#confirma').value
-
-    if(senha.length == 0 || confirmSenha.length == 0) return true
-
-    // se as senhas forem diferentes
-    if(senha != confirmSenha) return false
-    
-    // permite que a senha tenha letras (maiúsculas e minusculas), números e caracteres especiais
-    const regex = /^(?=.*[a-zA-Z\d@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
-    if(!regex.test(senha)) return false
-
-    // verifica se a senha contém espaços em branco
-    if(senha.includes(" ") || confirmSenha.includes(" ")) return false
-
-    return true
-}
-
 
 // abrir e fechar janela de mensagem
 function toggleWindow(texto) {
