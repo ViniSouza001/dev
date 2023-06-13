@@ -118,7 +118,7 @@ function alterar() {
             alterarTelefone()
         })
     } else {
-        alert('Sua senha e confirmação de senha não conferem')
+        toggleWindow('Suas senhas não coincidem :(')
     }
 }
 
@@ -173,7 +173,13 @@ function verificarSenha() {
 
 
 // abrir e fechar janela de mensagem
-function toggleWindow() {
-    janela.classList.toggle('hide')
-
+function toggleWindow(texto) {
+    // var close = document.querySelector('#close')
+    janela.classList.toggle('hidden')
+    // close.classList.toggle('hidden')
+    janela.classList.toggle('animacao')
+    mensagem.textContent = texto
+    setTimeout(() => {
+        atualizar()
+    }, 1700);
 }

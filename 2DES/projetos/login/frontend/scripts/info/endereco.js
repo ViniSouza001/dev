@@ -27,7 +27,7 @@ function alterarEndereco() {
     fetch('http://localhost:3000/endereco/alterar', info)
     .then(response => {return response.json()})
     .then(retorno => {
-       atualizar()
+        toggleWindow('Informações salvas com sucesso!')
     })
     .catch(err => {console.log(err)})
 }
