@@ -12,7 +12,8 @@ npm install -g expo-cli
 ```shell
 npx create-expo-app nome_projeto || npm install -g create-expo-app nome_projeto
 ```
-3. Oferece diferentes tipos de navegação (pilha, tab navigation, navegação gaveta)
+3. Usada para navegação em aplicativos React Native. Fornece um conjunto de componentes e utilitários para facilitar a criação de sistemas de navegação em seu aplicativo
+    - Pode ser combinado com outras dependências do React Navigation, como @react-navigation/stack, @react-navigation/bottom-tabs e @react-navigation/drawer
 ```shell
 yarn add @react-navigation/native
 ```
@@ -37,4 +38,18 @@ yarn add @react-navigation/native-stack
 ```shell
 yarn add react-native-mask-input
 ```
-
+9. Permite que você compartilhe o código entre aplicativos React Native e aplicativos web, permitindo a compilação e execução do React Native em um navegador
+```shell
+yarn add react-native-web@~0.18.10
+```
+10. Usado para renderizar componentes React em ambientes baseados em DOM, como navegadores. Utilizado em ambiente web, ele é útil ao usar o react-native-web para renderizar seu código React Native em um navegador
+```shell
+yarn add react-dom@18.2.0
+```
+11. Contém configurações de webpack predefinidas usadas pelo Expo para criar e executar projetos
+    - O webpack é uma ferramenta de empacotamento e construção usada para preparar o código JavaScript para implantação em um ambiente de produção
+    - O Expo usa o webpack para processar e empacotar o código do seu projeto, facilitando o desenvolvimento e a compilação de aplicativos React Native.
+    
+```shell
+yarn add @expo/webpack-config@^18.0.1
+```
