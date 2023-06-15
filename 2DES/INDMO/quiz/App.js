@@ -3,16 +3,26 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator()
-import Inicio from './sources/screens/inicio'
+import Inicio from './sources/screens/inicio.screen'
+import Quiz from './sources/screens/quiz.screen'
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      {/* <Stack.Navigator>
         <Stack.Screen
           name='Página Inicial'
           component={Inicio}
-          options={{title: 'Página inicial'}}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator> */}
+      <Stack.Navigator>
+        <Stack.Screen 
+          name='Quiz'
+          component={Quiz}
+          options={{headerShown: false}}
+        
+        
         />
       </Stack.Navigator>
     </NavigationContainer>
