@@ -4,17 +4,6 @@
 |Proporcionar a aquisição de capacidades técnicas relativas ao desenvolvimento de interfaces para dispositivos móveis com integração aos recursos de hardware, bem como o desenvolvimento de capacidades socioemocionais adequadas a diferentes situações profissionais.|
 
 ## Dependências e suas características
-<<<<<<< HEAD
-
-    - 1. ```shell
-    npm install -g expo-cli
-    ```
-        - Instalará globalmente o Expo CLI no seu sistema, permitindo que você crie e gerencie projetos Expo
-    - 2. ```shell
-    npx create-expo-app nome_projeto || npm install -g create-expo-app nome_projeto
-    ```
-        - Irá criar um novo projeto Expo 
-=======
 1. Instalará globalmente o Expo CLI no seu sistema, permitindo que você crie e gerencie projetos Expo
 ```shell
 npm install -g expo-cli
@@ -60,8 +49,6 @@ yarn add react-dom@18.2.0
 11. Contém configurações de webpack predefinidas usadas pelo Expo para criar e executar projetos
     - O webpack é uma ferramenta de empacotamento e construção usada para preparar o código JavaScript para implantação em um ambiente de produção
     - O Expo usa o webpack para processar e empacotar o código do seu projeto, facilitando o desenvolvimento e a compilação de aplicativos React Native.
-    
 ```shell
 yarn add @expo/webpack-config@^18.0.1
 ```
->>>>>>> 3b73aaedd25234bd1055df66efe36a98fc0e77cc
