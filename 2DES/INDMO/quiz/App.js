@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator()
 import Inicio from './sources/screens/inicio.screen'
 import Quiz from './sources/screens/quiz.screen'
+import Resultados from './sources/screens/results.screen'
 
 export default function App() {
   return (
@@ -21,10 +22,14 @@ export default function App() {
           name='Quiz'
           component={Quiz}
           options={{headerShown: false}}
-        
-        
+        />
+        <Stack.Screen 
+          name='Resultados'
+          component={Resultados}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
+
     </NavigationContainer>
   );
 }

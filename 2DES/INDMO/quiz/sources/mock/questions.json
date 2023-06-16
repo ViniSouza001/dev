@@ -1,52 +1,52 @@
 [
-    {
-      "text": "Qual é a estrela mais próxima da Terra?",
-      "options": ["Alpha Centauri", "Sirius", "Proxima Centauri", "Betelgeuse"],
-      "answer": 0
-    },
-    {
-      "text": "O que é uma constelação?",
-      "options": ["Uma grande explosão estelar", "Um conjunto de planetas no Sistema Solar", "Um agrupamento de estrelas no céu", "Uma galáxia distante"],
-      "answer": 2
-    },
-    {
-      "text": "O que é uma galáxia?",
-      "options": ["Uma lua que orbita um planeta", "Um buraco negro supermassivo", "Um grupo de estrelas próximas umas das outras", "Um grande sistema de estrelas, planetas e matéria interplanetária"],
-      "answer": 3
-    },
-    {
-      "text": "Qual é o maior planeta do Sistema Solar?",
-      "options": ["Saturno", "Júpiter", "Urano", "Netuno"],
-      "answer": 1
-    },
-    {
-      "text": "O que é um buraco negro?",
-      "options": ["Um planeta habitável com vida extraterrestre", "Um objeto celeste composto por rochas e gelo", "Uma região do espaço com alta concentração de gás e poeira", "Uma região do espaço onde a gravidade é tão intensa que nada pode escapar"],
-      "answer": 3
-    },
-    {
-      "text": "O que é uma supernova?",
-      "options": ["Uma explosão estelar extremamente poderosa", "Um planeta rochoso sem atmosfera", "Uma estrela com luz fraca e temperatura baixa", "Uma galáxia distante com formato espiral"],
-      "answer": 0
-    },
-    {
-      "text": "O que é um cometa?",
-      "options": ["Um corpo celeste composto principalmente por ferro e níquel", "Uma lua que orbita um planeta", "Uma região do espaço com alta radiação", "Um corpo celeste composto por gelo, poeira e rochas que orbita o Sol"],
-      "answer": 3
-    },
-    {
-      "text": "O que é uma estrela de nêutrons?",
-      "options": ["Um planeta gigante com anéis brilhantes", "Uma estrela com uma temperatura extremamente alta", "Um núcleo estelar remanescente após uma supernova", "Uma estrela jovem e recém formada"],
-      "answer": 2
-    },
-    {
-      "text": "O que é um exoplaneta?",
-      "options": ["Um planeta que orbita um buraco negro", "Um planeta no Sistema Solar além de Marte", "Um planeta com vida extraterrestre confirmada", "Um planeta que orbita uma estrela fora do Sistema Solar"],
-      "answer": 3
-    },
-    {
-      "text": "O que é o Big Bang?",
-      "options": ["O momento em que uma estrela explode em uma supernova", "O início da formação das galáxias no Universo", "A colisão de dois buracos negros", "O evento que marcou o surgimento do Universo, uma grande explosão inicial"],
-      "answer": 3
-    }
-  ]
+  {
+    "text": "Qual é a maior lua de Júpiter?",
+    "options": ["Titã", "Europa", "Ganimedes", "Calisto"],
+    "answer": 2
+  },
+  {
+    "text": "Qual é a estrela mais brilhante no céu noturno?",
+    "options": ["Betelgeuse", "Rigel", "Aldebaran", "Sirius"],
+    "answer": 3
+  },
+  {
+    "text": "Qual é o planeta conhecido por seus anéis?",
+    "options": ["Marte", "Vênus", "Saturno", "Urano"],
+    "answer": 2
+  },
+  {
+    "text": "Qual é o fenômeno que ocorre quando a Lua passa entre o Sol e a Terra?",
+    "options": ["Eclipse solar", "Eclipse lunar", "Aurora boreal", "Cometa"],
+    "answer": 0
+  },
+  {
+    "text": "Qual é o planeta mais quente do Sistema Solar?",
+    "options": ["Marte", "Júpiter", "Vênus", "Mercúrio"],
+    "answer": 2
+  },
+  {
+    "text": "O que são as manchas solares?",
+    "options": ["Áreas com maior gravidade no Sol", "Regiões mais frias no Sol", "Pontos de colisão de asteroides", "Ejeções de plasma solar"],
+    "answer": 1
+  },
+  {
+    "text": "Qual é o nome da nossa galáxia?",
+    "options": ["Via Láctea", "Andrômeda", "Centauro A", "Whirlpool"],
+    "answer": 0
+  },
+  {
+    "text": "Qual é o maior vulcão do Sistema Solar?",
+    "options": ["Monte Etna", "Monte Fuji", "Olympus Mons", "Monte Vesúvio"],
+    "answer": 2
+  },
+  {
+    "text": "Qual é o nome do telescópio espacial lançado em 1990?",
+    "options": ["Kepler", "Hubble", "Spitzer", "Chandra"],
+    "answer": 1
+  },
+  {
+    "text": "Qual é o processo que ocorre no núcleo das estrelas para gerar energia?",
+    "options": ["Fusão nuclear", "Fissão nuclear", "Decomposição radioativa", "Combustão estelar"],
+    "answer": 0
+  }
+]
