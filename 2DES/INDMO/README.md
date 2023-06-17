@@ -53,7 +53,7 @@ yarn add react-dom@18.2.0
 yarn add @expo/webpack-config@^18.0.1
 ```
 12. Biblioteca para utilizada para criar animações fluidas de alto desempenho
-    - Oferece uma API simples e poderosa para criar animações complexas e interativas, permitindo que os elementosda interface do usuário se mova, rotacionem, redimensionem e mudem de forma suave
+    - Oferece uma API simples e poderosa para criar animações complexas e interativas, permitindo que os elementos da interface do usuário se mova, rotacionem, redimensionem e mudem de forma suave
 ```shell
 yarn add react-native-reanimated
 ```
