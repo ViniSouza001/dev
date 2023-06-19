@@ -10,24 +10,25 @@ import Resultados from './sources/screens/results.screen'
 export default function App() {
   return (
     <NavigationContainer>
-      {/* <Stack.Navigator>
-        <Stack.Screen
-          name='Página Inicial'
-          component={Inicio}
-          options={{headerShown: false}}
-        />
-      </Stack.Navigator> */}
       <Stack.Navigator>
+        <Stack.Screen
+            name='Pagina Inicial'
+            component={Inicio}
+            options={{headerShown: false}}
+          />
+
         <Stack.Screen 
           name='Quiz'
           component={Quiz}
           options={{headerShown: false}}
         />
+        
         <Stack.Screen 
           name='Resultados'
           component={Resultados}
           options={{headerShown: false}}
         />
+
       </Stack.Navigator>
 
     </NavigationContainer>
