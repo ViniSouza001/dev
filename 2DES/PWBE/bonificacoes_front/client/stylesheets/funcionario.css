@@ -16,11 +16,47 @@ body {
     align-items: center;
 }
 
-main{
+#black {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+#aviso {
+    top: 0;
+    position: absolute;
+    margin-top: 20px;
+    
+}
+
+.window {
+    position: absolute;
+    z-index: 2;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    width: 500px;
+    height: 250px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 200px;
+    animation: appear 1s;
+    z-index: 3;
+}
+
+@keyframes appear {
+    from{
+        opacity: 0;
+        margin-top: 100px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
 }
 
 .cadastro{
@@ -29,9 +65,11 @@ main{
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
     display: flex;
+    position: absolute;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    z-index: 3;
 }
 
 form{
@@ -56,8 +94,13 @@ input:focus {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     background-color: #e0e0e0;
 }
+
+.images {
+    display: flex;
+    gap: 2rem;
+}
   
-#adicionar{
+.imgs {
     width: 60px;
     height: 60px;
     cursor: pointer;
@@ -73,6 +116,21 @@ input:focus {
     background-color: #e5e5e7;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    opacity: .9;
+}
+
+.lista header {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+}
+
+.lista header > div > h1 {
+    font-size: 25px;
+    cursor: pointer;
 }
 
 table {
@@ -81,7 +139,16 @@ table {
 
 td {
     text-align: center;
-    padding: 0 30px;
+    padding: 0 35px;
+    align-items: center;
+}
+
+td:last-child {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }
 
 @media screen and (max-width: 800px) {

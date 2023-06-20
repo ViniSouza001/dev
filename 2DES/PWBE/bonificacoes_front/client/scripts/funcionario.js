@@ -1,20 +1,26 @@
-const form = document.querySelector('form');
-const inputs = form.querySelectorAll('input');
-
 api.get('/funcionarios')
 .then(resp => {
     formatarTabela(resp.data)
 });
 
+const adicionarFuncionario = document.querySelector('.adicionar')
+const janelaMensagem = document.querySelector('.window')
+const inputs = document.querySelectorAll('input')
+const cadastro = document.querySelector('.cadastro')
+const span = document.querySelector('span')
+const tbody = document.querySelector('tbody');
+const form = document.querySelector('form')
+const lista = document.querySelector('.lista')
+
 form.addEventListener('submit', e => {
     e.preventDefault();
-
 });
 
-const tbody = document.querySelector('tbody');
+
 
 function formatarTabela(info) {
     const { matricula, nome_completo, data_admissao, salario, data_pagamento, desempenho, bonificacao } = info
+    console.log(info)
     for(element of info) {
         let coluna = document.createElement('tr');
         coluna.innerHTML = `
@@ -23,10 +29,16 @@ function formatarTabela(info) {
         <td>${element.salario}</td>
         <td>${formatarData(element.data_pagamento)}</td>
         <td>${element.bonificacao}</td>
-        <td onclick="deletar(${element.matricula})">[ - ]</td>
+        <td onclick="deletar(${element.matricula})"><img class="imgs" src="./assets/delete.png" /></td>
         `
         tbody.appendChild(coluna);
     }
+}
+
+function mostrarFormulario() {
+    cadastro.classList.toggle('hidden')
+    span.classList.toggle('hidden')
+    lista.classList.toggle('hidden')
 }
 
 function formatarData(data) {
@@ -70,8 +82,27 @@ function adicionar() {
 }
 
 function deletar(matricula) {
-    fetch(`http://localhost:8081/funcionario/excluir/${matricula}`)
-    .then(resp => {
-        return;
+    var matriculaString = matricula + ''
+    if(matriculaString.length === 1) {
+        matriculaFormatada = '000' + matricula
+        console.log('length é igual a 3')
+    }
+    else if(matriculaString.length === 2) {
+        matriculaFormatada = '00' + matricula
+        console.log('length é igual a 2')
+    }
+    else {
+        matriculaFormatada = '0' + matricula
+        console.log('length é igual a 1')
+    }
+    console.log({matriculaFormatada})
+    fetch(`http://localhost:3000/funcionario/excluir/${matriculaFormatada}`, {method: 'DELETE'})
+    .then(resp => {resp.json()})
+    .then(callback => {
+        if(callback === undefined) {
+            window.location.reload()
+        } else {
+            alert('Funcionário não foi encontrado')
+        }
     })
 }

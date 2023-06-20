@@ -48,14 +48,11 @@ const excluir = (req, res) => {
     let funcionario = new Funcionario(req.params);
     con.query(funcionario.delete(), (err, result) => {
         if(err == null) {
-
-            if(result.affectedRows == 0) {
+            if(result.affectedRows == 0) { // se não encontrar o funcionario com a matricula pesquisada
                 res.json({erro: "Não foi encontrado funcionario com a matricula pesquisada"}).status(404).end();
             } else {
                 res.json({success: result}).status(200).end();
             }
-
-            res.json({success: result}).status(200).end();
         } else {
             res.json({error: err}).status(400).end();
         }

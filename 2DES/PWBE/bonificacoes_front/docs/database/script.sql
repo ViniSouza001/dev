@@ -7,7 +7,6 @@ CREATE TABLE funcionario(
     nome_completo VARCHAR(50) NOT NULL,
     data_admissao DATE NOT NULL,
     salario DECIMAL(7,2) NOT NULL,
-<<<<<<< HEAD
     data_pagamento DATE DEFAULT CURDATE(),
     desempenho INT NOT NULL,
     bonificacao DECIMAL(10,2) AS ((salario * 0.02) * (YEAR(CURRENT_DATE()) - YEAR(data_admissao) - (DATE_FORMAT(CURRENT_DATE(), '%m%d') < DATE_FORMAT(data_admissao, '%m%d'))) * desempenho)
@@ -23,14 +22,10 @@ INSERT INTO funcionario values
 
 SELECT * FROM funcionario;
 
+
 -- calculo da bonificacao
 -- "YEAR(CURRENT_DATE()) - YEAR(data_admissao)" ele pega o ano atual e subtrai com o ano da admissao
 -- "DATE_FORMAT(CURRENT_DATE(), '%m%d')" ele pega a data atual no formato (Mês e dia) e passa para string 
 -- "< DATE_FORMAT(data_admissao, '%m%d)" faz a informação acima menos a data de admissão
 -- se a data (mês e dia) de admissão for menor do que a data (mês e dia) atual, é diminuído 1 ano
 -- por não ter completado 1 ano inteiro
-=======
-    data_pagamento DATE NOT NULL,
-    desempenho INT
-);
->>>>>>> d24cc1a9f9eb616ec8df8c5e06208ead08ab94d9
