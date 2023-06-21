@@ -11,6 +11,7 @@ const span = document.querySelector('span')
 const tbody = document.querySelector('tbody');
 const form = document.querySelector('form')
 const lista = document.querySelector('.lista')
+const totalPagamentos = document.querySelector('#totalPagamentos')
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -29,7 +30,7 @@ function formatarTabela(info) {
         <td>${element.salario}</td>
         <td>${formatarData(element.data_pagamento)}</td>
         <td>${element.bonificacao}</td>
-        <td onclick="deletar(${element.matricula})"><img class="imgs" src="./assets/delete.png" /></td>
+        <td onclick="deletar(${element.matricula})"><img id="delete" class="imgs" src="./assets/delete.png"/></td>
         `
         tbody.appendChild(coluna);
     }
