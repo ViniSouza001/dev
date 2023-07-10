@@ -2,14 +2,18 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, Image, View, Text } from "react-native";
 
 
-export default function Inicio() {
+export default function Inicio({ navigation }) {
+
+    const handlePerguntas = () => {
+        navigation.navigate('Quiz', {name: 'quiz'})
+    }
 
     return (
         <View style={styles.container}>
-            <Image source={require('../../assets/ceu.jfif')} style={styles.background} />
+            <Image source={require('../../assets/ceu.jpeg')} style={styles.background} />
             <View style={styles.div} >
                 <Image source={require('../../assets/lua.png')} style={styles.lua} />
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => {handlePerguntas()}}>
                     <Text style={styles.txt}>Iniciar</Text>
                 </TouchableOpacity>
             </View>
@@ -32,7 +36,6 @@ const styles = StyleSheet.create({
         width: '200px',
         height: '200px',
         zIndex: 1,
-        opacity: 0.75,
         alignSelf: 'center'
     },
     button: {

@@ -9,7 +9,7 @@ export default function Quiz({ navigation }) {
     const [acertos, setAcertos] = useState(0)
 
     const handleResults = () => {
-        navigation.navigate("Resultados", { name: "resultados" })
+        navigation.navigate("Resultados", { 'acertos': acertos, 'erros': erros, 'quantidade': contador })
     }
 
     function mudarPergunta() {
@@ -38,7 +38,7 @@ export default function Quiz({ navigation }) {
     }
 
     function showQuestions() {
-        if(contador == 10) {handleResults()}
+        if(contador == 10) {return handleResults()}
         else {
             const options = []
             for (let i = 0; i < perguntas[contador].options.length; i++) {

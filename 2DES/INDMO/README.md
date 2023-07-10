@@ -23,7 +23,7 @@ yarn add react-native-safe-area-context
 ```
 5. Biblioteca que visa melhorar o desempenho e a experiência do usuário ao lidar com telas e navegações em um aplicativo
 ```shell
-yarn add react-native-screens
+yarn add react-native-screens@~3.20.0
 ```
 6. Permite renderizar componentes SVG (Scalable Vector Graphics). É um formato de imagem vetorial baseado em XML que descreve gráficos bidimensionais
     - Você pode criar elementos gráficos escaláveis e interativos com o aplicativo React-Native
@@ -38,22 +38,24 @@ yarn add @react-navigation/native-stack
 ```shell
 yarn add react-native-mask-input
 ```
-9. Permite que você compartilhe o código entre aplicativos React Native e aplicativos web, permitindo a compilação e execução do React Native em um navegador
+
+9. Biblioteca para utilizada para criar animações fluidas de alto desempenho
+    - Oferece uma API simples e poderosa para criar animações complexas e interativas, permitindo que os elementos da interface do usuário se mova, rotacionem, redimensionem e mudem de forma suave
+```shell
+yarn add react-native-reanimated@~2.14.4 
+```
+
+10. Permite que você compartilhe o código entre aplicativos React Native e aplicativos web, permitindo a compilação e execução do React Native em um navegador
 ```shell
 yarn add react-native-web@~0.18.10
 ```
-10. Usado para renderizar componentes React em ambientes baseados em DOM, como navegadores. Utilizado em ambiente web, ele é útil ao usar o react-native-web para renderizar seu código React Native em um navegador
+11. Usado para renderizar componentes React em ambientes baseados em DOM, como navegadores. Utilizado em ambiente web, ele é útil ao usar o react-native-web para renderizar seu código React Native em um navegador
 ```shell
 yarn add react-dom@18.2.0
 ```
-11. Contém configurações de webpack predefinidas usadas pelo Expo para criar e executar projetos
+12. Contém configurações de webpack predefinidas usadas pelo Expo para criar e executar projetos
     - O webpack é uma ferramenta de empacotamento e construção usada para preparar o código JavaScript para implantação em um ambiente de produção
     - O Expo usa o webpack para processar e empacotar o código do seu projeto, facilitando o desenvolvimento e a compilação de aplicativos React Native.
 ```shell
 yarn add @expo/webpack-config@^18.0.1
-```
-12. Biblioteca para utilizada para criar animações fluidas de alto desempenho
-    - Oferece uma API simples e poderosa para criar animações complexas e interativas, permitindo que os elementosda interface do usuário se mova, rotacionem, redimensionem e mudem de forma suave
-```shell
-yarn add react-native-reanimated
 ```
