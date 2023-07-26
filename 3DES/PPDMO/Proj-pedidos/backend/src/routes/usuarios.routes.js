@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 require("../models/Cliente");
 const bcrypt = require('bcrypt')
+const passport = require('passport')
 const Cliente = mongoose.model("clientes");
 
 router.get("/", (req, res) => {
@@ -14,11 +15,20 @@ router.get("/usuarios/registro", (req, res) => {
 });
 
 router.get('/usuarios/login', (req, res) => {
-  res.render('usuarios/login')
+
+  if(req.user) {
+    req.flash('error_msg', "Você já está autenticado")
+    res.redirect('/')
+  } else {
+    res.render('usuarios/login')
+  }
 })
 
 router.post('/login', (req, res) => {
-
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failure
+  })
 })
 
 router.post("/registro", (req, res) => {
