@@ -14,9 +14,13 @@ router.get("/usuarios/registro", (req, res) => {
   res.render("usuarios/registro");
 });
 
+router.get('/aboutUs', (req, res) => {
+  res.render('usuarios/aboutUs')
+})
+
 router.get('/usuarios/login', (req, res) => {
 
-  if(req.user) {
+  if (req.user) {
     req.flash('error_msg', "Você já está autenticado")
     res.redirect('/')
   } else {
@@ -24,11 +28,13 @@ router.get('/usuarios/login', (req, res) => {
   }
 })
 
-router.post('/login', (req, res) => {
+router.post('/login', (req, res, next) => {
+
   passport.authenticate("local", {
     successRedirect: "/",
-    failure
-  })
+    failureRedirect: "/usuarios/login",
+    failureFlash: true
+  })(req, res, next)
 })
 
 router.post("/registro", (req, res) => {

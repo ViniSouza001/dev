@@ -1,66 +1,73 @@
 // carregando módulos
-    const express = require('express')
-    const handlebars = require('express-handlebars');
-    const bodyParser = require('body-parser');
-    const mongoose = require('mongoose')
-    const app = express()
-    const flash = require('connect-flash')
-    const session = require('express-session')
-    const path = require('path')
-    const usuariosRouter = require('./src/routes/usuarios.routes')
-    const pedidosRouter = require('./src/routes/pedidos.routes')
+const express = require('express')
+const handlebars = require('express-handlebars');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
+const app = express()
+const flash = require('connect-flash')
+const session = require('express-session')
+const path = require('path')
+const usuariosRouter = require('./src/routes/usuarios.routes')
+const pedidosRouter = require('./src/routes/pedidos.routes');
+const passport = require('passport');
+require('./src/config/auth')(passport)
 
 // configs
-    // sessão
-    app.use(session({
-        resave: true,
-        secret: "cursoNode",
-        saveUninitialized: true
-    }))
-    app.use((req, res, next) => {
-        if(!req.session) {
-            return next(new Error("There was an internal error"))
-        }
-        next()
-    })
+// sessão
+app.use(session({
+    resave: true,
+    secret: "cursoNode",
+    saveUninitialized: true
+}))
+app.use((req, res, next) => {
+    if (!req.session) {
+        return next(new Error("There was an internal error"))
+    }
+    next()
+})
 
-    app.use(flash())
-    // middlewares
-        app.use((req, res, next) => {
-            res.locals.success_msg = req.flash('success_msg')
-            res.locals.error_msg = req.flash('error_msg')
-            res.locals.user = req.user || null
-            next()
-        })
+app.use(passport.initialize())
+app.use(passport.session())
 
-    // body parser
-        app.use(bodyParser.urlencoded({extended: true}));
-        app.use(bodyParser.json());
+app.use(flash())
+// middlewares
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.error_msg = req.flash('error_msg')
+    res.locals.error = req.flash("error")
+    res.locals.user = req.user || null
+    next()
+})
 
-    // handlebars
-        app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}))
-        app.set('view engine', 'handlebars')
-        app.set('views', path.join(__dirname, 'src/views'))
+// body parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-    // mongoose
-        mongoose.Promise = global.Promise
-        mongoose.connect("mongodb://0.0.0.0:/Restaurante", {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }).then(() => {
-            console.log('conectado ao MongoDB');
-        }).catch(err => {
-            console.log("erro ao conectar ao MongoDB: " + err)
-        })
+// handlebars
+app.engine('handlebars', handlebars.engine({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
+app.set('views', path.join(__dirname, 'src/views'))
+app.use(express.static("images"))
 
-    // public
-        app.use(express.static(path.join(__dirname, "src/public")))
+// mongoose
+mongoose.Promise = global.Promise
+mongoose.connect("mongodb://0.0.0.0:/Restaurante", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('conectado ao MongoDB');
+}).catch(err => {
+    console.log("erro ao conectar ao MongoDB: " + err)
+})
+
+// public
+app.use(express.static(path.join(__dirname, "src")))
 
 // routes
-    app.use(usuariosRouter)
-    app.use('/pedidos', pedidosRouter)
+app.use(usuariosRouter)
+app.use('/pedidos', pedidosRouter)
 
-    
+
 
 const PORT = 8081
 app.listen(PORT, () => {

@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Ingrid+Darling&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Imprima&display=swap');
+
+* {
+   color: white;
+   scrollbar-width: 0;
+}
+
+body {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   overflow: hidden;
+
+}
+
+#fundo {
+   width: 100vw;
+   height: 100vh;
+   position: absolute;
+   z-index: -1;
+}
+
+header {
+   display: flex;
+   justify-content: space-between;
+   padding-left: 20px;
+   padding-right: 20px;
+   background-color: rgba(0, 0, 0, .8);
+   align-items: center;
+}
+
+#logo {
+   margin: -10px;
+}
+
+#logo,
+li {
+   font-family: "Ingrid Darling";
+   font-size: 3.5rem;
+   color: #fff;
+}
+
+#welcome,
+#h1SobreNos {
+   font-family: "Ingrid Darling";
+   font-size: 7rem;
+   color: #fff;
+   margin-bottom: 0px;
+}
+
+#saudacoes {
+   font-family: "Imprima";
+   font-size: 25px;
+   margin: 0;
+   padding: 0;
+}
+
+#logo:hover,
+li:hover {
+   cursor: pointer;
+   color: #B78F00;
+}
+
+ul {
+   display: flex;
+   gap: 2rem;
+   list-style: none;
+}
+
+a {
+   text-decoration: none;
+}
+
+#divHeader {
+   display: flex;
+   gap: 2rem;
+   align-items: center;
+}
+
+#divHamburguer {
+   width: 50px;
+   height: 6vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+#btnHamburguer {
+   position: absolute;
+   align-self: center;
+   width: 45px;
+   height: 3px;
+   border-top: 2px solid #fff;
+   transition: .5s;
+}
+
+#btnHamburguer::after,
+#btnHamburguer::before {
+   display: block;
+   content: '';
+   border-top: 2px solid #fff;
+   margin-top: 7px;
+   transition: .5s;
+}
+
+#divHamburguer.active #btnHamburguer {
+   border-top-color: transparent;
+}
+
+#divHamburguer.active #btnHamburguer::after {
+   transform: rotate(135deg);
+   margin-top: -2px;
+}
+
+#divHamburguer.active #btnHamburguer::before {
+   transform: rotate(-135deg);
+}
+
+
+.container {
+   align-self: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   overflow-y: auto;
+   height: 83vh;
+}
+
+.container::-webkit-scrollbar {
+   display: none;
+}
+
+#btnMenu {
+   padding: 5px;
+   padding-left: 30px;
+   padding-right: 30px;
+   background-color: #B78F00;
+   border: none;
+   cursor: pointer;
+   font-family: "Ingrid Darling";
+   font-size: 3rem;
+   border-radius: 10px;
+   margin-top: 20px;
+}
+
+#h1SobreNos {
+   margin-top: 5px;
+}
+
+#pSobreNos {
+   width: 500px;
+   text-align: center;
+   font-family: 'Imprima';
+   font-size: 28px;
+}
