@@ -1,0 +1,110 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background-image: linear-gradient(to bottom, black, gray);
+    overflow: hidden;
+    margin: 0;
+}
+
+#clarao {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    
+}
+
+.nuvens {
+    display: flex;
+}
+
+.nuvem {
+    background-image: linear-gradient(to bottom, black, gray);
+    border-bottom-right-radius: 200px;
+    position: absolute;
+    height: 20vh;
+}
+
+footer {
+    width: 100vw;
+    height: 10vh;
+    bottom: 0;
+    background-color: green;
+    position: absolute;
+    z-index: 1;
+}
+
+.raio{
+    position: absolute;
+    border-radius: 10px;
+    background-color: yellow;
+    height: 3px;
+    width: 70px;
+    animation: pisca 1.5s;
+}
+
+@keyframes pisca {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+button {
+    z-index: 10;
+    padding: 10px;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font: normal 12pt Arial;
+    margin: 10px 10px;
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+.pingo {
+    background-color: blue;
+    border-radius: 10px;
+    height: 2px;
+    z-index: 20;
+    /* animation: movePingo 2s linear infinite; */
+    transform: rotate(45deg);
+    position: absolute;
+}
+
+.buttons {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    right: 0;
+}
+
+@keyframes movePingo {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+    }
+    100% {
+        transform: translate(150px, 150px) rotate(45deg);
+    }
+}
+
+@keyframes clarao {
+    0% {
+        background-color: transparent;
+        display: none;
+    }
+
+    20% {
+        background-color: white;
+        display: block;
+}
+
+    40% { background-color: transparent; }
+
+    80% { background-color: #fff; }
+
+    100% {
+        background-color: transparent;
+        display: none;
+    }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheets/cardapio.css">
+    <script src="./mocks/cardapio.js"></script>
+    <title>Cardapio</title>
+</head>
+<body>
+    <span id="black" class="hidden"></span>
+    <aside id="menuLateral">
+        <h1>Produtos do carrinho</h1>
+        <div id="listaPedidos"></div>
+    </aside>
+    <header>
+        <img src="./assets/cart.png" id="cart_img" onclick="menuLateral()">
+        <img src="./assets/pizzaria.png" alt="logo.png">
+        <nav>
+            <ul>
+                <li>
+                    <a id="ancora" href="./pages/pedidos.html">
+                        <img src="./assets/to-do-list.png">
+                        Pedidos
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+    </main>
+    <div class="window hidden">
+        <header id="header_window">
+            <h1 onclick="displays()">X</h1>
+            <img src="./assets/add_cart.png" onclick="addCart()">
+        </header>        
+        <h1>Informações da pizza</h1>
+    </div>
+</body>
+<script src="./scripts/cardapio.js"></script>
+</html>

@@ -1,0 +1,35 @@
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font: normal 15pt Arial;
+    background-image: url('../assets/pizzas.jpg');
+    background-size: cover;
+}
+
+table {
+    font: normal 13pt Arial;
+    padding-bottom: 30px;
+    background-color: rgba(255, 255, 255, .8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#title {
+    color: #fff;
+}
+
+img {
+    width: 50px;
+}
+
+th {
+    text-align: center;
+    font: normal 15pt Arial;
+}
+
+td {
+    width: 250px;
+    text-align: center;
+    padding-top: 20px;
+}

@@ -1,0 +1,20 @@
+DROP DATABASE IF EXISTS alunos;
+CREATE DATABASE alunos;
+USE alunos;
+
+CREATE TABLE Alunos (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50),
+    curso_id INT
+);
+
+CREATE TABLE Cursos (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(50)
+);
+
+INSERT INTO Cursos VALUES
+(default)
+
+INSERT INTO Alunos VALUES
+(DEFAULT, 'Ricardo', 2)

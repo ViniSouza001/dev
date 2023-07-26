@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/perfil.css">
+    <link rel="shortcut icon" href="../assets/user-icon.png" type="image/x-icon">
+    <title>Perfil</title>
+</head>
+<body>
+    <div onclick="exit()">
+        <h2>Logout</h2>
+        <img src="../assets/exit.png" alt="exit">
+    </div>
+    <form>
+        <header>
+            <img src="../assets/user.png" alt="user">
+        </header>
+    </form>
+    <button onclick="alterar()">Salvar informações</button>
+    <div class="window hidden">
+        <h1>Mensagem</h1>
+        <h3 id="mensagem"></h3>
+    </div>
+</body>
+<script src="../scripts/info/telefones.js"></script>
+<script src="../scripts/info/endereco.js"></script>
+<script src="../scripts/perfil.js"></script>
+</html>

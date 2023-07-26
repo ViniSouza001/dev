@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color:#d6d6d6;
+    z-index: 1;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background-color: rgb(137, 190, 240);
+}
+
+#title{
+    font: normal 2em 'PT Serif';
+    color: rgb(21, 31, 214);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    display: flex;
+    gap: 1rem;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+#title > img {
+    width: 40px;
+}
+
+ul{
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    margin: 15px;
+    font: normal 15pt 'PT Serif';
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul > a > li:hover {
+    text-decoration: underline;
+}
+
+table {
+    margin: auto;
+}
+
+main {
+    margin: auto;
+    text-align: center;
+    width: 1000px;
+    z-index: 1;
+}
+
+ul > a {
+    text-decoration: none;
+    color: black;
+
+}
+
+ul > a:hover {
+    text-decoration: underline;
+}
+
+#consultas {
+    font: normal 2em 'PT Serif';
+}
+
+table{
+    margin: auto;
+    font: normal 15pt 'PT Serif';
+    position: fixed;
+    width: 1000px;
+    border-spacing: 30px;
+}
+
+.linha > td {
+    padding-top: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.points {
+    display: flex;
+    padding: 10px;
+    border-radius: 1000px;
+}
+
+.points:hover {
+    background-color: rgba(0, 0, 0, .4);
+    cursor: pointer;
+}
+
+.nav {
+    display: flex;
+}
+
+#options {
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: gray;
+    width: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.appear {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+
+#options > p {
+    color: white;
+    font-family: "PT Serif";
+    padding: 10px;
+    line-height: 4px;
+    margin: 0;
+}
+
+#options > p:hover {
+    background-color: rgba(255, 255, 255, .5);
+    cursor: pointer;
+}
+
+#tela {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: -1;
+}
+
+#popup_alterar {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: auto;
+    border-radius: 10px;
+    background-color: white;
+    gap: 2rem;
+    text-align: center;
+    align-items: center;
+}
+
+#btn_alterar{
+    width: 100px;
+}

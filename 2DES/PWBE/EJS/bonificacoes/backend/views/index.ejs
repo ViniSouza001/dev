@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <title>Bonificações</title>
+</head>
+<body>
+    <header>
+        <h1>
+            <%= titulo%>
+        </h1>
+    </header>
+    <table>
+        <thead>
+            <tr>
+                <th>Matricula</th>
+                <th>Nome</th>
+                <th>Data de Admissão</th>
+                <th>Salario</th>
+                <th>Data de pagamento</th>
+                <th>Desempenho</th>
+                <th>Bonificação</th>
+        </thead>
+        <tbody>
+            <% dados.forEach(f => { %>
+                <tr>
+                    <td>
+                        <%= f.matricula %>
+                    </td>
+                    <td>
+                        <%= f.nome_completo %>
+                    </td>
+                    <td>
+                        <% data=new Date(f.data_admissao).toISOString().slice(0,11).replace('T', '') %>
+                        <%= data_admissao %>
+                    </td>
+                    <td>
+                        <%= f.salario %>
+                    </td>
+                    <td>
+                        <% data=new Date(f.data_pagamento).toISOString().slice(0,11).replace('T', '') %>
+                        <%= data %>
+                    </td>
+                    <td>
+                        <%= f.desempenho %>
+                    </td>
+                    <td>
+                        <% data_admissao=new Date(f.data_admissao).toISOString().slice(0,11).replace('T', '') %>
+                        <% ano_admissao=new Date(data_admissao).toISOString().slice(4) %>
+                        <% diferenca = new Date().getFullYear() - ano_admissao %>
+                        <% bonificacao = ((f.salario * 0.02) * diferenca * f.desempenho) %>
+                        <%= bonificacao %>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

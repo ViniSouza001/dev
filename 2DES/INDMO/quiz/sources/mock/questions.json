@@ -1,0 +1,52 @@
+[
+  {
+    "text": "Qual é a maior lua de Júpiter?",
+    "options": ["Titã", "Europa", "Ganimedes", "Calisto"],
+    "answer": 2
+  },
+  {
+    "text": "Qual é a estrela mais brilhante no céu noturno?",
+    "options": ["Betelgeuse", "Rigel", "Aldebaran", "Sirius"],
+    "answer": 3
+  },
+  {
+    "text": "Qual é o planeta conhecido por seus anéis?",
+    "options": ["Marte", "Vênus", "Saturno", "Urano"],
+    "answer": 2
+  },
+  {
+    "text": "Qual é o fenômeno que ocorre quando a Lua passa entre o Sol e a Terra?",
+    "options": ["Eclipse solar", "Eclipse lunar", "Aurora boreal", "Cometa"],
+    "answer": 0
+  },
+  {
+    "text": "Qual é o planeta mais quente do Sistema Solar?",
+    "options": ["Marte", "Júpiter", "Vênus", "Mercúrio"],
+    "answer": 2
+  },
+  {
+    "text": "O que são as manchas solares?",
+    "options": ["Áreas com maior gravidade no Sol", "Regiões mais frias no Sol", "Pontos de colisão de asteroides", "Ejeções de plasma solar"],
+    "answer": 1
+  },
+  {
+    "text": "Qual é o nome da nossa galáxia?",
+    "options": ["Via Láctea", "Andrômeda", "Centauro A", "Whirlpool"],
+    "answer": 0
+  },
+  {
+    "text": "Qual é o maior vulcão do Sistema Solar?",
+    "options": ["Monte Etna", "Monte Fuji", "Olympus Mons", "Monte Vesúvio"],
+    "answer": 2
+  },
+  {
+    "text": "Qual é o nome do telescópio espacial lançado em 1990?",
+    "options": ["Kepler", "Hubble", "Spitzer", "Chandra"],
+    "answer": 1
+  },
+  {
+    "text": "Qual é o processo que ocorre no núcleo das estrelas para gerar energia?",
+    "options": ["Fusão nuclear", "Fissão nuclear", "Decomposição radioativa", "Combustão estelar"],
+    "answer": 0
+  }
+]

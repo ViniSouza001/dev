@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinica</title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body onload="listar()">
+    <span id="tela"></span>
+    <h1 id="title">SaudePrime<img src="./assets/health.png" alt="health.png"></h1>
+    <header>
+        <ul>
+            <a href="./pages/pacientes.html"><li>Pacientes</li></a>
+            <a href="./pages/medicos.html"><li>Médicos</li></a>
+        </ul>
+    </header>
+    <main>
+        <h1 id="consultas">Consultas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Paciente</th>
+                    <th>Médico</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+    <div id="options" hidden>
+        <p id="alterar">Alterar</p>
+        <p id="remover">Remover</p>
+    </div>
+    
+    <div id="popup_alterar">
+        <h1>Alterar informações</h1>
+        <p>Digite a data para alteração: <input type="date" id="changeDate"></p>
+        <button id="btn_alterar">Alterar</button>
+    </div>
+</body>
+<script src="./scripts/main.js"></script>
+</html>

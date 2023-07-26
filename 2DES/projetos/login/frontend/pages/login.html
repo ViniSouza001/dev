@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../stylesheets/login.css">
+    <link rel="shortcut icon" href="../assets/identification.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+</head>
+
+<body>
+    <form>
+        <header>
+            <img id="perfil" src="../assets/perfil.png">
+        </header>
+        <div>
+            <img src="../assets/mail.png" alt="mail" class="icons">
+            <input autocomplete="off" type="email" name="email" id="email" placeholder="Digite seu email">
+
+        </div>
+        <div>
+            <img src="../assets/lock.png" alt="lock" id="lock" class="icons">
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha">
+        </div>
+        <button type="submit" onclick="verification()">Autenticar</button>
+        <h2 id="erro">Senha ou usuário incorretos</h2>
+    </form>
+
+</body>
+<script src="../scripts/script.js"></script>
+
+</html>
