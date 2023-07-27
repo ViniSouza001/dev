@@ -35,12 +35,12 @@ const Cardapio = mongoose.model('cardapio', CardapioSchema)
 // })
 
 // novoItem.save()
-// .then(() => {
-//     console.log('item salvo com sucesso');
-// })
-// .catch(err => {
-//     console.log('erro ao salvar o item: ' + err);
-// })
+//     .then(() => {
+//         console.log('item salvo com sucesso');
+//     })
+//     .catch(err => {
+//         console.log('erro ao salvar o item: ' + err);
+//     })
 
 // novoItem = new Cardapio({
 //     nome: "Aromas do Mar",
@@ -51,12 +51,12 @@ const Cardapio = mongoose.model('cardapio', CardapioSchema)
 // })
 
 // novoItem.save()
-// .then(() => {
-//     console.log('item salvo com sucesso');
-// })
-// .catch(err => {
-//     console.log('erro ao salvar o item: ' + err);
-// })
+//     .then(() => {
+//         console.log('item salvo com sucesso');
+//     })
+//     .catch(err => {
+//         console.log('erro ao salvar o item: ' + err);
+//     })
 
 // novoItem = new Cardapio({
 //     nome: "Clássicos do Velho Oeste",
@@ -67,10 +67,10 @@ const Cardapio = mongoose.model('cardapio', CardapioSchema)
 // })
 
 // novoItem.save()
-// .then(() => {
-//     console.log('item salvo com sucesso');
-// })
-// .catch(err => {
-//     console.log('erro ao salvar o item: ' + err);
-// })
+//     .then(() => {
+//         console.log('item salvo com sucesso');
+//     })
+//     .catch(err => {
+//         console.log('erro ao salvar o item: ' + err);
+//     })
 

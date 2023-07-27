@@ -1,20 +1,23 @@
+{{#each error_msg}}
+    <div class="alert-danger font-imprima p">{{this}}</div>
+{{/each}}
 <div class="body-container">
     <div class="container">
         {{#each itens}}
-                <form class="card font-ingrid" method="POST" action="/addPedido/{{this.id}}">
-                    <header class="title">{{this.nome}}</header>
-                    <h3 class="h3">Entrada: {{this.entrada}}</h3>
-                    <h3 class="h3">Principal: {{this.principal}}</h3>
-                    <h3 class="h3">Sobremesa: {{this.sobremesa}}</h3>
-                    <footer class="footer">
-                        <p class="h3 font-ingrid">R${{this.preco}}</p>
-                    <h3 class="h3 font-imprima">Quantidade: 
+            <form class="card font-ingrid " method="POST" action="/addPedido/{{this._id}}">
+                <header class="title">{{this.nome}}</header>
+                <h3 class="h3-ingrid">Entrada: {{this.entrada}}</h3>
+                <h3 class="h3-ingrid">Principal: {{this.principal}}</h3>
+                <h3 class="h3-ingrid">Sobremesa: {{this.sobremesa}}</h3>
+                <footer class="footer">
+                    <p class="h3-ingrid font-ingrid">R${{this.preco}}</p>
+                    <input type="hidden" name="preco" value={{this.preco}}>
+                    <h3 class="h3-imprima font-imprima">Quantidade:
                         <input value="0" type="number" min="0" max="10" name="quantidade" class="input font-imprima p">
-                    <button type="submit" class="btn font-ingrid">Pedir</button>
                     </h3>
-                    </footer>
-                </form>
-            {{/each}}
+                    <button type="submit" class="btn font-ingrid">Pedir</button>
+                </footer>
+            </form>
+        {{/each}}
     </div>
 </div>
-    
