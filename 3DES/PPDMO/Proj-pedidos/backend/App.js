@@ -11,6 +11,7 @@ const usuariosRouter = require('./src/routes/usuarios.routes')
 const pedidosRouter = require('./src/routes/pedidos.routes');
 const passport = require('passport');
 require('./src/config/auth')(passport)
+require('./src/models/Cardapio')
 
 // configs
 // sessão
@@ -65,7 +66,7 @@ app.use(express.static(path.join(__dirname, "src")))
 
 // routes
 app.use(usuariosRouter)
-app.use('/pedidos', pedidosRouter)
+app.use(pedidosRouter)
 
 
 

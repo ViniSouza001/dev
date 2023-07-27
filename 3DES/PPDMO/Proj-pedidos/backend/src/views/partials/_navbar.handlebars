@@ -20,15 +20,15 @@
       <span id="btnHamburguer"></span>
     </div>
     <nav id="menuLateral">
-      {{#if user}}
-        <p>Perfil</p>
-        <p>Pedidos</p>
-      {{else}}
-        <button id="btnLogin">Login</button>
-        <p>Criar conta</p>
-
-
+      <div id="menu">
+        {{#if user}}
+          <p>Perfil</p>
+          <p>Pedidos</p>
+        {{else}}
+          <button class="btn font-imprima">Login</button>
+          <p class="font-imprima p">Criar conta</p>
       {{/if}}
+      </div>
     </nav>
   </div>
   </div>
