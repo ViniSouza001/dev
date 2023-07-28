@@ -37,8 +37,6 @@ router.post('/addPedido/:id', (req, res) => {
     }
 
     if (erros.length > 0) {
-        // req.flash('error_msg', erros[0].texto)
-        // res.redirect('/menu')
         const mensagensErros = erros.map(erro => erro.texto)
         req.flash("error_msg", mensagensErros)
         res.redirect('/menu')

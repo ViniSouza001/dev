@@ -65,6 +65,10 @@ mongoose.connect("mongodb://0.0.0.0:/Restaurante", {
 app.use(express.static(path.join(__dirname, "src")))
 
 // routes
+app.get('/', (req, res) => {
+    
+})
+
 app.use(usuariosRouter)
 app.use(pedidosRouter)
 

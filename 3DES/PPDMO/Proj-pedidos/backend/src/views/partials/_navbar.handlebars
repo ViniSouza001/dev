@@ -1,6 +1,6 @@
 <header>
   <a href="/">
-    <h1 id="logo">Vinici'os</h1>
+    <h1 class="logo h1-ingrid font-ingrid">Vinici'os</h1>
   </a>
   <div id="divHeader">
     <nav>
@@ -22,11 +22,12 @@
     <nav id="menuLateral">
       <div id="menu">
         {{#if user}}
-          <p>Perfil</p>
-          <p>Pedidos</p>
+        <header class="h1-ingrid header font-ingrid">Bem vindo, </header>
+          <p class="font-ingrid h1-ingrid">Perfil</p>
+          <p class="font-ingrid h1-ingrid">Pedidos</p>
         {{else}}
-          <button class="btn font-imprima">Login</button>
-          <p class="font-imprima p">Criar conta</p>
+        <a href="/login" class="btn font-imprima">Login</a>
+        <a href="/registro" class="font-imprima p">Criar conta</a>
       {{/if}}
       </div>
     </nav>

@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   res.render("usuarios/home");
 });
 
-router.get("/usuarios/registro", (req, res) => {
+router.get("/registro", (req, res) => {
   res.render("usuarios/registro");
 });
 
@@ -18,7 +18,7 @@ router.get('/aboutUs', (req, res) => {
   res.render('usuarios/aboutUs')
 })
 
-router.get('/usuarios/login', (req, res) => {
+router.get('/login', (req, res) => {
 
   if (req.user) {
     req.flash('error_msg', "Você já está autenticado")
