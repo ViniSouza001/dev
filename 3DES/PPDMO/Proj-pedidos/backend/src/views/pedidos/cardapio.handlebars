@@ -1,4 +1,5 @@
 <div class="body-container">
+    <img src="/images/cart-icon.png" class="pointer" alt="cart" id="cart-icon">
     <div class="container">
         {{#each itens}}
             <form class="card font-ingrid " method="POST" action="/addPedido/{{this._id}}">
@@ -9,6 +10,7 @@
                 <footer class="footer">
                     <p class="h3-ingrid font-ingrid">R${{this.preco}}</p>
                     <input type="hidden" name="preco" value={{this.preco}}>
+                    <input type="hidden" name="nome" value={{this.nome}}>
                     <h3 class="h3-imprima font-imprima">Quantidade:
                         <input value="0" type="number" min="0" max="10" name="quantidade" class="input font-imprima p">
                     </h3>

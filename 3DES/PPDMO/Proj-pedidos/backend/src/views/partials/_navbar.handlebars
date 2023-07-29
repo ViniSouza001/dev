@@ -23,8 +23,8 @@
       <div id="menu">
         {{#if logged}}
           <header class="h2-ingrid header font-ingrid">Bem vindo, {{logged.nome}}</header>
-          <p class="font-ingrid h2-ingrid">Perfil</p>
-          <p class="font-ingrid h2-ingrid">Pedidos</p>
+          <a href="/perfil" class="font-ingrid h2-ingrid">Perfil</a>
+          <a href="/pedidos" class="font-ingrid h2-ingrid">Pedidos</a>
         {{else}}
           <a href="/login" class="btn font-imprima">Login</a>
           <a href="/registro" class="font-imprima p">Criar conta</a>

@@ -37,6 +37,15 @@ body {
    padding: 0;
 }
 
+#cart-icon {
+   width: 80px;
+   height: 80px;
+   filter: invert(100%);
+   align-self: flex-start;
+   position: fixed;
+   margin: 0 0 0 10px;
+}
+
 .flex-column {
    display: flex;
    flex-direction: column;
@@ -96,17 +105,13 @@ a {
 .body-container {
    display: flex;
    flex-direction: column;
-   align-self: center;
-   align-items: center;
    overflow-y: auto;
-   justify-content: space-evenly;
    align-items: center;
-   text-align: center;
    height: 80vh;
 }
 
 .pointer {
-   cursor: pointer;
+   cursor: pointer !important;
 }
 
 .bold {
@@ -201,8 +206,19 @@ a {
 .alert-danger {
    width: 90vw;
    height: 50px;
-   background-color: rgba(255, 0, 0, .75);
-   border: 1px solid red;
+   background-color: rgba(230, 0, 0, 0.562);
+   border: 1px solid rgb(231, 0, 0);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-family: "Imprima";
+}
+
+.alert-success {
+   width: 90vw;
+   height: 50px;
+   background-color: rgba(25, 143, 1, 0.562);
+   border: 1px solid rgb(59, 177, 5);
    display: flex;
    align-items: center;
    justify-content: center;

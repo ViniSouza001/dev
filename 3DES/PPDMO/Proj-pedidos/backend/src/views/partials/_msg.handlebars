@@ -1,5 +1,5 @@
-{{#if success_img}}
-    <div class="alert-danger">{{success_msg}}</div>
+{{#if success_msg}}
+    <div class="alert-success p">{{success_msg}}</div>
 {{/if}}
 
 {{#if error}}
@@ -7,5 +7,7 @@
 {{/if}}
 
 {{#if error_msg}}
-    <div class="alert-danger p">{{error_msg}}</div>
+    {{#each error_msg}}
+        <div class="alert-danger p">{{this}}</div>
+    {{/each}}
 {{/if}}

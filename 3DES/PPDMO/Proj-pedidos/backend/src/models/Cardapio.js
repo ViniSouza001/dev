@@ -73,4 +73,3 @@ const Cardapio = mongoose.model('cardapio', CardapioSchema)
 //     .catch(err => {
 //         console.log('erro ao salvar o item: ' + err);
 //     })
-

@@ -31,11 +31,9 @@ router.get('/menu', (req, res) => {
     })
 })
 
-
-
 router.post('/addPedido/:id', (req, res) => {
     const idPedido = req.params.id
-    const { quantidade, preco } = req.body
+    const { quantidade, preco, nome } = req.body
     var erros = []
 
     if (!req.user) {
@@ -57,8 +55,9 @@ router.post('/addPedido/:id', (req, res) => {
     } else {
         const novoPedido = {
             idProduto: idPedido,
+            nome: nome,
             quantidade: quantidade,
-            valor: preco * quantidade
+            valor: preco * quantidade,
         }
 
         new Item(novoPedido).save().then(() => {
@@ -69,6 +68,11 @@ router.post('/addPedido/:id', (req, res) => {
             res.redirect('/menu')
         })
     }
+})
+
+router.get('/pedidos', (req, res) => {
+    const logged = isLogged(req, res)
+    res.render('pedidos/pedidos', { logged: logged })
 })
 
 module.exports = router
