@@ -65,9 +65,29 @@ mongoose.connect("mongodb://0.0.0.0:/Restaurante", {
 app.use(express.static(path.join(__dirname, "src")))
 
 // routes
-app.get('/', (req, res) => {
-    
-})
+
+// app.get('/', (req, res) => {
+//     if (req.user) {
+//         const logged = {
+//             nome: req.user.nome,
+//             email: req.user.email,
+//             telefone: req.user.telefone,
+//             endereco: req.user.endereco
+//         }
+//         res.render('usuarios/home', { logged: logged })
+//     } else {
+//         res.render('usuarios/home')
+//     }
+// })
+
+// app.get('/aboutUs', (req, res) => {
+//     if (req.user) {
+//         const nome = req.user.nome
+//         res.render('usuarios/aboutUs', { nome: nome })
+//     } else {
+//         res.render('usuarios/aboutUs')
+//     }
+// })
 
 app.use(usuariosRouter)
 app.use(pedidosRouter)

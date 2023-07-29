@@ -6,6 +6,3 @@ divHamburguer.addEventListener('click', () => {
    divHamburguer.classList.toggle('active')
    menuLateral.classList.toggle('activeNav')
 })
-
-const width = window.screen.width
-console.log(width);

@@ -1,3 +1,11 @@
 {{#if success_img}}
-    <div class="alert alert-success">{{success_msg}}</div>
+    <div class="alert-danger">{{success_msg}}</div>
+{{/if}}
+
+{{#if error}}
+    <div class="alert-danger p">{{error}}</div>
+{{/if}}
+
+{{#if error_msg}}
+    <div class="alert-danger p">{{error_msg}}</div>
 {{/if}}

@@ -43,7 +43,7 @@ body {
 }
 
 .p {
-   font-size: 25px;
+   font-size: 22px;
 }
 
 a {
@@ -51,7 +51,7 @@ a {
 }
 
 .btn {
-   padding: 5px 20px 5px 20px;
+   padding: 5px 30px 5px 30px;
    background-color: #B78F00;
    border: none;
    cursor: pointer;
@@ -70,10 +70,18 @@ a {
 }
 
 .h1-ingrid {
-   font-size: 3.5rem;
+   font-size: 3.2rem;
 }
 
 .h1-imprima {
+   font-size: 2.7rem;
+}
+
+.h2-ingrid {
+   font-size: 2.7rem;
+}
+
+.h2-imprima {
    font-size: 2.4rem;
 }
 
@@ -117,7 +125,7 @@ a {
 
 .form {
    display: flex;
-   background-color: rgba(30,30,30, .9);
+   background-color: rgba(30, 30, 30, .9);
    flex-direction: column;
    border-radius: 20px;
    gap: 3rem;

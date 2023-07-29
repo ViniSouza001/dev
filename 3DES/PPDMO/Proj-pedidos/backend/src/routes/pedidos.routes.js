@@ -8,9 +8,23 @@ const Pedido = mongoose.model('pedidos')
 const Cardapio = mongoose.model('cardapio')
 const Item = mongoose.model('itens')
 
+function isLogged (req, res) {
+    if (req.user) {
+        return {
+            nome: req.user.nome,
+            email: req.user.email,
+            telefone: req.user.telefone,
+            endereco: req.user.endereco
+        }
+    } else {
+        return false
+    }
+}
+
 router.get('/menu', (req, res) => {
+    const logged = isLogged(req, res)
     Cardapio.find().lean().then(itens => {
-        res.render('pedidos/cardapio', { itens: itens })
+        res.render('pedidos/cardapio', { itens: itens, logged: logged })
     }).catch(err => {
         console.log("Não foi possível pesquisar os itens do cardapio: " + err);
         res.redirect('/')

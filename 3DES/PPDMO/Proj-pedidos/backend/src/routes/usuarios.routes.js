@@ -6,16 +6,37 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 const Cliente = mongoose.model("clientes");
 
-router.get("/", (req, res) => {
-  res.render("usuarios/home");
-});
+function isLogged (req, res) {
+  if (req.user) {
+    return {
+      nome: req.user.nome,
+      email: req.user.email,
+      telefone: req.user.telefone,
+      endereco: req.user.endereco
+    }
+  } else {
+    return false
+  }
+}
+
+router.get('/', (req, res) => {
+  const logged = isLogged(req, res)
+  res.render('usuarios/home', { logged: logged })
+})
 
 router.get("/registro", (req, res) => {
-  res.render("usuarios/registro");
+  const logged = isLogged(req, res)
+  if (logged) {
+    req.flash('error_msg', "Você deve sair da sua conta para criar uma nova")
+    res.redirect('/')
+  } else {
+    res.render("usuarios/registro")
+  }
 });
 
 router.get('/aboutUs', (req, res) => {
-  res.render('usuarios/aboutUs')
+  const logged = isLogged(req, res)
+  res.render('usuarios/aboutUs', { logged: logged })
 })
 
 router.get('/login', (req, res) => {
@@ -32,9 +53,10 @@ router.post('/login', (req, res, next) => {
 
   passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/usuarios/login",
+    failureRedirect: "/login",
     failureFlash: true
-  })(req, res, next)
+  }
+  )(req, res, next)
 })
 
 router.post("/registro", (req, res) => {
