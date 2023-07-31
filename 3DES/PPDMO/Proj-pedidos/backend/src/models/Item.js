@@ -7,6 +7,11 @@ const Item = new Schema({
         ref: "cardapio",
         required: true
     },
+    idCliente: {
+        type: Schema.Types.ObjectId,
+        ref: "clientes",
+        required: true
+    },
     nome: {
         type: String,
         required: true

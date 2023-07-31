@@ -5,10 +5,14 @@ require("../models/Cliente");
 const bcrypt = require('bcrypt')
 const passport = require('passport')
 const Cliente = mongoose.model("clientes");
+require('../models/Item')
+const Item = mongoose.model('itens')
 
-function isLogged (req, res) {
+
+function isLogged(req, res) {
   if (req.user) {
     return {
+      id: req.user._id,
       nome: req.user.nome,
       email: req.user.email,
       telefone: req.user.telefone,
@@ -19,10 +23,24 @@ function isLogged (req, res) {
   }
 }
 
-router.get('/', (req, res) => {
-  const logged = isLogged(req, res)
-  res.render('usuarios/home', { logged: logged })
-})
+async function theresItens(req, res, idCliente) {
+  try {
+    const itens = await Item.find({ idCliente: idCliente }).lean();
+    console.log(itens)
+    return itens;
+  } catch (err) {
+    return { erro: "Não foi possível pesquisar os itens: " + err };
+  }
+}
+
+router.get('/', async (req, res) => {
+  const logged = isLogged(req, res);
+  var itens;
+  if (logged) {
+    itens = await theresItens(req, res, logged.id);
+  }
+  res.render('usuarios/home', { logged: logged, itens: itens });
+});
 
 router.get("/registro", (req, res) => {
   const logged = isLogged(req, res)

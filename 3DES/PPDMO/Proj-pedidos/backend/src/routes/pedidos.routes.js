@@ -55,6 +55,7 @@ router.post('/addPedido/:id', (req, res) => {
     } else {
         const novoPedido = {
             idProduto: idPedido,
+            idCliente: req.user._id,
             nome: nome,
             quantidade: quantidade,
             valor: preco * quantidade,

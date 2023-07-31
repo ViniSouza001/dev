@@ -14,6 +14,10 @@
         <a href="/menu">
           <li>Menu</li>
         </a>
+        {{#if logged}}
+          <img src="/images/cart-icon.png" alt="cart icon" id="cart-icon" class="pointer">
+          {{else}}
+        {{/if}}
       </ul>
     </nav>
     <div id="divHamburguer">
