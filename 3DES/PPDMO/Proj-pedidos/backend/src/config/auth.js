@@ -16,6 +16,7 @@ module.exports = function (passport) {
          }
 
          bcrypt.compare(senha, cliente.senha, (erro, batem) => {
+            console.log(cliente.senha);
             if (batem) {
                return done(null, cliente)
             } else {

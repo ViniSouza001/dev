@@ -25,7 +25,7 @@ function isLogged(req, res) {
 
 async function theresItens(req, res, idCliente) {
   try {
-    const itens = await Item.find({ idCliente: idCliente }).lean();
+    const itens = await Item.find({ idCliente: idCliente }).populate("idProduto").lean();
     console.log(itens)
     return itens;
   } catch (err) {
@@ -145,5 +145,10 @@ router.post("/registro", (req, res) => {
     })
   }
 });
+
+router.get('/perfil', (req, res) => {
+  const logged = isLogged(req, res)
+  res.render('usuarios/perfil', { logged: logged })
+})
 
 module.exports = router;

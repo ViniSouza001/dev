@@ -15,7 +15,8 @@
     <div class="container">
         {{>_msg}}
         {{#if itens}}
-            <div id="window-cart" class="window">
+            <div id="window-cart" class="window display-none">
+                <header class="closeX font-imprima h3-imprima pointer">X</header>
                 {{#each itens}}
                     <p class="p p-window font-imprima">Nome: {{this.nome}}</p>
                     <p class="p p-window font-imprima">Quantidade: {{this.quantidade}}</p>
@@ -24,6 +25,10 @@
                 {{/each}}
             </div>
         {{else}}
+            <div class="window display-none">
+                <header class="closeX font-imprima h3-imrpima pointer">X</header>
+                <p class="p p-window font-imprima">Não há itens no carrinho</p>
+            </div>
         {{/if}}
         {{{body}}}
     </div>
