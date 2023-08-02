@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const router = express.Router()
-require('../models/Pedido') // model de pedidos
+require('../models/Pedido')
 require('../models/Cardapio')
 require('../models/Item')
 const Pedido = mongoose.model('pedidos')
@@ -21,10 +21,26 @@ function isLogged (req, res) {
     }
 }
 
-router.get('/menu', (req, res) => {
+async function theresItens (req, res, idCliente) {
+    try {
+        const itens = await Item.find({ idCliente: idCliente }).populate("idProduto").lean();
+        console.log(itens)
+        return itens;
+    } catch (err) {
+        return { erro: "Não foi possível pesquisar os itens: " + err };
+    }
+}
+
+router.get('/menu', async (req, res) => {
     const logged = isLogged(req, res)
-    Cardapio.find().lean().then(itens => {
-        res.render('pedidos/cardapio', { itens: itens, logged: logged })
+
+    var itens;
+    if (logged) {
+        itens = await theresItens(req, res, logged.id);
+    }
+
+    Cardapio.find().lean().then(opcoes => {
+        res.render('pedidos/cardapio', { opcoes: opcoes, logged: logged, itens: itens })
     }).catch(err => {
         console.log("Não foi possível pesquisar os itens do cardapio: " + err);
         res.redirect('/')
@@ -71,9 +87,13 @@ router.post('/addPedido/:id', (req, res) => {
     }
 })
 
-router.get('/pedidos', (req, res) => {
+router.get('/pedidos', async (req, res) => {
     const logged = isLogged(req, res)
-    res.render('pedidos/pedidos', { logged: logged })
+    var itens;
+    if (logged) {
+        itens = await theresItens(req, res, logged.id);
+    }
+    res.render('pedidos/pedidos', { logged: logged, itens: itens })
 })
 
 module.exports = router

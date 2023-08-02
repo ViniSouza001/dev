@@ -80,7 +80,7 @@ a {
 }
 
 .h1-ingrid {
-   font-size: 3.2rem;
+   font-size: 6rem;
 }
 
 .h1-imprima {
@@ -88,7 +88,7 @@ a {
 }
 
 .h2-ingrid {
-   font-size: 2.7rem;
+   font-size: 4rem;
 }
 
 .h2-imprima {
@@ -136,6 +136,8 @@ a {
    border-radius: 20px;
    gap: 3rem;
    padding: 20px 30px 20px 30px;
+   align-self: center;
+   justify-self: center;
    text-align: center;
    align-items: center;
    width: 50vw;
@@ -194,6 +196,7 @@ a {
    border-radius: 10px;
    margin: 20px;
    justify-content: space-between;
+   align-items: center;
 }
 
 .card header {
@@ -264,6 +267,18 @@ a {
    padding: 0 10px 0 0;
    width: 100%;
 }
+
+.align-center {
+   align-self: center;
+   margin: auto;
+}
+
+.justify-center {
+   display: flex !important;
+   justify-content: center !important;
+}
+
+
 
 hr {
    width: 100%;

@@ -6,17 +6,17 @@
     <nav>
       <ul>
         <a href="/">
-          <li>Home</li>
+          <li class="h2-ingrid">Home</li>
         </a>
         <a href="/aboutUs">
-          <li>Sobre Nós</li>
+          <li class="h2-ingrid">Sobre Nós</li>
         </a>
         <a href="/menu">
-          <li>Menu</li>
+          <li class="h2-ingrid">Menu</li>
         </a>
         {{#if logged}}
           <img src="/images/cart-icon.png" alt="cart icon" id="cart-icon" class="pointer">
-          {{else}}
+        {{else}}
         {{/if}}
       </ul>
     </nav>
@@ -31,7 +31,7 @@
           <a href="/pedidos" class="font-ingrid h2-ingrid">Pedidos</a>
         {{else}}
           <a href="/login" class="btn font-imprima">Login</a>
-          <a href="/registro" class="font-imprima p">Criar conta</a>
+          <a href="/registro" class="font-imprima  h3-imprima">Criar conta</a>
         {{/if}}
       </div>
     </nav>

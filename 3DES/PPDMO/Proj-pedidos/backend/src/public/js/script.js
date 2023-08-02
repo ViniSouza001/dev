@@ -18,7 +18,6 @@ closeX.forEach(button => {
 
 if (cartIcon) {
    cartIcon.addEventListener('click', () => {
-      console.log(windowCart)
       windowCart.classList.toggle('display-none')
    })
 }

@@ -9,7 +9,7 @@ require('../models/Item')
 const Item = mongoose.model('itens')
 
 
-function isLogged(req, res) {
+function isLogged (req, res) {
   if (req.user) {
     return {
       id: req.user._id,
@@ -23,7 +23,7 @@ function isLogged(req, res) {
   }
 }
 
-async function theresItens(req, res, idCliente) {
+async function theresItens (req, res, idCliente) {
   try {
     const itens = await Item.find({ idCliente: idCliente }).populate("idProduto").lean();
     console.log(itens)
@@ -52,9 +52,13 @@ router.get("/registro", (req, res) => {
   }
 });
 
-router.get('/aboutUs', (req, res) => {
+router.get('/aboutUs', async (req, res) => {
   const logged = isLogged(req, res)
-  res.render('usuarios/aboutUs', { logged: logged })
+  var itens;
+  if (logged) {
+    itens = await theresItens(req, res, logged.id);
+  }
+  res.render('usuarios/aboutUs', { logged: logged, itens: itens })
 })
 
 router.get('/login', (req, res) => {
@@ -146,9 +150,16 @@ router.post("/registro", (req, res) => {
   }
 });
 
-router.get('/perfil', (req, res) => {
+router.get('/perfil', async (req, res) => {
   const logged = isLogged(req, res)
-  res.render('usuarios/perfil', { logged: logged })
+  var itens;
+  if (logged) {
+    itens = await theresItens(req, res, logged.id);
+  } else {
+    req.flash('error_msg', "Você deve estar logado para entrar nessa página")
+    res.redirect('/login')
+  }
+  res.render('usuarios/perfil', { logged: logged, itens: itens })
 })
 
 module.exports = router;
