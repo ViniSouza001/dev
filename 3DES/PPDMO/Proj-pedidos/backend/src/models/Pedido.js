@@ -1,23 +1,30 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const Counter = require('./Counter')
 
-const Pedido = new Schema({
-    idCliente: {
-        type: String,
-        required: true
-    },
-    nome: {
-        type: String,
-        required: true
-    },
-    preco: {
-        type: Number,
-        required: true
-    },
-    quantidade: {
-        type: Number,
-        required: true
-    }
+const PedidoSchema = new Schema({
+    idCliente: { type: String, required: true },
+    idPedido: { type: Number, unique: true },
+    valorPedido: { type: Number, required: true },
+    valorEntrega: { type: Number, required: false },
+    dataPedido: { type: Date, default: Date.now() },
+    dataCozinha: { type: Date, required: false },
+    dataEntrega: { type: Date, required: false },
+    paraEntrega: { type: Boolean, required: true },
+    itens: [{ type: Schema.Types.ObjectId, ref: "itens" }]
 })
 
-mongoose.model('pedidos', Pedido)
+PedidoSchema.pre('save', async function (next) {
+    const doc = this
+    if (doc.isNew) {
+        const counter = await Counter.findByIdAndUpdate(
+            'pedidoId',
+            { $inc: { seq: 1 } },
+            { new: true, upsert: true }
+        )
+        doc.idPedido = counter.seq
+    }
+    return next()
+})
+
+mongoose.model('pedidos', PedidoSchema)

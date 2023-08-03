@@ -8,10 +8,11 @@ const Pedido = mongoose.model('pedidos')
 const Cardapio = mongoose.model('cardapio')
 const Item = mongoose.model('itens')
 
-function isLogged (req, res) {
+function isLogged(req, res) {
     if (req.user) {
         return {
             nome: req.user.nome,
+            id: req.user._id,
             email: req.user.email,
             telefone: req.user.telefone,
             endereco: req.user.endereco
@@ -21,10 +22,9 @@ function isLogged (req, res) {
     }
 }
 
-async function theresItens (req, res, idCliente) {
+async function theresItens(req, res, idCliente) {
     try {
-        const itens = await Item.find({ idCliente: idCliente }).populate("idProduto").lean();
-        console.log(itens)
+        const itens = await Item.find({ idCliente: idCliente }).lean();
         return itens;
     } catch (err) {
         return { erro: "Não foi possível pesquisar os itens: " + err };
@@ -33,21 +33,18 @@ async function theresItens (req, res, idCliente) {
 
 router.get('/menu', async (req, res) => {
     const logged = isLogged(req, res)
-
-    var itens;
+    var itensCardapio
+    var itensCarrinho
     if (logged) {
-        itens = await theresItens(req, res, logged.id);
+        itensCarrinho = await theresItens(req, res, logged.id);
     }
 
-    Cardapio.find().lean().then(opcoes => {
-        res.render('pedidos/cardapio', { opcoes: opcoes, logged: logged, itens: itens })
-    }).catch(err => {
-        console.log("Não foi possível pesquisar os itens do cardapio: " + err);
-        res.redirect('/')
-    })
+    itensCardapio = await Cardapio.find().lean()
+
+    res.render('pedidos/cardapio', { logged: logged, opcoes: itensCardapio, itensCarrinho: itensCarrinho })
 })
 
-router.post('/addPedido/:id', (req, res) => {
+router.post('/addCarrinho/:id', (req, res) => {
     const idPedido = req.params.id
     const { quantidade, preco, nome } = req.body
     var erros = []
@@ -69,7 +66,7 @@ router.post('/addPedido/:id', (req, res) => {
         req.flash("error_msg", mensagensErros)
         res.redirect('/menu')
     } else {
-        const novoPedido = {
+        const novoCarrinho = {
             idProduto: idPedido,
             idCliente: req.user._id,
             nome: nome,
@@ -77,7 +74,7 @@ router.post('/addPedido/:id', (req, res) => {
             valor: preco * quantidade,
         }
 
-        new Item(novoPedido).save().then(() => {
+        new Item(novoCarrinho).save().then(() => {
             req.flash("success_msg", "Item salvo com sucesso")
             res.redirect("/menu")
         }).catch(err => {
@@ -85,6 +82,15 @@ router.post('/addPedido/:id', (req, res) => {
             res.redirect('/menu')
         })
     }
+})
+
+router.post('/addPedido', (req, res) => {
+    const logged = isLogged(req, res)
+    Item.find().lean().then(item => {
+        const novoPedido = {
+            idCliente: logged.id,
+        }
+    }).catch()
 })
 
 router.get('/pedidos', async (req, res) => {

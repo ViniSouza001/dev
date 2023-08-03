@@ -1,7 +1,7 @@
 <div class="body-container">
     <div class="container">
         {{#each opcoes}}
-            <form class="card font-ingrid " method="POST" action="/addPedido/{{this._id}}">
+            <form class="card font-ingrid " method="POST" action="/addCarrinho/{{this._id}}">
                 <header class="title">{{this.nome}}</header>
                 <h3 class="h3-ingrid">Entrada: {{this.entrada}}</h3>
                 <h3 class="h3-ingrid">Principal: {{this.principal}}</h3>

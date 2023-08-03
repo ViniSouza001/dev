@@ -9,7 +9,7 @@ require('../models/Item')
 const Item = mongoose.model('itens')
 
 
-function isLogged (req, res) {
+function isLogged(req, res) {
   if (req.user) {
     return {
       id: req.user._id,
@@ -23,10 +23,9 @@ function isLogged (req, res) {
   }
 }
 
-async function theresItens (req, res, idCliente) {
+async function theresItens(req, res, idCliente) {
   try {
     const itens = await Item.find({ idCliente: idCliente }).populate("idProduto").lean();
-    console.log(itens)
     return itens;
   } catch (err) {
     return { erro: "Não foi possível pesquisar os itens: " + err };
