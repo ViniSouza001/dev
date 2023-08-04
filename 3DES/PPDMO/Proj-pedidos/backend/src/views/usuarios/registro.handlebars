@@ -1,19 +1,27 @@
-<form action="/registro" method="post" class="card">
-  <header class=>
-    <h1 class="h1-ingrid font-ingrid align-center">Vinici'os</h1>
-  </header>
-  <label class="font-imprima p h3-imprima" for="nome">Nome: </label>
-  <input type="text" name="nome" required class="input font-imprima bold p" />
-  <label class="font-imprima h3-imprima p" for="endereco">Endereco: </label>
-  <input type="text" name="endereco" required class="input font-imprima bold p" />
-  <label class="font-imprima p h3-imprima" for="telefone">Telefone: </label>
-  <input type="text" name="telefone" class="input font-imprima bold p" />
-  <label class="font-imprima p h3-imprima" for="email">Email: </label>
-  <input type="email" name="email" required class="input font-imprima bold p" />
-  <label class="font-imprima p h3-imprima" for="senha1">Senha: </label>
-  <input type="password" name="senha1" required class="input font-imprima bold p" />
-  <label class="font-imprima p h3-imprima" for="senha2">Confirme sua senha: </label>
-  <input type="password" name="senha2" required class="input font-imprima bold p" />
-  <button type="submit" class="btn font-imprima h1-imprima">Criar conta</button>
+<div class="body-container">
+  {{#each erros}}
+    <div class="alert-danger">{{texto}}</div>
+  {{/each}}
+  <div class="body-container">
 
-</form>
+
+    <form action="/registro" method="post" class="card">
+      <header class=>
+        <h1 class="h1-ingrid font-ingrid align-center">Vinici'os</h1>
+      </header>
+      <label class="font-imprima p h3-imprima" for="nome">Nome: </label>
+      <input type="text" name="nome" required class="input font-imprima bold p" />
+      <label class="font-imprima h3-imprima p" for="endereco">Endereco: </label>
+      <input type="text" name="endereco" required class="input font-imprima bold p" />
+      <label class="font-imprima p h3-imprima" for="telefone">Telefone: </label>
+      <input type="text" name="telefone" class="input font-imprima bold p" />
+      <label class="font-imprima p h3-imprima" for="email">Email: </label>
+      <input type="email" name="email" required class="input font-imprima bold p" />
+      <label class="font-imprima p h3-imprima" for="senha1">Senha: </label>
+      <input type="password" name="senha1" required class="input font-imprima bold p" />
+      <label class="font-imprima p h3-imprima" for="senha2">Confirme sua senha: </label>
+      <input type="password" name="senha2" required class="input font-imprima bold p" />
+      <button type="submit" class="btn font-imprima h1-imprima">Criar conta</button>
+    </form>
+  </div>
+</div>

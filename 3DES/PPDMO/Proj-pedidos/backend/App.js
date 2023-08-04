@@ -64,12 +64,33 @@ mongoose.connect("mongodb://0.0.0.0:/Restaurante", {
 // public
 app.use(express.static(path.join(__dirname, "src")))
 
+// clear console
+const clearConsole = () => {
+    process.stdout.write('\x1Bc')
+}
+
+// configuração do nodemon
+const nodemon = require('nodemon')
+nodemon({
+    script: 'App.js'
+})
+
+nodemon.on('restart', () => {
+    clearConsole()
+    console.log('App restarting...')
+})
+
+nodemon.on('exit', () => {
+    clearConsole()
+    console.log("App has stopped");
+})
+
 // routes
 
 app.use(usuariosRouter)
 app.use(pedidosRouter)
 
-const PORT = 8081
+const PORT = 8080
 app.listen(PORT, () => {
-    console.log('server running on port ' + PORT)
+    console.log('Server running on port ' + PORT)
 })

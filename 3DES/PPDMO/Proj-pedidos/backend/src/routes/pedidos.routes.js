@@ -86,9 +86,29 @@ router.post('/addCarrinho/:id', (req, res) => {
 
 router.post('/addPedido', (req, res) => {
     const logged = isLogged(req, res)
-    Item.find().lean().then(item => {
+    var cep, endereco
+    const { paraEntrega } = req.body
+    var valEntrega = 0
+    var total = 0
+
+    if (paraEntrega) {
+        valEntrega = 5
+        cep = req.body
+        endereco = req.body
+    }
+
+    Item.find({ idCliente: logged.id }).lean().then(item => {
+        item.forEach(element => {
+            console.log(element);
+        })
+        valor += item.valor
         const novoPedido = {
-            idCliente: logged.id,
+            "idCliente": logged.id,
+            "valorPedido": valor,
+            "cep": cep,
+            "endereco": endereco,
+            "valorEntrega": valEntrega + valor,
+
         }
     }).catch()
 })

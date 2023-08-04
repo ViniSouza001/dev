@@ -25,7 +25,7 @@ function isLogged(req, res) {
 
 async function theresItens(req, res, idCliente) {
   try {
-    const itens = await Item.find({ idCliente: idCliente }).populate("idProduto").lean();
+    const itens = await Item.find({ idCliente: idCliente }).lean();
     return itens;
   } catch (err) {
     return { erro: "Não foi possível pesquisar os itens: " + err };
@@ -34,11 +34,11 @@ async function theresItens(req, res, idCliente) {
 
 router.get('/', async (req, res) => {
   const logged = isLogged(req, res);
-  var itens;
+  var itensCarrinho;
   if (logged) {
-    itens = await theresItens(req, res, logged.id);
+    itensCarrinho = await theresItens(req, res, logged.id);
   }
-  res.render('usuarios/home', { logged: logged, itens: itens });
+  res.render('usuarios/home', { logged: logged, itensCarrinho: itensCarrinho });
 });
 
 router.get("/registro", (req, res) => {
@@ -53,11 +53,11 @@ router.get("/registro", (req, res) => {
 
 router.get('/aboutUs', async (req, res) => {
   const logged = isLogged(req, res)
-  var itens;
+  var itensCarrinho;
   if (logged) {
-    itens = await theresItens(req, res, logged.id);
+    itensCarrinho = await theresItens(req, res, logged.id);
   }
-  res.render('usuarios/aboutUs', { logged: logged, itens: itens })
+  res.render('usuarios/aboutUs', { logged: logged, itensCarrinho: itensCarrinho })
 })
 
 router.get('/login', (req, res) => {

@@ -6,11 +6,13 @@ const PedidoSchema = new Schema({
     idCliente: { type: String, required: true },
     idPedido: { type: Number, unique: true },
     valorPedido: { type: Number, required: true },
+    paraEntrega: { type: Boolean, default: false },
+    cep: { type: String, required: false },
+    endereco: { type: String, required: false },
     valorEntrega: { type: Number, required: false },
     dataPedido: { type: Date, default: Date.now() },
     dataCozinha: { type: Date, required: false },
     dataEntrega: { type: Date, required: false },
-    paraEntrega: { type: Boolean, required: true },
     itens: [{ type: Schema.Types.ObjectId, ref: "itens" }]
 })
 

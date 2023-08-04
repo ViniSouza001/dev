@@ -105,8 +105,10 @@ a {
 
 .body-container {
    display: flex;
+   gap: 2rem;
    flex-direction: column;
    overflow-y: auto;
+   overflow-x: hidden;
    align-items: center;
    height: 80vh;
 }
@@ -234,6 +236,8 @@ a {
    align-items: center;
    justify-content: center;
    font-family: "Imprima";
+   position: relative;
+
 }
 
 .alert-success {
