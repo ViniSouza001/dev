@@ -90,6 +90,8 @@ router.post('/addPedido', (req, res) => {
     const { paraEntrega } = req.body
     var valEntrega = 0
     var total = 0
+    var valor = 0
+    var itens = []
 
     if (paraEntrega) {
         valEntrega = 5
@@ -99,17 +101,27 @@ router.post('/addPedido', (req, res) => {
 
     Item.find({ idCliente: logged.id }).lean().then(item => {
         item.forEach(element => {
-            console.log(element);
+            valor += element.valor
+            itens.push(element.nome)
         })
-        valor += item.valor
+
         const novoPedido = {
             "idCliente": logged.id,
             "valorPedido": valor,
             "cep": cep,
             "endereco": endereco,
             "valorEntrega": valEntrega + valor,
-
+            "itens": itens
         }
+
+        new Pedido(novoPedido).save().then(() => {
+            req.flash("success_msg", "Pedido salvo com sucesso")
+            res.redirect('/')
+        }).catch(err => {
+            req.flash("error_msg", "Não foi possivel salvar o pedido")
+            console.log(err)
+            res.redirect('/')
+        })
     }).catch()
 })
 

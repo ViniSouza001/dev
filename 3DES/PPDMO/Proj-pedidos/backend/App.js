@@ -72,7 +72,7 @@ const clearConsole = () => {
 // configuração do nodemon
 const nodemon = require('nodemon')
 nodemon({
-    script: 'App.js'
+    // script: 'App.js'
 })
 
 nodemon.on('restart', () => {
@@ -90,7 +90,7 @@ nodemon.on('exit', () => {
 app.use(usuariosRouter)
 app.use(pedidosRouter)
 
-const PORT = 8080
+const PORT = 8081
 app.listen(PORT, () => {
     console.log('Server running on port ' + PORT)
 })
