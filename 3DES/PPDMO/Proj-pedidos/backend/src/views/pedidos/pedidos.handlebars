@@ -1,1 +1,21 @@
-<h1>página de pedido</h1>
+<div class="container">
+    {{#if pedidos}}
+        {{#each pedidos}}
+            <div class="card-pedidos font-imprima h3-imprima">
+                <p class="align-center">#{{this.idPedido}}</p>
+                {{#if ../array}}
+                    <div>
+                        {{#each ../array}}
+                            <p>{{this.quantidade}} x {{this.nome}}</p>
+                        {{/each}}
+                    </div>
+                    <p class="align-center">R${{this.valorEntrega}}</p>
+                {{else}}
+                    <h3>Não tem array</h3>
+                {{/if}}
+            </div>
+        {{/each}}
+    {{else}}
+        <h1 class="font-imprima h3-imprima">Não há pedidos para serem listados</h1>
+    {{/if}}
+</div>

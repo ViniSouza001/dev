@@ -13,7 +13,8 @@ const PedidoSchema = new Schema({
     dataPedido: { type: Date, default: Date.now() },
     dataCozinha: { type: Date, required: false },
     dataEntrega: { type: Date, required: false },
-    itens: [{ type: Schema.Types.ObjectId, ref: "itens" }]
+    status: { type: String, required: false },
+    itens: { type: Array, required: true }
 })
 
 PedidoSchema.pre('save', async function (next) {

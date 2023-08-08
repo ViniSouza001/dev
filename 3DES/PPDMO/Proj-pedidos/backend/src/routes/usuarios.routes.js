@@ -151,14 +151,14 @@ router.post("/registro", (req, res) => {
 
 router.get('/perfil', async (req, res) => {
   const logged = isLogged(req, res)
-  var itens;
+  var itensCarrinho;
   if (logged) {
-    itens = await theresItens(req, res, logged.id);
+    itensCarrinho = await theresItens(req, res, logged.id);
   } else {
     req.flash('error_msg', "Você deve estar logado para entrar nessa página")
     res.redirect('/login')
   }
-  res.render('usuarios/perfil', { logged: logged, itens: itens })
+  res.render('usuarios/perfil', { logged: logged, itensCarrinho: itensCarrinho })
 })
 
 module.exports = router;

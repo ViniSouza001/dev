@@ -89,9 +89,8 @@ router.post('/addPedido', (req, res) => {
     var cep, endereco
     const { paraEntrega } = req.body
     var valEntrega = 0
-    var total = 0
     var valor = 0
-    var itens = []
+    var array = []
 
     if (paraEntrega) {
         valEntrega = 5
@@ -101,8 +100,11 @@ router.post('/addPedido', (req, res) => {
 
     Item.find({ idCliente: logged.id }).lean().then(item => {
         item.forEach(element => {
+            var itens = {}
             valor += element.valor
-            itens.push(element.nome)
+            itens.nome = element.nome
+            itens.quantidade = element.quantidade
+            array.push(itens)
         })
 
         const novoPedido = {
@@ -111,12 +113,19 @@ router.post('/addPedido', (req, res) => {
             "cep": cep,
             "endereco": endereco,
             "valorEntrega": valEntrega + valor,
-            "itens": itens
+            "itens": array
         }
 
         new Pedido(novoPedido).save().then(() => {
-            req.flash("success_msg", "Pedido salvo com sucesso")
-            res.redirect('/')
+            Item.deleteMany({ idCliente: logged.id }).then(() => {
+                req.flash("success_msg", "Pedido salvo com sucesso")
+                res.redirect('/')
+            }).catch(err => {
+                console.error('Erro ao excluir itens do carrinho: ' + err)
+                req.flash('error_msg', "Erro ao salvar o pedido")
+                res.redirect('/')
+
+            })
         }).catch(err => {
             req.flash("error_msg", "Não foi possivel salvar o pedido")
             console.log(err)
@@ -128,10 +137,23 @@ router.post('/addPedido', (req, res) => {
 router.get('/pedidos', async (req, res) => {
     const logged = isLogged(req, res)
     var itens;
+    var array = []
     if (logged) {
         itens = await theresItens(req, res, logged.id);
+
+        const pedidos = await Pedido.find({ idCliente: logged.id }).lean()
+
+        pedidos.forEach(pedido => {
+            pedido.itens.forEach(itemPedido => {
+                array.push({ nome: itemPedido.nome, quantidade: itemPedido.quantidade })
+            })
+        })
+        res.render('pedidos/pedidos', { itensCarrinho: itens, logged: logged, pedidos: pedidos, array: array })
+        console.log({ array: array })
+    } else {
+        req.flash('error_msg', "Você precisa estar logado para acessar esta página")
+        res.redirect('/')
     }
-    res.render('pedidos/pedidos', { logged: logged, itens: itens })
 })
 
 module.exports = router
