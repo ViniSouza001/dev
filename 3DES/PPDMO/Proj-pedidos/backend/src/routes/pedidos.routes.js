@@ -135,25 +135,27 @@ router.post('/addPedido', (req, res) => {
 })
 
 router.get('/pedidos', async (req, res) => {
-    const logged = isLogged(req, res)
-    var itens;
-    var array = []
-    if (logged) {
-        itens = await theresItens(req, res, logged.id);
+    const logged = isLogged(req, res);
 
-        const pedidos = await Pedido.find({ idCliente: logged.id }).lean()
+    if (logged) {
+        const itens = await theresItens(req, res, logged.id);
+        const pedidos = await Pedido.find({ idCliente: logged.id }).lean();
 
         pedidos.forEach(pedido => {
+            var array = []; // Nova declaração aqui
             pedido.itens.forEach(itemPedido => {
-                array.push({ nome: itemPedido.nome, quantidade: itemPedido.quantidade })
-            })
-        })
-        res.render('pedidos/pedidos', { itensCarrinho: itens, logged: logged, pedidos: pedidos, array: array })
-        console.log({ array: array })
+                array.push({ nome: itemPedido.nome, quantidade: itemPedido.quantidade });
+            });
+            pedido.array = array; // Adiciona o array ao pedido
+            console.log(pedido.array)
+        });
+        res.render('pedidos/pedidos', { itensCarrinho: itens, logged: logged, pedidos: pedidos });
     } else {
-        req.flash('error_msg', "Você precisa estar logado para acessar esta página")
-        res.redirect('/')
+        req.flash('error_msg', "Você precisa estar logado para acessar esta página");
+        res.redirect('/');
     }
-})
+});
+
+
 
 module.exports = router

@@ -161,4 +161,54 @@ router.get('/perfil', async (req, res) => {
   res.render('usuarios/perfil', { logged: logged, itensCarrinho: itensCarrinho })
 })
 
+router.post('/atualizarPerfil', async (req, res) => {
+  const logged = isLogged(req, res)
+  const { nome, email, telefone, endereco } = req.body
+  var erros = []
+  if (!nome || typeof nome == undefined || nome == null || nome.length == 0) {
+    erros.push({ "texto": "O campo de nome não pode estar vazio" })
+  }
+
+  if (!email || typeof email == undefined || email == null || email.length == 0) {
+    erros.push({ "texto": "O campo de e-mail não pode estar vazio" })
+  }
+
+  if (!endereco || typeof endereco == undefined || endereco == null || endereco.length == 0) {
+    erros.push({ "texto": "O campo de endereço não pode estar vazio" })
+  }
+
+  if (erros.length > 0) {
+    res.render('usuarios/perfil', { erros: erros })
+  }
+
+
+  Cliente.findOne({ _id: logged.id }).lean().then(cliente => {
+    Cliente.findOne({ email: email }).lean().then(encontrado => {
+
+      if (encontrado) {
+        req.flash('error_msg', 'Já existe uma conta com este e-mail')
+        res.redirect('/perfil')
+      }
+    })
+
+    cliente.nome = nome
+    cliente.endereco = endereco
+    cliente.telefone = telefone
+    cliente.email = email
+
+    cliente.save().then(() => {
+      req.flash('success_msg', 'Dados atualizados com sucesso')
+      res.redirect('/perfil')
+    }).catch(err => {
+      console.log(err);
+      req.flash('error_msg', "Houve um erro ao salvar os dados")
+      res.redirect('/perfil')
+    })
+  }).catch(err => {
+    req.flash("error_msg", "Conta não encontrada para alterar")
+    console.log(err)
+    res.redirect('/')
+  })
+})
+
 module.exports = router;

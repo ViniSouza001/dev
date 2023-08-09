@@ -3,9 +3,9 @@
         {{#each pedidos}}
             <div class="card-pedidos font-imprima h3-imprima">
                 <p class="align-center">#{{this.idPedido}}</p>
-                {{#if ../array}}
+                {{#if array}}
                     <div>
-                        {{#each ../array}}
+                        {{#each array}}
                             <p>{{this.quantidade}} x {{this.nome}}</p>
                         {{/each}}
                     </div>
