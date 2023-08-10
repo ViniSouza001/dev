@@ -161,6 +161,23 @@ router.get('/perfil', async (req, res) => {
   res.render('usuarios/perfil', { logged: logged, itensCarrinho: itensCarrinho })
 })
 
+function emailUsed(req, res, email) {
+  return new Promise((resolve, reject) => {
+    Cliente.findOne({ email: email }).lean().then(encontrado => {
+      if (encontrado) {
+        // Email repetido encontrado
+        reject(true)
+      } else {
+        // Email não encontrado
+        resolve(false);
+      }
+    }).catch(err => {
+      req.flash('error_msg', "Houve um erro interno ao verificar o e-mail")
+      reject(true);
+    });
+  });
+}
+
 router.post('/atualizarPerfil', async (req, res) => {
   const logged = isLogged(req, res)
   const { nome, email, telefone, endereco } = req.body
@@ -181,34 +198,60 @@ router.post('/atualizarPerfil', async (req, res) => {
     res.render('usuarios/perfil', { erros: erros })
   }
 
-
-  Cliente.findOne({ _id: logged.id }).lean().then(cliente => {
-    Cliente.findOne({ email: email }).lean().then(encontrado => {
-
-      if (encontrado) {
-        req.flash('error_msg', 'Já existe uma conta com este e-mail')
+  await Cliente.findOne({ _id: logged.id }).then(async cliente => {
+    if (email != logged.email) { // caso o cliente tenha mudado o email
+      try {
+        const emailIsUsed = await emailUsed(req, res, email)
+        if (!emailIsUsed) {
+          console.log(telefone)
+          atualizarPerfil(req, res, nome, endereco, telefone, email, cliente)
+        } else {
+          req.flash("error_msg", "Este email já está em uso")
+          res.redirect("/perfil")
+        }
+      } catch (error) {
+        req.flash('error_msg', "Já existe uma conta com este email")
         res.redirect('/perfil')
       }
-    })
-
-    cliente.nome = nome
-    cliente.endereco = endereco
-    cliente.telefone = telefone
-    cliente.email = email
-
-    cliente.save().then(() => {
-      req.flash('success_msg', 'Dados atualizados com sucesso')
-      res.redirect('/perfil')
-    }).catch(err => {
-      console.log(err);
-      req.flash('error_msg', "Houve um erro ao salvar os dados")
-      res.redirect('/perfil')
-    })
+    } else {
+      console.log(telefone);
+      atualizarPerfil(req, res, nome, endereco, telefone, email, cliente)
+    }
   }).catch(err => {
-    req.flash("error_msg", "Conta não encontrada para alterar")
-    console.log(err)
-    res.redirect('/')
+    console.log(err);
+    req.flash('error_msg', "Este usuário não existe")
+    res.redirect('/perfil')
   })
+})
+
+function atualizarPerfil(req, res, nome, endereco, telefone, email, cliente) {
+  cliente.nome = nome
+  cliente.endereco = endereco
+  cliente.telefone = telefone
+  cliente.email = email
+
+  cliente.save().then(() => {
+    req.flash('success_msg', 'Dados atualizados com sucesso')
+    return res.redirect('/perfil')
+  }).catch(err => {
+    console.log(err)
+    req.flash("error_msg", "Erro ao salvar os dados")
+    return res.redirect("/perfil")
+  })
+}
+
+router.get('/logout', (req, res, next) => {
+  const logged = isLogged(req, res)
+  if (logged) {
+    req.logout(function (err) {
+      if (err) { return next(err); }
+      req.flash("success_msg", "Deslogado com sucesso")
+      res.redirect('/')
+    })
+  } else {
+    req.flash('error_msg', "Não é possível acessar essa página deslogado")
+    res.redirect('/')
+  }
 })
 
 module.exports = router;

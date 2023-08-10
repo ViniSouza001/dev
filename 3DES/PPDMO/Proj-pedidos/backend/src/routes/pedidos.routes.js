@@ -119,7 +119,7 @@ router.post('/addPedido', (req, res) => {
         new Pedido(novoPedido).save().then(() => {
             Item.deleteMany({ idCliente: logged.id }).then(() => {
                 req.flash("success_msg", "Pedido salvo com sucesso")
-                res.redirect('/')
+                res.redirect('/pedidos')
             }).catch(err => {
                 console.error('Erro ao excluir itens do carrinho: ' + err)
                 req.flash('error_msg', "Erro ao salvar o pedido")
@@ -147,7 +147,6 @@ router.get('/pedidos', async (req, res) => {
                 array.push({ nome: itemPedido.nome, quantidade: itemPedido.quantidade });
             });
             pedido.array = array; // Adiciona o array ao pedido
-            console.log(pedido.array)
         });
         res.render('pedidos/pedidos', { itensCarrinho: itens, logged: logged, pedidos: pedidos });
     } else {
