@@ -155,6 +155,14 @@ router.get('/pedidos', async (req, res) => {
     }
 });
 
+router.get('/listarPedidos', (req, res) => {
+    Pedido.find().lean().then(pedidos => {
+        pedidos.forEach(pedido => {
+            res.send(pedido)
+        })
+    })
+})
+
 
 
 module.exports = router

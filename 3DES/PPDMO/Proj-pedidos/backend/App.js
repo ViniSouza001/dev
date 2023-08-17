@@ -7,11 +7,14 @@ const app = express()
 const flash = require('connect-flash')
 const session = require('express-session')
 const path = require('path')
+const cors = require('cors')
 const usuariosRouter = require('./src/routes/usuarios.routes')
 const pedidosRouter = require('./src/routes/pedidos.routes');
+const motoboyRouter = require('./src/routes/motoboy.routes')
 const passport = require('passport');
 require('./src/config/auth')(passport)
 require('./src/models/Cardapio')
+require('./src/models/Motoboy')
 
 // configs
 // sessão
@@ -44,6 +47,9 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// cors
+app.use(cors());
+
 // handlebars
 app.engine('handlebars', handlebars.engine({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -64,31 +70,10 @@ mongoose.connect("mongodb://0.0.0.0:/Restaurante", {
 // public
 app.use(express.static(path.join(__dirname, "src")))
 
-// clear console
-const clearConsole = () => {
-    process.stdout.write('\x1Bc')
-}
-
-// configuração do nodemon
-const nodemon = require('nodemon')
-nodemon({
-    // script: 'App.js'
-})
-
-nodemon.on('restart', () => {
-    clearConsole()
-    console.log('App restarting...')
-})
-
-nodemon.on('exit', () => {
-    clearConsole()
-    console.log("App has stopped");
-})
-
 // routes
-
 app.use(usuariosRouter)
 app.use(pedidosRouter)
+app.use(motoboyRouter)
 
 const PORT = 8081
 app.listen(PORT, () => {
