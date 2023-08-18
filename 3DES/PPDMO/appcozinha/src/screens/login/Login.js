@@ -43,7 +43,7 @@ function TelaLogin({ navigation }) {
                      <TextInput style={styles.input} onChangeText={e => setSenha(e)} />
                   </View> */}
                   <TouchableOpacity style={styles.button}>
-                     <Text style={styles.loginTxt} onPress={() => { navegacao() }}>Login</Text>
+                     <Text style={styles.loginTxt} onPress={() => { navegacao() }}>Pedidos</Text>
                   </TouchableOpacity>
                </View>
             </View>

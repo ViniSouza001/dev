@@ -156,10 +156,12 @@ router.get('/pedidos', async (req, res) => {
 });
 
 router.get('/listarPedidos', (req, res) => {
-    Pedido.find().lean().then(pedidos => {
+    var vetor = []
+    Pedido.find({ 'paraEntrega': true }).lean().then(pedidos => {
         pedidos.forEach(pedido => {
-            res.send(pedido)
+            vetor.push(pedido)
         })
+        res.send(vetor)
     })
 })
 

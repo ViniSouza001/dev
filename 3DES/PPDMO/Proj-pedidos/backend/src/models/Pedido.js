@@ -44,3 +44,35 @@ const Pedido = mongoose.model('pedidos', PedidoSchema)
 
 // novoPedido.save().then(() => console.log('pedido salvo com sucesso'))
 //     .catch(err => console.log('erro ao salvar o pedido: ' + err))
+
+
+
+
+// var novoPedido = new Pedido({
+//     "idCliente": '_id: ObjectId("64cb915bcf75126f99c5105d")',
+//     "valorPedido": 500,
+//     "paraEntrega": true,
+//     "cep": "13920-123",
+//     'endereco': "Bairro Jardim Andrade",
+//     "valorEntrega": "80",
+//     "itens": ["Fanta Uva 2L", "X-Tudo sem bacon", "Refrigerante Mogi 500ml", "Marmita de frango defumado tamanho M"]
+
+// })
+
+// novoPedido.save().then(() => console.log('pedido salvo com sucesso'))
+//     .catch(err => console.log('erro ao salvar o pedido: ' + err))
+
+
+
+// var novoPedido = new Pedido({
+//     "idCliente": '_id: ObjectId("64cb915bcf75126f99c5105d")',
+//     "valorPedido": 300,
+//     "cep": "13920-000",
+//     'endereco': "alameda Cambuci",
+//     "valorEntrega": "210",
+//     "itens": ["Fanta Laranja 1L", "Passarinho a frango", "Presunto de porco", "Marmita tamanho extra G"]
+
+// })
+
+// novoPedido.save().then(() => console.log('pedido salvo com sucesso'))
+//     .catch(err => console.log('erro ao salvar o pedido: ' + err))
