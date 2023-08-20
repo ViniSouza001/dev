@@ -9,7 +9,7 @@ require('../models/Item')
 const Item = mongoose.model('itens')
 
 
-function isLogged(req, res) {
+function isLogged (req, res) {
   if (req.user) {
     return {
       id: req.user._id,
@@ -23,7 +23,7 @@ function isLogged(req, res) {
   }
 }
 
-async function theresItens(req, res, idCliente) {
+async function theresItens (req, res, idCliente) {
   try {
     const itens = await Item.find({ idCliente: idCliente }).lean();
     return itens;
@@ -105,7 +105,7 @@ router.post("/registro", (req, res) => {
   }
 
   if (erros.length > 0) {
-    res.render("usuarios/registro", { erros: erros })
+    res.render("usuarios/registro", { erros: erros, nome, endereco, telefone, email })
   } else {
 
     Cliente.findOne({ email: email }).lean().then(cliente => {
@@ -161,7 +161,7 @@ router.get('/perfil', async (req, res) => {
   res.render('usuarios/perfil', { logged: logged, itensCarrinho: itensCarrinho })
 })
 
-function emailUsed(req, res, email) {
+function emailUsed (req, res, email) {
   return new Promise((resolve, reject) => {
     Cliente.findOne({ email: email }).lean().then(encontrado => {
       if (encontrado) {
@@ -224,7 +224,7 @@ router.post('/atualizarPerfil', async (req, res) => {
   })
 })
 
-function atualizarPerfil(req, res, nome, endereco, telefone, email, cliente) {
+function atualizarPerfil (req, res, nome, endereco, telefone, email, cliente) {
   cliente.nome = nome
   cliente.endereco = endereco
   cliente.telefone = telefone

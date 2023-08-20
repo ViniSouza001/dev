@@ -8,7 +8,7 @@ const Pedido = mongoose.model('pedidos')
 const Cardapio = mongoose.model('cardapio')
 const Item = mongoose.model('itens')
 
-function isLogged(req, res) {
+function isLogged (req, res) {
     if (req.user) {
         return {
             nome: req.user.nome,
@@ -22,7 +22,7 @@ function isLogged(req, res) {
     }
 }
 
-async function theresItens(req, res, idCliente) {
+async function theresItens (req, res, idCliente) {
     try {
         const itens = await Item.find({ idCliente: idCliente }).lean();
         return itens;
@@ -86,52 +86,54 @@ router.post('/addCarrinho/:id', (req, res) => {
 
 router.post('/addPedido', (req, res) => {
     const logged = isLogged(req, res)
-    var cep, endereco
     const { paraEntrega } = req.body
     var valEntrega = 0
     var valor = 0
     var array = []
 
     if (paraEntrega) {
-        valEntrega = 5
-        cep = req.body
-        endereco = req.body
+        // valEntrega = 5
+        // cep = req.body
+        // endereco = req.body
+        console.log('sim, é para entregar')
+    } else {
+        console.log('não, não é para entregar')
     }
 
-    Item.find({ idCliente: logged.id }).lean().then(item => {
-        item.forEach(element => {
-            var itens = {}
-            valor += element.valor
-            itens.nome = element.nome
-            itens.quantidade = element.quantidade
-            array.push(itens)
-        })
+    // Item.find({ idCliente: logged.id }).lean().then(item => {
+    //     item.forEach(element => {
+    //         var itens = {}
+    //         valor += element.valor
+    //         itens.nome = element.nome
+    //         itens.quantidade = element.quantidade
+    //         array.push(itens)
+    //     })
 
-        const novoPedido = {
-            "idCliente": logged.id,
-            "valorPedido": valor,
-            "cep": cep,
-            "endereco": endereco,
-            "valorEntrega": valEntrega + valor,
-            "itens": array
-        }
+    //     const novoPedido = {
+    //         "idCliente": logged.id,
+    //         "valorPedido": valor,
+    //         "cep": cep,
+    //         "endereco": endereco,
+    //         "valorEntrega": valEntrega + valor,
+    //         "itens": array
+    //     }
 
-        new Pedido(novoPedido).save().then(() => {
-            Item.deleteMany({ idCliente: logged.id }).then(() => {
-                req.flash("success_msg", "Pedido salvo com sucesso")
-                res.redirect('/pedidos')
-            }).catch(err => {
-                console.error('Erro ao excluir itens do carrinho: ' + err)
-                req.flash('error_msg', "Erro ao salvar o pedido")
-                res.redirect('/')
+    //     new Pedido(novoPedido).save().then(() => {
+    //         Item.deleteMany({ idCliente: logged.id }).then(() => {
+    //             req.flash("success_msg", "Pedido salvo com sucesso")
+    //             res.redirect('/pedidos')
+    //         }).catch(err => {
+    //             console.error('Erro ao excluir itens do carrinho: ' + err)
+    //             req.flash('error_msg', "Erro ao salvar o pedido")
+    //             res.redirect('/')
 
-            })
-        }).catch(err => {
-            req.flash("error_msg", "Não foi possivel salvar o pedido")
-            console.log(err)
-            res.redirect('/')
-        })
-    }).catch()
+    //         })
+    //     }).catch(err => {
+    //         req.flash("error_msg", "Não foi possivel salvar o pedido")
+    //         console.log(err)
+    //         res.redirect('/')
+    //     })
+    // }).catch()
 })
 
 router.get('/pedidos', async (req, res) => {

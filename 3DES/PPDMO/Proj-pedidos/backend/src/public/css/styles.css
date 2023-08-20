@@ -23,19 +23,22 @@ body {
    z-index: -1;
 }
 
-#welcome,
-#h1SobreNos {
-   font-family: "Ingrid Darling";
-   font-size: 7rem;
-   color: #fff;
-   margin-bottom: 0px;
-}
-
-#saudacoes {
-   font-family: "Imprima";
-   font-size: 25px;
+.m-0 {
+   gap: 0;
    margin: 0;
    padding: 0;
+}
+
+.mt-0 {
+   margin-top: 0;
+}
+
+.m-1 {
+   margin: 10px !important;
+}
+
+.p-1 {
+   padding: 10px !important;
 }
 
 #cart-icon {
@@ -110,7 +113,7 @@ a {
    overflow-y: auto;
    overflow-x: hidden;
    align-items: center;
-   height: 80vh;
+   height: 70vh;
 }
 
 .pointer {
@@ -129,6 +132,10 @@ a {
 
 .fixed {
    position: fixed !important;
+}
+
+.absolute {
+   position: absolute !important;
 }
 
 .form {
@@ -159,15 +166,19 @@ a {
    flex-wrap: wrap;
    gap: 3rem;
    margin-top: 20px;
+   overflow: scroll;
+   height: 80vh;
 }
 
 .body-container::-webkit-scrollbar,
-.window::-webkit-scrollbar {
+.window::-webkit-scrollbar,
+.container::-webkit-scrollbar {
    width: 5px;
 }
 
 .body-container::-webkit-scrollbar-thumb,
-.window::-webkit-scrollbar-thumb {
+.window::-webkit-scrollbar-thumb,
+.container::-webkit-scrollbar-thumb {
    background-color: #fff;
    border-radius: 5px;
 }
@@ -190,7 +201,9 @@ a {
 }
 
 .card {
-   width: 500px;
+   width: 600px;
+   overflow: auto;
+   overflow-x: hidden;
    padding: 10px 15px 15px 15px;
    display: flex;
    flex-direction: column;
@@ -199,6 +212,10 @@ a {
    margin: 20px;
    justify-content: space-between;
    align-items: center;
+}
+
+.confirmar {
+   background-color: #000000;
 }
 
 .card header {
@@ -293,12 +310,22 @@ a {
    margin: 20px;
 }
 
+.p-complemento {
+   display: flex;
+   justify-content: space-evenly;
+}
+
 hr {
    width: 100%;
 }
 
 /* keyframes */
 
+
+
+
+
+/* mobile */
 @media (max-width: 1400px) {
    .card {
       width: 350px;
