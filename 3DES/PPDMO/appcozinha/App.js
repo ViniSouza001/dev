@@ -11,11 +11,11 @@ export default function App () {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* { headerShown: false } esconde o header das telas */}
-        {/* <Stack.Screen
+        <Stack.Screen
           name='LoginScreen'
           component={LoginScreen}
           options={{ title: 'Login' }}
-        /> */}
+        />
         <Stack.Screen
           name='PedidosScreen'
           component={PedidosScreen}

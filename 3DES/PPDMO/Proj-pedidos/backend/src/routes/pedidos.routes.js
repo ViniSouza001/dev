@@ -168,6 +168,26 @@ router.get('/listarPedidos', (req, res) => {
     })
 })
 
+router.post('/entregaPronta', (req, res) => {
+    const { dataEntrega, idPedido } = req.body
+
+
+    Pedido.findOne({ _id: idPedido }).then(pedido => {
+
+        console.log(pedido)
+
+        pedido.dataEntrega = dataEntrega
+
+        pedido.save().then(() => {
+            return res.status(202).json({ "Sucesso": "Pedido foi entregue com sucesso!" }).end()
+        }).catch(error => {
+            return res.status(400).json({ "Erro": "Não foi possível remover o pedido: " + error }).end()
+        })
+    }).catch(err => {
+        console.log("Não foi possível encontrar o pedido: " + err)
+    })
+})
+
 
 
 module.exports = router

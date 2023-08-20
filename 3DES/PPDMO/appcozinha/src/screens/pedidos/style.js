@@ -10,20 +10,29 @@ const styles = StyleSheet.create({
     },
     container: {
         position: "absolute",
-        flexDirection: "column",
+        flex: 1,
+        justifyContent: "flex-end",
         alignItems: "center",
         width: '100vw',
-        height: '80vh',
-        justifyContent: 'space-evenly',
+        height: '96vh',
+        marginTop: '20px',
         overflow: 'hidden'
     },
+    contentContainer: {
+        flex: 1,
+        height: '100%',
+        width: '100%',
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
     lista: {
-        backgroundColor: 'rgba(0,0,0,.45)',
+        backgroundColor: 'rgba(0, 0, 0, 0.45)',
         flexDirection: 'column',
         padding: 20,
-        gap: '5rem',
-        width: '90%',
-        overflow: 'scroll'
+        height: '50vh',
+        position: "absolute",
+        bottom: 0,
+        width: '95%',
     },
     capacete: {
         width: 80,
@@ -41,14 +50,11 @@ const styles = StyleSheet.create({
     vermelho: {
         color: '#FF0000'
     },
-    eachItem: {
-        // marginTop: 20,
-    },
     mb20: {
         marginBottom: '20px'
     },
     btnEntregue: {
-        backgroundColor: '#FF0000',
+        backgroundColor: 'rgba(169, 4, 4, 0.9)',
         padding: 15,
     },
     tituloPedido: {
