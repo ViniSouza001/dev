@@ -1,13 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Image, FlatList } from "react-native"
+import { View, Text, TouchableOpacity, Image, FlatList, ScrollView } from "react-native"
 import styles from "./style";
 
-export default function PedidosScreen() {
+export default function PedidosScreen () {
 
     const [pedidos, setPedidos] = useState([])
 
-    console.log(pedidos)
+    // console.log(pedidos)
 
     const uri = 'http://localhost:8081'
     useEffect(() => {
@@ -24,18 +24,29 @@ export default function PedidosScreen() {
         <View>
             <Image source={require('../../../assets/Fundo.png')} style={styles.fundo} />
             <View style={styles.container}>
-                <FlatList
-                    data={pedidos}
-                    renderItem={({ item }) => (
-                        <View>
-                            <Text style={styles.tituloPedido}>Pedido #{item.idPedido}</Text>
-                            <Text>Hora da solicitação: {item.dataPedido}</Text>
-                            <Text>item.itens</Text>
-
-                        </View>
-                    )}
-                />
-
+                <Image source={require('../../../assets/capacete.png')} style={styles.capacete} />
+                <ScrollView style={styles.lista}>
+                    <FlatList
+                        style={styles.eachItem}
+                        data={pedidos}
+                        renderItem={({ item }) => (
+                            <View style={styles.itemLista}>
+                                <Text style={[styles.tituloPedido, styles.mb20]}>Pedido <Text style={styles.vermelho}>#{item.idPedido}</Text></Text>
+                                <Text>Data da solicitação:</Text>
+                                <Text style={[styles.vermelho, styles.mb20]}>{(item.dataPedido).slice(0, 10)} - {(item.dataPedido).slice(11, 19)}</Text>
+                                <Text>Itens:</Text>
+                                <Text style={styles.mb20}>{item.itens}</Text>
+                                <Text>Valor do pedido: <Text style={styles.vermelho}>R${item.valorPedido.toFixed(2)}</Text></Text>
+                                <Text>Valor da Entrega: <Text style={styles.vermelho}>R${item.valorEntrega.toFixed(2)}</Text></Text>
+                                <Text style={styles.mb20}>Valor total: <Text style={styles.vermelho}>R${(Number(item.valorPedido) + Number(item.valorEntrega)).toFixed(2)}</Text></Text>
+                                <Text style={styles.mb20}>Forma de pagamento: </Text>
+                                <Text>Endereço de entrega:</Text>
+                                <Text style={styles.vermelho}>{item.endereco}</Text>
+                                <TouchableOpacity style={styles.btnEntregue}><Text>Entregue</Text></TouchableOpacity>
+                            </View>
+                        )}
+                    />
+                </ScrollView>
             </View>
         </View>
     )
