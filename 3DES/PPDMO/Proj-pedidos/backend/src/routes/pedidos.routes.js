@@ -90,6 +90,7 @@ router.post('/addPedido', (req, res) => {
     var valEntrega = 0
     var valor = 0
     var array = []
+    var erros = []
 
     if (paraEntrega) {
         // valEntrega = 5
