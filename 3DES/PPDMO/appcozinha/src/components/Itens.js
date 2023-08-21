@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Text } from 'react-native';
+import styles from '../screens/pedidos/style';
 
-function Itens ({ pedido }) {
+function Itens ({ pedido }) { // recebe um único pedido como prop
     return (
         <>
+            {/* mapear diretamente os itens do pedido */}
             {pedido.itens.map((item, index) => (
-                <Text key={index}>{item.quantidade}x {item.nome}</Text>
+                <Text style={styles.vermelho} key={index}>{item.quantidade}x {item.nome}</Text>
             ))}
         </>
     );

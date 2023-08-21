@@ -8,6 +8,7 @@ export default function PedidosScreen ({ navigation }) {
 
     const [pedidos, setPedidos] = useState([])
     const [loading, setLoading] = useState(true)
+    const [pedidosExistentes, setPedidosExistentes] = useState(false)
 
     const uri = 'http://localhost:8081'
     useEffect(() => {
@@ -49,50 +50,55 @@ export default function PedidosScreen ({ navigation }) {
         )
     }
 
+    {
+        pedidos && pedidos.forEach(pedido => {
+            if (!pedido.dataEntrega && pedido.dataCozinha) setPedidosExistentes(true)
+        })
+    }
+
     return (
         <View style={styles.body}>
             <Image source={require('../../../assets/Fundo.png')} style={styles.fundo} />
             <View style={styles.container}>
                 <View style={styles.contentContainer}>
                     <Image source={require('../../../assets/capacete.png')} style={styles.capacete} />
-                    <ScrollView style={styles.lista}>
-                        {pedidos.length === 0 ? (
-                            <Text>Não há pedidos para serem entregues no momento</Text>
-                        ) : (
-                            <FlatList
-                                data={pedidos}
-                                renderItem={({ item }) => {
+                    {
+                        pedidosExistentes ?
+                            <ScrollView style={styles.lista}>
+                                <FlatList
+                                    data={pedidos}
+                                    keyExtractor={(item) => item.idPedido.toString()}
+                                    renderItem={({ item }) => (
+                                        <View style={styles.itemLista}>
+                                            <Text style={[styles.tituloPedido, styles.mb20]}>Pedido <Text style={styles.vermelho}>#{item.idPedido}</Text></Text>
+                                            <Text>Data da solicitação:</Text>
+                                            <Text style={styles.vermelho}>{(item.dataPedido).slice(0, 10)}</Text>
+                                            <Text>Hora</Text>
+                                            <Text style={[styles.vermelho, styles.mb20]}>{(item.dataPedido).slice(11, 19)}</Text>
+                                            <Text>Itens:</Text>
+                                            <Itens pedido={item} />
+                                            <Text style={styles.mt20}>Valor do pedido: <Text style={styles.vermelho}>R${item.valorPedido.toFixed(2)}</Text></Text>
+                                            <Text>Valor da Entrega: <Text style={styles.vermelho}>R${item.valorEntrega.toFixed(2)}</Text></Text>
+                                            <Text style={styles.mb20}>Valor total:
+                                                <Text style={styles.vermelho}> R${(Number(item.valorPedido) + Number(item.valorEntrega)).toFixed(2)}</Text>
+                                            </Text>
+                                            <Text>Endereço de entrega:</Text>
+                                            <Text style={styles.vermelho}>{item.endereco}</Text>
+                                            <Text style={[styles.vermelho, styles.mb20]}>{item.cep}</Text>
+                                            <TouchableOpacity
+                                                style={styles.btnEntregue}
+                                                onPress={() => { concluirPedido(item._id) }}
+                                            >
+                                                <Text>Entregue</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    )}
+                                />
+                            </ScrollView>
+                            :
+                            <Text style={styles.branco}>Não há pedidos para serem entregues no momento</Text>
+                    }
 
-                                    if (!item.dataEntrega) {
-                                        return (
-                                            <View style={styles.itemLista}>
-                                                <Text style={[styles.tituloPedido, styles.mb20]}>Pedido <Text style={styles.vermelho}>#{item.idPedido}</Text></Text>
-                                                <Text>Data da solicitação:</Text>
-                                                <Text style={styles.vermelho}>{(item.dataPedido).slice(0, 10)}</Text>
-                                                <Text>Hora</Text>
-                                                <Text style={[styles.vermelho, styles.mb20]}>{(item.dataPedido).slice(11, 19)}</Text>
-                                                <Text>Itens: {item.itens[0].nome}</Text>
-                                                <Itens pedidos={pedidos} />
-                                                <Text>Valor do pedido: <Text style={styles.vermelho}>R${item.valorPedido.toFixed(2)}</Text></Text>
-                                                <Text>Valor da Entrega: <Text style={styles.vermelho}>R${item.valorEntrega.toFixed(2)}</Text></Text>
-                                                <Text style={styles.mb20}>Valor total: <Text style={styles.vermelho}>R${(Number(item.valorPedido) + Number(item.valorEntrega)).toFixed(2)}</Text></Text>
-                                                <Text style={styles.mb20}>Forma de pagamento: </Text>
-                                                <Text>Endereço de entrega:</Text>
-                                                <Text style={styles.vermelho}>{item.endereco}</Text>
-                                                <Text style={[styles.vermelho, styles.mb20]}>{item.cep}</Text>
-                                                <TouchableOpacity
-                                                    style={styles.btnEntregue}
-                                                    onPress={() => { concluirPedido(item._id) }}
-                                                >
-                                                    <Text>Entregue</Text>
-                                                </TouchableOpacity>
-                                            </View>
-                                        )
-                                    }
-                                }}
-                            />
-                        )}
-                    </ScrollView>
 
                 </View>
             </View>

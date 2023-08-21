@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         alignItems: "center",
         width: '100vw',
-        height: '97vh',
+        height: '96vh',
         marginTop: '20px',
         overflow: 'hidden'
     },
@@ -49,12 +49,22 @@ const styles = StyleSheet.create({
     vermelho: {
         color: 'rgb(169,4,4)'
     },
+    branco: {
+        color: '#fff',
+        fontSize: 15,
+    },
     mb20: {
         marginBottom: '20px'
     },
+    mt20: {
+        marginTop: '20px'
+    },
     btnEntregue: {
-        backgroundColor: 'rgba(169, 4, 4, 0.9)',
-        padding: 15,
+        backgroundColor: '#A90404',
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 35,
+        paddingRight: 35,
     },
     tituloPedido: {
         fontSize: 20

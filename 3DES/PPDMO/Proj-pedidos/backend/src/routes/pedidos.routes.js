@@ -128,7 +128,7 @@ router.post('/addPedido', (req, res) => {
             const novoPedido = {
                 "idCliente": logged.id,
                 "valorPedido": valor,
-                "valorEntrega": valEntrega + valor,
+
                 "itens": array
             }
 
@@ -136,6 +136,7 @@ router.post('/addPedido', (req, res) => {
                 novoPedido.paraEntrega = true
                 novoPedido.cep = cep
                 novoPedido.endereco = endereco
+                novoPedido.valorEntrega = 5
             }
 
             new Pedido(novoPedido).save().then(() => {
