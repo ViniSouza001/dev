@@ -8,7 +8,7 @@ const Pedido = mongoose.model('pedidos')
 const Cardapio = mongoose.model('cardapio')
 const Item = mongoose.model('itens')
 
-function isLogged (req, res) {
+function isLogged(req, res) {
     if (req.user) {
         return {
             nome: req.user.nome,
@@ -22,7 +22,7 @@ function isLogged (req, res) {
     }
 }
 
-async function theresItens (req, res, idCliente) {
+async function theresItens(req, res, idCliente) {
     try {
         const itens = await Item.find({ idCliente: idCliente }).lean();
         return itens;
@@ -86,55 +86,70 @@ router.post('/addCarrinho/:id', (req, res) => {
 
 router.post('/addPedido', (req, res) => {
     const logged = isLogged(req, res)
-    const { paraEntrega } = req.body
+    const { paraEntregar, cep, endereco } = req.body
     var valEntrega = 0
     var valor = 0
     var array = []
     var erros = []
 
-    if (paraEntrega) {
-        // valEntrega = 5
-        // cep = req.body
-        // endereco = req.body
-        console.log('sim, é para entregar')
-    } else {
-        console.log('não, não é para entregar')
+
+    if (paraEntregar === 'on' && !cep || typeof cep == undefined || cep == null) {
+        erros.push({ "texto": "Você deve informar o CEP para a entrega" })
     }
 
-    // Item.find({ idCliente: logged.id }).lean().then(item => {
-    //     item.forEach(element => {
-    //         var itens = {}
-    //         valor += element.valor
-    //         itens.nome = element.nome
-    //         itens.quantidade = element.quantidade
-    //         array.push(itens)
-    //     })
+    if (paraEntregar === 'on' && !endereco || typeof endereco == undefined || endereco == null) {
+        erros.push({ "texto": "Você deve informar o número para a entrega" })
+    }
 
-    //     const novoPedido = {
-    //         "idCliente": logged.id,
-    //         "valorPedido": valor,
-    //         "cep": cep,
-    //         "endereco": endereco,
-    //         "valorEntrega": valEntrega + valor,
-    //         "itens": array
-    //     }
+    if (erros.length != 0) {
+        const mensagensErros = erros.map(erro => erro.texto)
+        req.flash("error_msg", mensagensErros)
+        res.redirect('/')
+    } else {
+        Item.find({ idCliente: logged.id }).lean().then(item => {
+            item.forEach(element => {
+                var itens = {}
+                valor += element.valor
+                itens.nome = element.nome
+                itens.quantidade = element.quantidade
+                array.push(itens)
+            })
 
-    //     new Pedido(novoPedido).save().then(() => {
-    //         Item.deleteMany({ idCliente: logged.id }).then(() => {
-    //             req.flash("success_msg", "Pedido salvo com sucesso")
-    //             res.redirect('/pedidos')
-    //         }).catch(err => {
-    //             console.error('Erro ao excluir itens do carrinho: ' + err)
-    //             req.flash('error_msg', "Erro ao salvar o pedido")
-    //             res.redirect('/')
+            const novoPedido = {
+                "idCliente": logged.id,
+                "valorPedido": valor,
+                "valorEntrega": valEntrega + valor,
+                "itens": array
+            }
 
-    //         })
-    //     }).catch(err => {
-    //         req.flash("error_msg", "Não foi possivel salvar o pedido")
-    //         console.log(err)
-    //         res.redirect('/')
-    //     })
-    // }).catch()
+            if (paraEntregar == 'on') {
+                novoPedido.paraEntrega = true
+                novoPedido.cep = cep
+                novoPedido.endereco = endereco
+            }
+
+            new Pedido(novoPedido).save().then(() => {
+                Item.deleteMany({ idCliente: logged.id }).then(() => {
+                    req.flash("success_msg", "Pedido salvo com sucesso")
+                    res.redirect('/pedidos')
+                }).catch(err => {
+                    console.error('Erro ao excluir itens do carrinho: ' + err)
+                    req.flash('error_msg', "Erro ao salvar o pedido")
+                    res.redirect('/')
+
+                })
+            }).catch(err => {
+                req.flash("error_msg", "Não foi possivel salvar o pedido")
+                console.log(err)
+                res.redirect('/')
+            })
+        }).catch(err => {
+            req.flash("error_msg", "Este cliente não existe")
+            res.redirect('/')
+        })
+    }
+
+
 })
 
 router.get('/pedidos', async (req, res) => {

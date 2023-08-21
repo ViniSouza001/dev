@@ -110,8 +110,7 @@ a {
    display: flex;
    gap: 2rem;
    flex-direction: column;
-   overflow-y: auto;
-   overflow-x: hidden;
+   overflow: hidden;
    align-items: center;
    height: 70vh;
 }
@@ -201,7 +200,7 @@ a {
 }
 
 .card {
-   width: 600px;
+   width: 500px;
    overflow: auto;
    overflow-x: hidden;
    padding: 10px 15px 15px 15px;

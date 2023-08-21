@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
     fundo: {
         width: '100vw',
         height: '100vh',
+        overflow: 'hidden',
     },
     itemLista: {
         color: '#fff'
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         alignItems: "center",
         width: '100vw',
-        height: '96vh',
+        height: '97vh',
         marginTop: '20px',
         overflow: 'hidden'
     },
@@ -23,7 +24,8 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
+        overflow: "hidden",
     },
     lista: {
         backgroundColor: 'rgba(0, 0, 0, 0.45)',
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     vermelho: {
-        color: '#FF0000'
+        color: 'rgb(169,4,4)'
     },
     mb20: {
         marginBottom: '20px'

@@ -1,71 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Restaurante</title>
-        <link rel="stylesheet" href="/public/css/styles.css">
-        <link rel="stylesheet" href="/public/css/header.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante</title>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <link rel="stylesheet" href="/public/css/header.css">
+</head>
 
-    <body>
-        <img src="/images/Fundo.png" alt="background" id="fundo">
-        {{>_navbar}}
-        <div class="container">
-            {{>_msg}}
-            {{{body}}}
-            <form method="post" action="/addPedido" id="window-cart" class="window display-none">
-                <header class="closeX font-imprima h3-imprima pointer">X</header>
-                {{#if itensCarrinho}}
-                    {{#each itensCarrinho}}
-                        <p class="p p-window font-imprima">Nome: {{this.nome}}</p>
-                        <p class="p p-window font-imprima">Quantidade: {{this.quantidade}}</p>
-                        <p class="p p-window font-imprima">Total: R${{this.valor}}</p>
-                        <hr>
-                    {{/each}}
-                    <button type="button" onclick="abrirForm()" class="btn font-imprima h3-imprima">Finalizar
-                        pedido</button>
-                {{else}}
-                    <h1 class="font-imprima h3-imprima">Não há itens no carrinho</h1>
-                {{/if}}
-            </form>
-
-            <form class="confirmar card flex-column absolute display-none">
-                <header class="header-close">
-                    <h1 class="font-imprima h3-imprima p-0 m-0 pointer" onclick="closeForm()">X</h1>
-                </header>
-                <h1 class="font-imprima h2-imprima">Confirmar pedido</h1>
-                <p class="p font-imprima h3-imprima">
-                    <input type="checkbox" class="checkbox" id="paraEntrega" name="paraEntrega">
-                    Para entrega
-                </p>
-                <div class="complemento display-none">
-                    <p class="m-0">
-                        <label class="font-imprima h3-imprima" for="cep">CEP: </label>
-                    </p>
-                    <p class="m-0">
-                        <input type="text" name="cep" class="input">
-                    </p>
-                    <p class="m-0">
-                        <label for="endereco" class="font-imprima h3-imprima">Endereco: </label>
-                    </p>
-                    <p class="m-0">
-                        <input type="text" name="endereco" class="input">
-                    </p>
-                </div>
-                <h1 class="font-imprima h3-imprima align-center" id="totalPedido"></h1>
-                <button class="btn font-imprima h3-imprima" type="submit">Confirmar Pedido</button>
-            </form>
-        </div>
-    </body>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
-        integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i"
-        crossorigin="anonymous"></script>
-    <script src="/public/js/bootstrap.js"></script>
-    <script src="/public/js/script.js"></script>
+<body>
+    <img src="/images/Fundo.png" alt="background" id="fundo">
+    {{>_navbar}}
+    <div class="container">
+        {{>_msg}}
+        {{{body}}}
+        <form method="post" action="/addPedido" id="window-cart" class="window display-none">
+            <header class="closeX font-imprima h3-imprima pointer">X</header>
+            {{#if itensCarrinho}}
+                {{#each itensCarrinho}}
+                    <p class="p p-window font-imprima">Nome: {{this.nome}}</p>
+                    <p class="p p-window font-imprima">Quantidade: {{this.quantidade}}</p>
+                    <p class="p p-window font-imprima">Total: R${{this.valor}}</p>
+                    <hr>
+                {{/each}}
+                <button type="button" onclick="abrirForm()" class="btn font-imprima h3-imprima">Finalizar
+                    pedido</button>
+            {{else}}
+                <h1 class="font-imprima h3-imprima">Não há itens no carrinho</h1>
+            {{/if}}
+        </form>
+        {{>_confirmarPedido}}
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
+    integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i"
+    crossorigin="anonymous"></script>
+<script src="/public/js/bootstrap.js"></script>
+<script src="/public/js/script.js"></script>
 
 </html>

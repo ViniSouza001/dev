@@ -26,15 +26,19 @@ if (cartIcon) {
    })
 }
 
-function abrirForm () {
+function abrirForm() {
    confirmar.classList.remove('display-none')
-   fetch('http://localhost:8081/addPedido', { method: 'POST' })
 }
+
+// confirmar.addEventListener('submit', (e) => {
+//    e.preventDefault()
+//    fetch
+// })
 
 paraEntrega.addEventListener('click', () => {
    complemento.classList.toggle('display-none')
 })
 
-function closeForm () {
+function closeForm() {
    confirmar.classList.add('display-none')
 }

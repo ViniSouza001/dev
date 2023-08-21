@@ -1,0 +1,26 @@
+<form class="confirmar card flex-column absolute display-none" method="POST" action="/addPedido">
+    <header class="header-close">
+        <h1 class="font-imprima h3-imprima p-0 m-0 pointer" onclick="closeForm()">X</h1>
+    </header>
+    <h1 class="font-imprima h2-imprima">Confirmar pedido</h1>
+    <p class="p font-imprima h3-imprima">
+        <input type="checkbox" class="checkbox" id="paraEntrega" name="paraEntregar">
+        Para entrega
+    </p>
+    <div class="complemento display-none">
+        <p class="m-0">
+            <label class="font-imprima h3-imprima" for="cep">CEP: </label>
+        </p>
+        <p class="m-0">
+            <input type="text" name="cep" class="input">
+        </p>
+        <p class="m-0">
+            <label for="endereco" class="font-imprima h3-imprima">Endereco: </label>
+        </p>
+        <p class="m-0">
+            <input type="text" name="endereco" class="input">
+        </p>
+    </div>
+    <h1 class="font-imprima h3-imprima align-center" id="totalPedido"></h1>
+    <button class="btn font-imprima h3-imprima" type="submit">Confirmar Pedido</button>
+</form>

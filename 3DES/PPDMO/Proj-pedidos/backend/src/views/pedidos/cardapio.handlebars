@@ -1,22 +1,20 @@
 <div class="body-container">
-    <div class="container">
-        {{#each opcoes}}
-            <form class="card font-ingrid " method="POST" action="/addCarrinho/{{this._id}}">
-                <header class="title">{{this.nome}}</header>
-                <h3 class="h3-ingrid">Entrada: {{this.entrada}}</h3>
-                <h3 class="h3-ingrid">Principal: {{this.principal}}</h3>
-                <h3 class="h3-ingrid">Sobremesa: {{this.sobremesa}}</h3>
-                <footer class="footer">
-                    <p class="h3-ingrid font-ingrid">R${{this.preco}}</p>
-                    <input type="hidden" name="preco" value={{this.preco}}>
-                    <input type="hidden" name="nome" value={{this.nome}}>
-                    <h3 class="h3-imprima font-imprima">Quantidade:
-                        <input value="0" type="number" min="0" max="10" name="quantidade" class="input font-imprima p">
-                    </h3>
-                    <button type="submit" class="btn font-ingrid">Pedir</button>
-                </footer>
-            </form>
-        {{/each}}
+    {{#each opcoes}}
+        <form class="card font-ingrid " method="POST" action="/addCarrinho/{{this._id}}">
+            <header class="title">{{this.nome}}</header>
+            <h3 class="h3-ingrid">Entrada: {{this.entrada}}</h3>
+            <h3 class="h3-ingrid">Principal: {{this.principal}}</h3>
+            <h3 class="h3-ingrid">Sobremesa: {{this.sobremesa}}</h3>
+            <footer class="footer">
+                <p class="h3-ingrid font-ingrid">R${{this.preco}}</p>
+                <input type="hidden" name="preco" value={{this.preco}}>
+                <input type="hidden" name="nome" value={{this.nome}}>
+                <h3 class="h3-imprima font-imprima">Quantidade:
+                    <input value="0" type="number" min="0" max="10" name="quantidade" class="input font-imprima p">
+                </h3>
+                <button type="submit" class="btn font-ingrid">Pedir</button>
+            </footer>
+        </form>
+    {{/each}}
 
-    </div>
 </div>
