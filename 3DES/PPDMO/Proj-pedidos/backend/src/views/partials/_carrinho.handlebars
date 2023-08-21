@@ -1,0 +1,18 @@
+<div id="window-cart" class="window display-none">
+   <header class="closeX font-imprima h3-imprima pointer">X</header>
+   {{#if itensCarrinho}}
+      {{#each itensCarrinho}}
+         <form action="/excluirItem/{{_id}}" method="post">
+            <p class="p p-window font-imprima">Nome: {{this.nome}}</p>
+            <p class="p p-window font-imprima">Quantidade: {{this.quantidade}}</p>
+            <p class="p p-window font-imprima">Total: R${{this.valor}}</p>
+            <button type="submit" class="btn btn-danger font-imprima h3-imprima align-center">Excluir</button>
+         </form>
+         <hr>
+      {{/each}}
+      <button type="button" onclick="abrirForm()" class="btn font-imprima h3-imprima">Finalizar
+         pedido</button>
+   {{else}}
+      <h1 class="font-imprima h3-imprima">Não há itens no carrinho</h1>
+   {{/if}}
+</div>

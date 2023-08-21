@@ -21,9 +21,8 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         flex: 1,
-        height: '100%',
+        gap: '2rem',
         width: '100%',
-        justifyContent: "space-between",
         alignItems: "center",
         overflow: "hidden",
     },
@@ -32,8 +31,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         padding: 20,
         height: '50vh',
-        position: "absolute",
-        bottom: 0,
         width: '95%',
     },
     capacete: {

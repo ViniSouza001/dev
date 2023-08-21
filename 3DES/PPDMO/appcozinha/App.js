@@ -6,16 +6,16 @@ import PedidosScreen from './src/screens/pedidos/Pedidos'
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export default function App () {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* { headerShown: false } esconde o header das telas */}
-        <Stack.Screen
+        {/* <Stack.Screen
           name='LoginScreen'
           component={LoginScreen}
           options={{ title: 'Login' }}
-        />
+        /> */}
         <Stack.Screen
           name='PedidosScreen'
           component={PedidosScreen}

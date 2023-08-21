@@ -74,6 +74,10 @@ a {
    text-align: center;
 }
 
+.btn-danger {
+   background-color: rgb(149, 9, 9);
+}
+
 .font-ingrid {
    font-family: "Ingrid Darling";
 }
@@ -182,7 +186,8 @@ a {
    border-radius: 5px;
 }
 
-.window::-webkit-scrollbar-thumb {
+.window::-webkit-scrollbar-thumb,
+.container::-webkit-scrollbar-thumb {
    width: 2px;
    height: 1px;
    background-color: #fff;
@@ -201,10 +206,9 @@ a {
 
 .card {
    width: 500px;
-   overflow: auto;
-   overflow-x: hidden;
    padding: 10px 15px 15px 15px;
    display: flex;
+   overflow: hidden;
    flex-direction: column;
    background-color: rgba(0, 0, 0, .7);
    border-radius: 10px;

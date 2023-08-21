@@ -137,7 +137,7 @@ router.post("/registro", (req, res) => {
 
             novoCliente.save().then(() => {
               req.flash("success_msg", "Cliente cadastrado com sucesso")
-              res.redirect('/')
+              res.redirect('/login')
             }).catch((err) => {
               req.flash("error_msg", "Não foi possível salvar o cliente")
               res.redirect('/')

@@ -8,7 +8,7 @@ const Pedido = mongoose.model('pedidos')
 const Cardapio = mongoose.model('cardapio')
 const Item = mongoose.model('itens')
 
-function isLogged(req, res) {
+function isLogged (req, res) {
     if (req.user) {
         return {
             nome: req.user.nome,
@@ -22,7 +22,7 @@ function isLogged(req, res) {
     }
 }
 
-async function theresItens(req, res, idCliente) {
+async function theresItens (req, res, idCliente) {
     try {
         const itens = await Item.find({ idCliente: idCliente }).lean();
         return itens;
@@ -82,6 +82,16 @@ router.post('/addCarrinho/:id', (req, res) => {
             res.redirect('/menu')
         })
     }
+})
+
+router.post('/excluirItem/:id', (req, res) => {
+    Item.deleteOne({ _id: req.params.id }).then(() => {
+        req.flash('success_msg', "Item deletado do carrinho com sucesso")
+        res.redirect('/menu')
+    }).catch(error => {
+        req.flash('error_msg', "Item não encontrado")
+        res.redirect('/menu')
+    })
 })
 
 router.post('/addPedido', (req, res) => {
