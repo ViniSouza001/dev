@@ -2,21 +2,26 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View, Image, ImageBackground, ScrollView, FlatList } from 'react-native'
 import styles from "./styles";
+import Itens from "../../components/Itens";
 
-function PedidosScreen({ navigation }) {
+function PedidosScreen ({ navigation }) {
 
     const [pedidos, setPedidos] = useState([])
     const [loading, setLoading] = useState(true)
-
     const uri = 'http://localhost:8081'
-    useEffect(() => {
+
+    const fetchPedidos = () => {
         fetch(uri + '/listarPedidos', { method: 'GET' })
             .then(response => response.json())
             .then(data => {
-                setPedidos(data);
-                console.log(data)
+                const pedidosSemCozinha = data.filter(pedido => !pedido.dataCozinha)
+                setPedidos(pedidosSemCozinha);
                 setLoading(false)
             })
+    }
+
+    useEffect(() => {
+        fetchPedidos()
     }, []);
 
     const concluirPedido = (idPedido) => {
@@ -47,7 +52,12 @@ function PedidosScreen({ navigation }) {
         )
     }
 
+    function refresh () {
+        setLoading(true)
+        fetchPedidos()
+    }
 
+    console.log(pedidos);
     return (
         <ImageBackground
             source={require('../../../assets/Fundo.png')}
@@ -56,15 +66,15 @@ function PedidosScreen({ navigation }) {
                 <View style={styles.contentContainer}>
                     <Image source={require('../../../assets/Chapeu.png')}
                         style={styles.chapeu} />
-                    {
-                        pedidos.length === 0 ? (
-                            <Text style={styles.branco}>Não há pedidos para serem mostrados no momento</Text>
+                    <ScrollView style={styles.lista}>
+                        {pedidos.length === 0 ? (
+                            <Text style={[styles.branco, styles.mb20]}>Não há pedidos no momento</Text>
                         ) : (
-                            <ScrollView style={styles.lista}>
-                                <FlatList
-                                    data={pedidos}
-                                    keyExtractor={(item) => item.idPedido.toString()}
-                                    renderItem={({ item }) => (
+                            <FlatList
+                                data={pedidos}
+                                keyExtractor={(item) => item.idPedido.toString()}
+                                renderItem={({ item }) => (
+                                    !item.dataCozinha ? (
                                         <View style={styles.itemLista}>
                                             <Text style={[styles.tituloPedido, styles.mb20]}>Pedido <Text style={styles.vermelho}>#{item.idPedido}</Text></Text>
                                             <Text>Data da solicitação:</Text>
@@ -72,19 +82,29 @@ function PedidosScreen({ navigation }) {
                                             <Text>Hora</Text>
                                             <Text style={[styles.vermelho, styles.mb20]}>{(item.dataPedido).slice(11, 19)}</Text>
                                             <Text>Itens:</Text>
-                                            {/* <Itens pedido={item} /> */}
+                                            <Itens pedido={item} />
+                                            <Text style={styles.mt20}>Para entrega: {item.paraEntrega ? "Sim" : "Não"}</Text>
                                             <TouchableOpacity
-                                                style={styles.btnEntregue}
+                                                style={[styles.btnEntregue, styles.mt20]}
                                                 onPress={() => { concluirPedido(item._id) }}
                                             >
-                                                <Text>Entregue</Text>
+                                                <Text>Concluído</Text>
                                             </TouchableOpacity>
                                         </View>
-                                    )}
-                                />
-                            </ScrollView>
+                                    ) : (
+                                        null
+                                    )
+                                )}
+                            />
                         )
-                    }
+                        }
+                        <TouchableOpacity
+                            style={styles.btnEntregue}
+                            onPress={() => { refresh() }}
+                        >
+                            <Text>Atualizar</Text>
+                        </TouchableOpacity>
+                    </ScrollView>
                 </View>
             </View>
         </ImageBackground>

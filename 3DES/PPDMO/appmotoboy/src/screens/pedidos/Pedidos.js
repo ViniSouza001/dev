@@ -4,29 +4,27 @@ import { View, Text, TouchableOpacity, Image, FlatList, ScrollView } from "react
 import styles from "./style";
 import Itens from '../../components/Itens'
 
-export default function PedidosScreen({ navigation }) {
+export default function PedidosScreen ({ navigation }) {
 
     const [pedidos, setPedidos] = useState([])
     const [loading, setLoading] = useState(true)
 
     const uri = 'http://localhost:8081'
-    useEffect(() => {
+
+    const fetchPedidos = () => {
         fetch(uri + '/listarEntregas', { method: 'GET' })
             .then(response => response.json())
             .then(data => { // chega todos os pedidos em um vetor
-                setPedidos(data);
-                console.log(data);
+                const pesquisaPedido = data.filter(pedido => pedido.dataCozinha && !pedido.dataEntrega)
+                setPedidos(pesquisaPedido);
                 setLoading(false)
                 // console.log(pedidos) // [{item, idCliente, idPedido}, {item, idCliente, idPedido}]
             })
+    }
 
+    useEffect(() => {
+        fetchPedidos()
     }, []); // O array vazio indica que o efeito deve ser executado apenas uma vez, na montagem do componente
-
-    // useEffect(() => {
-    //     // Verifica se há pedidos sem dataEntrega
-    //     const hasPedidosExistentes = pedidos.some(pedido => !pedido.dataEntrega);
-    //     setPedidosExistentes(hasPedidosExistentes);
-    // }, [pedidos]);
 
     const concluirPedido = (idPedido) => {
 
@@ -56,11 +54,12 @@ export default function PedidosScreen({ navigation }) {
         )
     }
 
-    // {
-    //     pedidos && pedidos.forEach(pedido => {
-    //         if (!pedido.dataEntrega && pedido.dataCozinha) setPedidosExistentes(true)
-    //     })
-    // }
+    function refresh () {
+        setLoading(true)
+        fetchPedidos()
+    }
+
+    console.log(pedidos)
 
     return (
         <View>
@@ -68,15 +67,15 @@ export default function PedidosScreen({ navigation }) {
             <View style={styles.container}>
                 <View style={styles.contentContainer}>
                     <Image source={require('../../../assets/capacete.png')} style={styles.capacete} />
-                    {pedidos.length == 0 ? (
-                        <Text style={styles.branco}>Não há pedidos para serem mostrados no momento</Text>
-                    ) : (
-                        <ScrollView style={styles.lista}>
+                    <ScrollView style={styles.lista}>
+                        {pedidos.length == 0 ? (
+                            <Text style={[styles.branco, styles.mb20]}>Não há pedidos no momento</Text>
+                        ) : (
                             <FlatList
                                 data={pedidos}
                                 keyExtractor={(item) => item.idPedido.toString()}
                                 renderItem={({ item }) => {
-                                    if (!item.dataEntrega) {
+                                    if (!item.dataEntrega && item.dataCozinha) {
                                         return (
                                             <View style={styles.itemLista}>
                                                 <Text style={[styles.tituloPedido, styles.mb20]}>Pedido <Text style={styles.vermelho}>#{item.idPedido}</Text></Text>
@@ -105,9 +104,13 @@ export default function PedidosScreen({ navigation }) {
                                     }
                                 }}
                             />
-                        </ScrollView>
-                    )
-                    }
+                        )}
+                        <TouchableOpacity
+                            style={styles.btnEntregue}
+                            onPress={() => { refresh() }}>
+                            <Text>Atualizar</Text>
+                        </TouchableOpacity>
+                    </ScrollView>
                 </View>
             </View>
         </View>

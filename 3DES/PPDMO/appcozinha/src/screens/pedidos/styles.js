@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     branco: {
         color: '#fff',
         fontSize: 15,
+        alignSelf: 'center'
     },
     mb20: {
         marginBottom: '20px'
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 35,
         paddingRight: 35,
+        alignItems: 'center'
     },
     tituloPedido: {
         fontSize: 20

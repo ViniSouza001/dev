@@ -8,7 +8,7 @@ const Pedido = mongoose.model('pedidos')
 const Cardapio = mongoose.model('cardapio')
 const Item = mongoose.model('itens')
 
-function isLogged(req, res) {
+function isLogged (req, res) {
     if (req.user) {
         return {
             nome: req.user.nome,
@@ -22,7 +22,7 @@ function isLogged(req, res) {
     }
 }
 
-async function theresItens(req, res, idCliente) {
+async function theresItens (req, res, idCliente) {
     try {
         const itens = await Item.find({ idCliente: idCliente }).lean();
         return itens;
@@ -168,7 +168,23 @@ router.get('/pedidos', async (req, res) => {
 
     if (logged) {
         const itens = await theresItens(req, res, logged.id);
-        const pedidos = await Pedido.find({ idCliente: logged.id }).lean();
+        const pedidos = await Pedido.find({
+            $and: [
+                { idCliente: logged.id },
+                {
+                    $or: [
+                        { dataEntrega: { $exists: false } },
+                        {
+                            $and: [
+                                { paraEntrega: false },
+                                { dataCozinha: { $exists: true } }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }).lean();
+
 
         pedidos.forEach(pedido => {
             var array = []; // Nova declaração aqui
