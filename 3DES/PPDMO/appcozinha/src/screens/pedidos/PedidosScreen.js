@@ -1,31 +1,28 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Image, FlatList, ScrollView, Pressable } from "react-native"
-import styles from "./style";
-import Itens from '../../components/Itens'
+import { Text, TouchableOpacity, View, Image, ImageBackground, ScrollView, FlatList } from 'react-native'
+import styles from "./styles";
 
-export default function PedidosScreen ({ navigation }) {
+function PedidosScreen({ navigation }) {
 
     const [pedidos, setPedidos] = useState([])
     const [loading, setLoading] = useState(true)
-    const [pedidosExistentes, setPedidosExistentes] = useState(false)
 
     const uri = 'http://localhost:8081'
     useEffect(() => {
         fetch(uri + '/listarPedidos', { method: 'GET' })
             .then(response => response.json())
-            .then(data => { // chega todos os pedidos em um vetor
+            .then(data => {
                 setPedidos(data);
+                console.log(data)
                 setLoading(false)
-                // console.log(pedidos) // [{item, idCliente, idPedido}, {item, idCliente, idPedido}]
             })
-
-    }, []); // O array vazio indica que o efeito deve ser executado apenas uma vez, na montagem do componente
+    }, []);
 
     const concluirPedido = (idPedido) => {
 
         const corpo = {
-            dataEntrega: new Date(),
+            dataCozinha: new Date(),
             idPedido: idPedido
         }
 
@@ -35,9 +32,9 @@ export default function PedidosScreen ({ navigation }) {
             body: JSON.stringify(corpo)
         }
 
-        fetch(uri + '/entregaPronta', options)
+        fetch(uri + '/pedidoPronto', options)
             .then(resp => { resp.status })
-            .then(data => { navigation.navigate('LoginScreen') })
+            .then(data => { navigation.navigate('HomeScreen') })
             .catch(error => { console.log('Erro interno no servidor: ' + error) })
     }
 
@@ -50,20 +47,19 @@ export default function PedidosScreen ({ navigation }) {
         )
     }
 
-    {
-        pedidos && pedidos.forEach(pedido => {
-            if (!pedido.dataEntrega && pedido.dataCozinha) setPedidosExistentes(true)
-        })
-    }
 
     return (
-        <View style={styles.body}>
-            <Image source={require('../../../assets/Fundo.png')} style={styles.fundo} />
+        <ImageBackground
+            source={require('../../../assets/Fundo.png')}
+            style={styles.background}>
             <View style={styles.container}>
                 <View style={styles.contentContainer}>
-                    <Image source={require('../../../assets/capacete.png')} style={styles.capacete} />
+                    <Image source={require('../../../assets/Chapeu.png')}
+                        style={styles.chapeu} />
                     {
-                        pedidosExistentes ?
+                        pedidos.length === 0 ? (
+                            <Text style={styles.branco}>Não há pedidos para serem mostrados no momento</Text>
+                        ) : (
                             <ScrollView style={styles.lista}>
                                 <FlatList
                                     data={pedidos}
@@ -76,15 +72,7 @@ export default function PedidosScreen ({ navigation }) {
                                             <Text>Hora</Text>
                                             <Text style={[styles.vermelho, styles.mb20]}>{(item.dataPedido).slice(11, 19)}</Text>
                                             <Text>Itens:</Text>
-                                            <Itens pedido={item} />
-                                            <Text style={styles.mt20}>Valor do pedido: <Text style={styles.vermelho}>R${item.valorPedido.toFixed(2)}</Text></Text>
-                                            <Text>Valor da Entrega: <Text style={styles.vermelho}>R${item.valorEntrega.toFixed(2)}</Text></Text>
-                                            <Text style={styles.mb20}>Valor total:
-                                                <Text style={styles.vermelho}> R${(Number(item.valorPedido) + Number(item.valorEntrega)).toFixed(2)}</Text>
-                                            </Text>
-                                            <Text>Endereço de entrega:</Text>
-                                            <Text style={styles.vermelho}>{item.endereco}</Text>
-                                            <Text style={[styles.vermelho, styles.mb20]}>{item.cep}</Text>
+                                            {/* <Itens pedido={item} /> */}
                                             <TouchableOpacity
                                                 style={styles.btnEntregue}
                                                 onPress={() => { concluirPedido(item._id) }}
@@ -95,13 +83,12 @@ export default function PedidosScreen ({ navigation }) {
                                     )}
                                 />
                             </ScrollView>
-                            :
-                            <Text style={styles.branco}>Não há pedidos para serem entregues no momento</Text>
+                        )
                     }
-
-
                 </View>
             </View>
-        </View>
+        </ImageBackground>
     )
 }
+
+export default PedidosScreen

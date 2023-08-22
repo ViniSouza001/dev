@@ -175,7 +175,8 @@ a {
 
 .body-container::-webkit-scrollbar,
 .window::-webkit-scrollbar,
-.container::-webkit-scrollbar {
+.container::-webkit-scrollbar,
+.card::-webkit-scrollbar {
    width: 5px;
 }
 
@@ -187,7 +188,8 @@ a {
 }
 
 .window::-webkit-scrollbar-thumb,
-.container::-webkit-scrollbar-thumb {
+.container::-webkit-scrollbar-thumb,
+.card::-webkit-scrollbar-thumb {
    width: 2px;
    height: 1px;
    background-color: #fff;
@@ -208,7 +210,7 @@ a {
    width: 500px;
    padding: 10px 15px 15px 15px;
    display: flex;
-   overflow: hidden;
+   overflow: auto;
    flex-direction: column;
    background-color: rgba(0, 0, 0, .7);
    border-radius: 10px;

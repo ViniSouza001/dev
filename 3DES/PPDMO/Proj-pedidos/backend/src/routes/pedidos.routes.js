@@ -8,7 +8,7 @@ const Pedido = mongoose.model('pedidos')
 const Cardapio = mongoose.model('cardapio')
 const Item = mongoose.model('itens')
 
-function isLogged (req, res) {
+function isLogged(req, res) {
     if (req.user) {
         return {
             nome: req.user.nome,
@@ -22,7 +22,7 @@ function isLogged (req, res) {
     }
 }
 
-async function theresItens (req, res, idCliente) {
+async function theresItens(req, res, idCliente) {
     try {
         const itens = await Item.find({ idCliente: idCliente }).lean();
         return itens;
@@ -184,9 +184,19 @@ router.get('/pedidos', async (req, res) => {
     }
 });
 
-router.get('/listarPedidos', (req, res) => {
+router.get('/listarEntregas', (req, res) => {
     var vetor = []
     Pedido.find({ 'paraEntrega': true }).lean().then(pedidos => {
+        pedidos.forEach(pedido => {
+            vetor.push(pedido)
+        })
+        res.send(vetor)
+    })
+})
+
+router.get('/listarPedidos', (req, res) => {
+    var vetor = []
+    Pedido.find().lean().then(pedidos => {
         pedidos.forEach(pedido => {
             vetor.push(pedido)
         })
@@ -213,6 +223,23 @@ router.post('/entregaPronta', (req, res) => {
         console.log("Não foi possível encontrar o pedido: " + err)
     })
 })
+
+router.post('/pedidoPronto', (req, res) => {
+    const { dataCozinha, idPedido } = req.body
+
+    Pedido.findOne({ _id: idPedido }).then(pedido => {
+        pedido.dataCozinha = dataCozinha
+
+        pedido.save().then(() => {
+            return res.status(202).json({ "Sucesso": "Pedido foi finalizado com sucesso!" }).end()
+        }).catch(error => {
+            return res.status(400).json({ "Erro": "Não foi possível remover o pedido: " + error }).end()
+        })
+    }).catch(err => {
+        console.log("Não foi possível encontrar o pedido: " + err)
+    })
+})
+
 
 
 

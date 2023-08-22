@@ -1,6 +1,6 @@
 import react from "react"
 import { useState, useEffect } from "react"
-import { Text, View, Image, TextInput, TouchableOpacity } from "react-native"
+import { Text, View, Image, TouchableOpacity } from "react-native"
 import styles from "./styles"
 
 function TelaLogin({ navigation }) {
@@ -12,7 +12,7 @@ function TelaLogin({ navigation }) {
    // const uri = 'http://localhost:8081'
 
    // useEffect(() => {
-   //    fetch(uri + '/motoboys', { method: 'GET' })
+   //    fetch(uri + '/motoboys', { method: 'GET' })   
    //       .then(response => response.json())
    //       .then(data => console.log(data))
    // })
