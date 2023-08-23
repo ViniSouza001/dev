@@ -320,15 +320,13 @@ a {
    justify-content: space-evenly;
 }
 
+.no-overflow {
+   overflow: hidden;
+}
+
 hr {
    width: 100%;
 }
-
-/* keyframes */
-
-
-
-
 
 /* mobile */
 @media (max-width: 1400px) {

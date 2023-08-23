@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, Image, FlatList, ScrollView } from "react
 import styles from "./style";
 import Itens from '../../components/Itens'
 
-export default function PedidosScreen ({ navigation }) {
+export default function PedidosScreen({ navigation }) {
 
     const [pedidos, setPedidos] = useState([])
     const [loading, setLoading] = useState(true)
@@ -54,12 +54,10 @@ export default function PedidosScreen ({ navigation }) {
         )
     }
 
-    function refresh () {
+    function refresh() {
         setLoading(true)
         fetchPedidos()
     }
-
-    console.log(pedidos)
 
     return (
         <View>
