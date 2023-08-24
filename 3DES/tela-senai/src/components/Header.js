@@ -1,4 +1,6 @@
 import imagem from '../assets/senai-logo.png'
+import { Link } from 'react-router-dom'
+import MaisLidos from './pages/MaisLidos'
 
 function Header() {
 
@@ -10,11 +12,15 @@ function Header() {
         <header>
             <div id="logo">
                 <img src={imagem} />
-                <h3 className='black'>Biblioteca Virtual</h3>
+                <Link to='/'>
+                    <h3 className='black'>Biblioteca Virtual</h3>
+                </Link>
             </div>
             <nav>
-                <a onClick={() => mudarTela()}>Meus livros</a>
-                <a>Mais lidos</a>
+                <p>Meus livros</p>
+                <Link to='/MaisLidos'>
+                    <p>Mais lidos</p>
+                </Link>
             </nav>
         </header>
     )
