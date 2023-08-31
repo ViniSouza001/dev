@@ -6,8 +6,8 @@ Se por acaso criarmos um sistema web para este projeto, poderíamos implementar 
 
 Alguma funções que poderia existir no app seriam:
 
-	- Cadastro e login para usuários: Esta função é fundamental para ter uma organização fácil das organizações de cada usuário. Essa técnica irá facilitar a identificação de cada usuário para adicionar, excluir, alterar e ler informações dos mesmos.
+	- Cadastro e login para usuários: Esta função é fundamental para ter uma organização fácil das organizações de cada usuário. Essa técnica irá facilitar a identificação de cada usuário para adicionar, excluir, alterar e ler informações dos mesmos;
 	
-	- Uso do sistema de data e hora: Como nosso projeto irá envolver gastos de acordo com datas, será de uso obrigatório o aplicativo ter as permissões do sistema de data hora do aparelho. Isso fará com que as outras funções como comparação entre datas, listagem e filtros possam ser utilizadas com êxito. Caso o usuário bloqueie ao app as permissões necessárias, o aplicativo não irá funcionar.
+	- Uso do sistema de data e hora: Como nosso projeto irá envolver gastos de acordo com datas, será de uso obrigatório o aplicativo ter as permissões do sistema de data hora do aparelho. Isso fará com que as outras funções como comparação entre datas, listagem e filtros possam ser utilizadas com êxito. Caso o usuário bloqueie ao app as permissões necessárias, o aplicativo não irá funcionar;
 
-	- Construção de gráficos: Iremos estudar e analisar todas as condições disponíveis, mas se for possível, pretendemos fazer gráficos para o usuário ter um conteúdo mais visual para a comparação de gastos 
+	- Construção de gráficos: Iremos estudar e analisar todas as condições disponíveis, mas se for possível, pretendemos fazer gráficos para o usuário ter um conteúdo mais visual para a fácil vizualização de gastos
