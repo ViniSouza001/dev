@@ -1,4 +1,4 @@
-import Window from "./Window"
+import Modal from "./Modal"
 import { useState } from "react"
 
 function Areas() {
@@ -38,7 +38,7 @@ function Areas() {
                 <div className="a1" onClick={() => { fetchArea(11) }}>11</div>
 
             </main>
-            <Window titulo={titulo} informacoes={informacoes} closeModal={() => setWindowVisible(state => !state)} openModal={windowVisible} />
+            <Modal titulo={titulo} informacoes={informacoes} closeModal={() => setWindowVisible(state => !state)} openModal={windowVisible} />
         </>
     )
 }

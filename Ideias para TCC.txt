@@ -2,6 +2,11 @@ Ideias para TCC: https://regrasparatcc.com.br/temas/temas-para-tcc-de-informatic
 
 - Sistema de banco e currículos (existe a Infojobs)
 - Sistema para gestão de condomínios (já existe)
-- Rede social de mapas mentais (não existe)
+- Rede social de mapas mentais (não existe) - (Não achei API de software de design disponível)
 - Utilização de redes sociais na educação
 - Uso da informática na educação
+
+
+
+Minhas ideias
+- App para controle de gastos (contas, gastos, compras)

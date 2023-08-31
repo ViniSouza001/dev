@@ -74,3 +74,18 @@ main {
 .headerWindow>p {
   cursor: pointer;
 }
+
+/* posicionar modal no centro da tela */
+.ReactModal__Overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ReactModal__Content {
+  border: 1px solid black;
+  width: 700px;
+  padding: 30px 50px 50px 50px;
+  color: rgb(120, 20, 255);
+  font-family: Arial, Helvetica, sans-serif;
+}

@@ -1,10 +1,12 @@
-import { useState } from 'react'
 import ReactModal from "react-modal"
 
 ReactModal.setAppElement('#root')
 
-function Window(props) {
+function Modal(props) {
 
+    function vender() {
+
+    }
 
     return (
         <ReactModal
@@ -22,7 +24,7 @@ function Window(props) {
                 (
                     <div key={index} className="dados">
                         <p className="pWindow">Modelo: {info.modelo} | Preço: R${info.preco.toFixed(2)}</p>
-                        <button className="btnVender">Vender</button>
+                        <button className="btnVender" onClick={() => vender()}>Vender</button>
                     </div>
                 ))
                 }
@@ -32,4 +34,4 @@ function Window(props) {
     )
 }
 
-export default Window
+export default Modal
