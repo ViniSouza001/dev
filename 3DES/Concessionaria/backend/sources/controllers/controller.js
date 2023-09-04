@@ -28,8 +28,20 @@ const testar = (req, res) => {
     })
 }
 
+const clientes = (req, res) => {
+    const str = "Select * from clientes;"
+    con.query(str, (err, result) => {
+        if (err) {
+            res.status(404).json({ error: err }).end()
+        } else {
+            res.json(result).status(200).end()
+        }
+    })
+}
+
 module.exports = {
     infoArea,
-    testar
+    testar,
+    clientes
 
 }

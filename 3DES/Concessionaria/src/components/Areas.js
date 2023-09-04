@@ -7,13 +7,11 @@ function Areas() {
     const [informacoes, setInformacoes] = useState([])
 
     function fetchArea(number) {
-        console.log(number)
         setTitulo(number)
         fetch(`http://localhost:8081/infoArea/${number}`)
             .then(response => response.json())
             .then(data => {
                 setInformacoes(data)
-                console.log(data)
             })
             .catch(err => {
                 console.log('não foi possível pesquisar a área requerida: ' + err)
