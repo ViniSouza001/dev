@@ -1,12 +1,14 @@
 import ReactModal from "react-modal"
 import Content from "./Content"
+import { PiCaretLeftLight } from "react-icons/pi"
+import purple_arrow from '../images/purple-arrow.png'
 import { useState, useEffect } from 'react'
 ReactModal.setAppElement('#root')
 
 function Modal(props) {
 
-    const [content, setContent] = useState('')
     const [clientes, setClientes] = useState([])
+    const [concessionarias, setConcessionarias] = useState([])
 
     useEffect(() => {
         fetch('http://localhost:8081/clientes', { method: 'GET' })
@@ -18,10 +20,20 @@ function Modal(props) {
             }).catch((err) => {
                 console.log(err)
             })
+
+        fetch('http://localhost:8081/concessionarias', { method: 'GET' })
+            .then((resp) => resp.json())
+            .then((data) => {
+                let concessionaria = []
+                concessionaria.push(data)
+                concessionarias.push(concessionaria)
+            }).catch((err) => {
+                console.log(err)
+            })
     }, [])
 
     const vender = (modelo, index) => {
-        setContent(modelo)
+        props.setContent(modelo)
     }
 
     return (
@@ -32,15 +44,17 @@ function Modal(props) {
             onRequestClose={props.closeModal}
         >
             <header className="headerWindow">
-                <p onClick={() => { props.closeModal(); setContent(''); }}>X</p>
+                {props.content && <p><PiCaretLeftLight onClick={() => props.setContent('')} /></p>}
+                <p onClick={() => { props.closeModal() }} className="closeModal">X</p>
             </header>
 
             <Content
-                title={!content ? `Área: ${props.titulo}` : content}
+                title={!props.content ? `Área: ${props.titulo}` : props.content}
                 informacoes={props.informacoes}
                 vender={vender}
-                content={content}
+                content={props.content}
                 clientes={clientes}
+                concessionarias={concessionarias}
             />
         </ReactModal>
     )

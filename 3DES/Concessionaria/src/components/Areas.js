@@ -5,6 +5,7 @@ function Areas() {
     const [windowVisible, setWindowVisible] = useState(false)
     const [titulo, setTitulo] = useState('')
     const [informacoes, setInformacoes] = useState([])
+    const [content, setContent] = useState('')
 
     function fetchArea(number) {
         setTitulo(number)
@@ -36,7 +37,12 @@ function Areas() {
                 <div className="a1" onClick={() => { fetchArea(11) }}>11</div>
 
             </main>
-            <Modal titulo={titulo} informacoes={informacoes} closeModal={() => setWindowVisible(state => !state)} openModal={windowVisible} />
+            <Modal titulo={titulo} informacoes={informacoes} closeModal={() => {
+                setWindowVisible(state => !state);
+                setContent('');
+            }} openModal={windowVisible}
+                content={content}
+                setContent={setContent} />
         </>
     )
 }

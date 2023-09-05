@@ -5,5 +5,6 @@ router.get('/teste', control.testar)
 
 router.get('/infoArea/:area', control.infoArea)
 router.get('/clientes', control.clientes)
+router.get('/concessionarias', control.concessionarias)
 
 module.exports = router

@@ -1,5 +1,5 @@
 
-function Content({ title, content, informacoes, vender, clientes }) {
+function Content({ title, content, informacoes, vender, clientes, concessionarias }) {
 
     function mostrarItem(cliente) {
         console.log(cliente)
@@ -28,6 +28,17 @@ function Content({ title, content, informacoes, vender, clientes }) {
                         {clientes.map((clients) => (
                             clients.map((eachOne, index) => (
                                 <option key={index} value={eachOne.nome}>{eachOne.nome}</option>
+                            ))
+                        ))}
+                    </select>
+                </p>
+                <p className="pSelect">
+                    Concessionarias: <select name="concessionarias">
+                        {concessionarias.map((datas) => (
+                            datas.map((eachData) => (
+                                eachData.map((concessionaria, index) => (
+                                    <option key={index} value={concessionaria.concessionaria}>{concessionaria.concessionaria}</option>
+                                ))
                             ))
                         ))}
                     </select>

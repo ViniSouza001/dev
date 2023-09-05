@@ -86,17 +86,25 @@ select {
   width: 70%;
   font: normal 13pt Arial;
   text-align: center;
+  padding: 5px 15px;
 }
 
 .headerWindow {
   top: 0;
   display: flex;
-  justify-content: end;
+  width: 100%;
+  justify-content: space-between;
   padding-top: 0;
+  align-items: center;
+}
+
+.closeModal {
+  justify-self: end !important;
 }
 
 .headerWindow>p {
   cursor: pointer;
+  font-size: 25px;
 }
 
 /* posicionar modal no centro da tela */

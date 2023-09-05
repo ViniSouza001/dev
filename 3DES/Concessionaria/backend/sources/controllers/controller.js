@@ -39,9 +39,20 @@ const clientes = (req, res) => {
     })
 }
 
+const concessionarias = (req, res) => {
+    const str = "Select * from concessionarias;"
+    con.query(str, (err, result) => {
+        if (err) {
+            res.status(400).json({ error: err }).end()
+        } else {
+            res.status(200).json(result).end()
+        }
+    })
+}
+
 module.exports = {
     infoArea,
     testar,
-    clientes
-
+    clientes,
+    concessionarias
 }
