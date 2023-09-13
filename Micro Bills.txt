@@ -10,6 +10,6 @@ Alguma funções que poderia existir no app seriam:
 	
 	- Uso do sistema de data e hora: Como nosso projeto irá envolver gastos de acordo com datas, será de uso obrigatório o aplicativo ter as permissões do sistema de data hora do aparelho. Isso fará com que as outras funções como comparação entre datas, listagem e filtros possam ser utilizadas com êxito. Caso o usuário bloqueie ao app as permissões necessárias, o aplicativo não irá funcionar;
 
-	- Construção de gráficos: Iremos estudar e analisar todas as condições disponíveis, mas se for possível, pretendemos fazer gráficos para o usuário ter um conteúdo mais visual para a fácil vizualização de gastos.
+	- Construção de gráficos: Iremos estudar e analisar todas as condições disponíveis, mas se for possível, pretendemos fazer gráficos para o usuário ter um conteúdo mais visual para a fácil vizualização de gastos. Como por exemplo: gráfico de colunas ou de setores (pizza)
 
-	- Cálculo de média dos gastos: Em uma página do aplicativo, o usuário poderia ver as médias de gastos que o aplicativo calcularia. Será definido se o usuário irá escolher o tempo que ele quer
+	- Cálculo de média dos gastos: Em uma página do aplicativo, o usuário poderia ver as médias de gastos que o aplicativo calcularia. Estas médias seriam feitas em períodos mensais como padrão, mas se for possível poderia ser colocado para períodos semestrais ou anuais.
