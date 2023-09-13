@@ -64,7 +64,6 @@ main {
   height: calc(85vh - 20px);
   background-size: cover;
   overflow-y: auto;
-
   background-image: linear-gradient(to bottom, #665eff, #352bff);
 }
 
@@ -77,6 +76,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: .5rem;
+  max-height: 500px;
 }
 
 .preco {
@@ -84,13 +84,13 @@ main {
   padding-top: 10px;
 }
 
-.resumo {
+.info {
   width: 100%;
   max-height: 100px;
   overflow-y: auto;
 }
 
-.resumo::-webkit-scrollbar {
+.info::-webkit-scrollbar {
   width: 5px;
   padding: 5px;
 }
@@ -99,7 +99,7 @@ main::-webkit-scrollbar {
   display: none;
 }
 
-.resumo::-webkit-scrollbar-thumb,
+.info::-webkit-scrollbar-thumb,
 main::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #FFF;
