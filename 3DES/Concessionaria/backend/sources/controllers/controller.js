@@ -6,7 +6,7 @@ const infoArea = (req, res) => {
     const string = `SELECT a.modelo, a.preco
     FROM automoveis a
     INNER JOIN alocacao al ON a.id = al.automovelId
-    WHERE al.area = ${area};`
+    WHERE al.area = ${ area };`
 
     con.query(string, (err, result) => {
         if (err == null) {

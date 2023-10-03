@@ -29,28 +29,28 @@ create table alocacao (
     foreign key (concessionariaId) references concessionarias(id)
 );
 
-LOAD DATA INFILE 'C:/Users/DESENVOLVIMENTO/Desktop/dev/3DES/Concessionaria/docs/csv/automoveis.CSV'
+LOAD DATA INFILE 'C:/Users/DESENVOLVIMENTO/Documents/GitHub/dev/3DES/Concessionaria/docs/csv/automoveis.CSV'
 into table automoveis
 fields terminated by ';'
 enclosed by '"'
 lines terminated by '\n'
 ignore 1 rows;
 
-LOAD DATA INFILE 'C:/Users/DESENVOLVIMENTO/Desktop/dev/3DES/Concessionaria/docs/csv/clientes.CSV'
+LOAD DATA INFILE 'C:/Users/DESENVOLVIMENTO/Documents/GitHub/dev/3DES/Concessionaria/docs/csv/clientes.CSV'
 into table clientes
 fields terminated by ';'
 enclosed by '"'
 lines terminated by '\n'
 ignore 1 rows;
 
-LOAD DATA INFILE 'C:/Users/DESENVOLVIMENTO/Desktop/dev/3DES/Concessionaria/docs/csv/concessionaria.CSV'
+LOAD DATA INFILE 'C:/Users/DESENVOLVIMENTO/Documents/GitHub/dev/3DES/Concessionaria/docs/csv/concessionaria.CSV'
 into table concessionarias
 FIELDS TERMINATED BY ';'
 enclosed by '"'
 lines terminated by '\n'
 ignore 1 rows;
 
-LOAD DATA INFILE 'C:/Users/DESENVOLVIMENTO/Desktop/dev/3DES/Concessionaria/docs/csv/alocacao.CSV'
+LOAD DATA INFILE 'C:/Users/DESENVOLVIMENTO/Documents/GitHub/dev/3DES/Concessionaria/docs/csv/alocacao.CSV'
 into table alocacao
 fields terminated by ';'
 enclosed by '"'
