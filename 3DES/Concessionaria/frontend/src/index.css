@@ -57,7 +57,7 @@ body {
   height: 10vh;
   top: 58vh;
   left: 34vw;
-  z-index: 2;
+  z-index: 3;
 }
 
 .a3 {
@@ -134,6 +134,7 @@ body {
 
 .blue {
   background-color: #0000FF;
+  color: #FFFFFF
 }
 
 .window {
@@ -215,4 +216,5 @@ select {
   padding: 30px 50px 50px 50px;
   color: var(--roxo);
   font-family: Arial, Helvetica, sans-serif;
+  background-color: rgba(255, 255, 255, 1);
 }
