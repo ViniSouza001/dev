@@ -16,7 +16,7 @@
         <main>
             <div class="box">
                 <span class="borderLine"></span>
-                <form id="login">
+                <form class="login">
                     <h2>Login</h2>
                     <div class="inputBox">
                         <input type="number" name="matricula" required>
@@ -30,13 +30,13 @@
                     </div>
                     <div class="links">
                         <a href="#">Esqueci minha senha</a>
-                        <a onclick="cadastro.classList.remove('oculto')">Cadastro</a>
+                        <a onclick="cadastro.classList.toggle('oculto'); login.classList.toggle('oculto')">Cadastro</a>
                     </div>
                     <input type="submit" value="Login">
                     <p id="msg"></p>
                 </form>
             </div>
-            <section id="cadastro" class="modal oculto">
+            <section id="cadastro" class="modal oculto box">
                 <form id="formCadastro">
                     <label for="matricula">Matrícula:</label>
                     <input type="text" name="matricula" required>

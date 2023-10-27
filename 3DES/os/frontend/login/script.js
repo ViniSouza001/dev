@@ -2,7 +2,7 @@
 const colaborador = JSON.parse(localStorage.getItem('colaborador'));
 if(colaborador != null) window.location.href = '../home/index.html';
 const uri = 'http://localhost:3000/colaboradores';
-const login = document.querySelector('#login');
+const login = document.querySelector('.login');
 const form = document.querySelector('#formCadastro');
 
 //Funções
