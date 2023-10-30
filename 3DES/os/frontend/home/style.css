@@ -3,3 +3,20 @@
 .oculto {
     display: none;
 }
+
+body {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #23242a;
+    color: #FFF;
+}
+
+img {
+    border-radius: 100%;
+    width: 50px;
+    cursor: pointer;
+}

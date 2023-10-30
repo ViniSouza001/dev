@@ -1,5 +1,7 @@
 //Variáveis, constantes globais e validação inicial
 const colaborador = JSON.parse(localStorage.getItem('colaborador'));
+const box1 = document.querySelector('.box')
+const box2 = document.querySelector('.box2')
 if(colaborador != null) window.location.href = '../home/index.html';
 const uri = 'http://localhost:3000/colaboradores';
 const login = document.querySelector('.login');
@@ -69,3 +71,8 @@ form.addEventListener("submit", e => {
             })
     }
 });
+
+const toggleForms = () => {
+    box1.classList.toggle('oculto');
+    box2.classList.toggle('oculto');
+}

@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -12,7 +13,7 @@ body {
     width: 100vw;
     height: 100vh;
     display: none;
-    
+
 }
 
 .nuvens {
@@ -35,7 +36,7 @@ footer {
     z-index: 1;
 }
 
-.raio{
+.raio {
     position: absolute;
     border-radius: 10px;
     background-color: yellow;
@@ -45,8 +46,13 @@ footer {
 }
 
 @keyframes pisca {
-    from {opacity: 1;}
-    to {opacity: 0;}
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
 button {
@@ -83,6 +89,7 @@ button {
     0% {
         transform: translate(0, 0) rotate(45deg);
     }
+
     100% {
         transform: translate(150px, 150px) rotate(45deg);
     }
@@ -97,11 +104,15 @@ button {
     20% {
         background-color: white;
         display: block;
-}
+    }
 
-    40% { background-color: transparent; }
+    40% {
+        background-color: transparent;
+    }
 
-    80% { background-color: #fff; }
+    80% {
+        background-color: #fff;
+    }
 
     100% {
         background-color: transparent;
