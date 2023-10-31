@@ -72,6 +72,8 @@ form.addEventListener("submit", e => {
     }
 });
 
+// others
+
 const toggleForms = () => {
     box1.classList.toggle('oculto');
     box2.classList.toggle('oculto');

@@ -110,14 +110,14 @@ async function preencherOSs () {
     card.classList.add("card");
     card.innerHTML = `
             <div class="card-header">
-                <h3>Id Ordem de Serviço: ${ os.id }</h3>
+                <h3>ID ordem de Serviço: ${ os.id }</h3>
             </div>
             <div class="card-body">
                 <p>Data de Abertura: <input type="datetime-local" value="${ os.abertura.slice(0, 10) } ${ os.abertura.slice(11, 19) }" disabled=true> </p>
                 <p>Descrição: ${ os.descricao }</p>
                 <p>Colaborador: ${ colaborador.nome }</p>
                 <p>Designado á: ${ os.executor == null ? "Ainda não designado" : colaboradores[ colaboradores.findIndex((c) => c.matricula == os.executor) ].nome }</p>
-                <button onclick="detalhesOS.classList.remove('oculto');preencherDetalhesOS(${ os.id })">Detalhes</button>
+                <button onclick="toggleCard(detalhesOS, 'oculto');preencherDetalhesOS(${ os.id })">Detalhes</button>
                 <button onclick="excluirOS(${ os.id })">Excluir</button>
             </div>
         `;
@@ -311,4 +311,15 @@ function atualizarTela () {
 function sair () {
   localStorage.removeItem("colaborador");
   window.location.href = "../login/index.html";
+}
+
+// outros
+
+function toggleCard (element, classe) {
+  element.classList.toggle(`${ classe }`)
+}
+
+function doubleToggleCard (element1, element2) {
+  element1.classList.toggle('oculto')
+  element2.classList.toggle('oculto')
 }
