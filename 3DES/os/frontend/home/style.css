@@ -56,6 +56,10 @@ img {
     border: 1px solid black;
 }
 
+.comentario {
+    position: absolute;
+}
+
 .fadein {
     animation: fadein 1s forwards;
     animation-fill-mode: both;
