@@ -7,7 +7,7 @@ let longitudePingo = 0
 var chuva = true
 const buttonChuva = document.querySelector("#buttonChuva")
 
-buttonChuva.addEventListener('click', () =>{
+buttonChuva.addEventListener('click', () => {
     if(chuva) {
         chuva = false
         buttonChuva.textContent = 'Chover'
@@ -19,18 +19,18 @@ buttonChuva.addEventListener('click', () =>{
 })
 
 main()
-async function main() {
+async function main () {
     while(chuva) {
         stylesPingo()
         await sleep(1000)
     }
 }
 
-async function sleep(ms) {
+async function sleep (ms) {
     return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-function stylesPingo() {
+function stylesPingo () {
     for(let i = 0; i < 100; i++) {
         const pingo = document.createElement('div')
         var widthPingo = 0
@@ -54,24 +54,24 @@ function stylesPingo() {
     }
 }
 
-function keyframes(pingo) {
+function keyframes (pingo) {
     let diferencaAltura = pageHeight + alturaPingo
-    let diferencaLongitude = pageWidth + longitudePingo 
-    
+    let diferencaLongitude = pageWidth + longitudePingo
+
     animation.sheet.insertRule(`
     @keyframes movePingo {
         0% {
             transform: translate(0, 0) rotate(45deg);
         }
         100% {
-            transform: translate(${diferencaAltura}px, ${diferencaLongitude}px) rotate(45deg);
+            transform: translate(${ diferencaAltura }px, ${ diferencaLongitude }px) rotate(45deg);
         }
     }
     `)
     pingo.style.animation = 'movePingo 8s linear'
-    
+
 }
 
-function clarao() {
-    
+function clarao () {
+    body.style.animation = 'clarao 2s'
 }

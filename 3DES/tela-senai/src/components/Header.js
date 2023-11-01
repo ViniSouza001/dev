@@ -17,9 +17,12 @@ function Header() {
                 </Link>
             </div>
             <nav>
-                <p>Meus livros</p>
+                <Link to="/MeusLivros">
+                    <p className='black'>Meus livros</p>
+                </Link>
+
                 <Link to='/MaisLidos'>
-                    <p>Mais lidos</p>
+                    <p className='black'>Mais lidos</p>
                 </Link>
             </nav>
         </header>

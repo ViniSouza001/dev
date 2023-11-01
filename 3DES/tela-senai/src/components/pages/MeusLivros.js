@@ -1,11 +1,8 @@
-import Header from "../Header"
-
 
 function MeusLivros() {
     return (
         <div>
-            <Header />
-            <div>
+            <div className="black">
                 Página dos meus livros
             </div>
         </div>

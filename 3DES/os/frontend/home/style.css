@@ -1,0 +1,78 @@
+@import url(../style.css);
+
+.oculto {
+    display: none;
+}
+
+body {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #23242a;
+    color: #FFF;
+}
+
+img {
+    border-radius: 100%;
+    width: 50px;
+    cursor: pointer;
+}
+
+.card {
+    background-color: #FFF;
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    width: 400px;
+    max-width: 400px;
+}
+
+.card .card-body button {
+    padding: 10px;
+    background-color: #b3b3b3;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.card .card-body button:hover {
+    background-color: transparent;
+}
+
+#formAtualizarOS {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: #e7e7e7;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    color: black;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.comentario {
+    position: absolute;
+}
+
+.fadein {
+    animation: fadein 1s forwards;
+    animation-fill-mode: both;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+        margin-top: 50px;
+    }
+
+    100% {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
