@@ -1,0 +1,57 @@
+@font-face {
+   font-family: "Death-Magnetic";
+   src: url('./assets/fonts/Death-Magnetic.ttf');
+}
+
+@font-face {
+   font-family: "Death-Magnetic2";
+   src: url('./assets/fonts/Death-Magnetic2.ttf');
+}
+
+@font-face {
+   font-family: "Running";
+   src: url('./assets/fonts/running-with-scissors-medium.ttf');
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+h1>span {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   margin: 0;
+   padding: 0;
+   width: 100%;
+   text-align: center;
+   font-family: sans-serif;
+   font-style: italic;
+   font-size: 5em;
+   text-transform: uppercase;
+   letter-spacing: 5px;
+   background: linear-gradient(#262626, #eaeaea, #262626);
+   -webkit-background-clip: text;
+   color: transparent;
+}
+
+h1>span:nth-child(1) {
+   z-index: 2;
+}
+
+h1>span:nth-child(2) {
+   z-index: 1;
+   text-shadow: 1px 1px 0 #262626;
+}
+
+/* 
+h1 {
+   font-family: 'Running';
+   color: gray;
+   font-size: 50px;
+   -webkit-text-stroke-width: 0.5px;
+   -webkit-text-stroke-color: #000;
+   margin: 20px;
+} */
