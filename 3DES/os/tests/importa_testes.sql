@@ -1,20 +1,20 @@
 USE os;
 
-LOAD DATA INFILE 'C:/Users/Desenvolvimento/Documents/GitHub/ViniSouza001/dev/3DES/os/dados/colaboradores.csv'
+LOAD DATA INFILE 'C:/Users/Aluno.DESKTOP-79N0DMC/Documents/dev/3DES/os/dados/colaboradores.csv'
 INTO TABLE colaborador
 FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:/Users/Desenvolvimento/Documents/GitHub/ViniSouza001/dev/3DES/os/dados/oss.csv'
+LOAD DATA INFILE 'C:/Users/Aluno.DESKTOP-79N0DMC/Documents/dev/3DES/os/dados/oss.csv'
 INTO TABLE os
 FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:/Users/Desenvolvimento/Documents/GitHub/ViniSouza001/dev/3DES/os/dados/comentarios.csv'
+LOAD DATA INFILE 'C:/Users/Aluno.DESKTOP-79N0DMC/Documents/dev/3DES/os/dados/comentarios.csv'
 INTO TABLE comentario
 FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'

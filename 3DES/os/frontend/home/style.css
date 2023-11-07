@@ -1,7 +1,16 @@
 @import url(../style.css);
 
 .oculto {
-    display: none;
+    display: none !important;
+}
+
+.preto {
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .8);
+    position: absolute;
+    top: 0;
 }
 
 body {
@@ -13,6 +22,7 @@ body {
     min-height: 100vh;
     background-color: #23242a;
     color: #FFF;
+    overflow-x: hidden;
 }
 
 img {
@@ -42,22 +52,68 @@ img {
     background-color: transparent;
 }
 
-#formAtualizarOS {
+#detalhesOS {
     position: absolute;
     display: flex;
     flex-direction: column;
-    background-color: #e7e7e7;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    min-width: 100vw;
+    left: 0;
+    align-items: center;
+    top: 10%;
+    justify-content: center;
+}
+
+#formAtualizarOS {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 127, 39);
+    padding: 15px;
     width: 300px;
     color: black;
     border-radius: 10px;
     border: 1px solid black;
 }
 
-.comentario {
+#formAtualizarOS,
+.comentario,
+#comentarios {
+    z-index: 3;
+}
+
+.comentario{
+    display: flex;
+}
+
+.comentario label {
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+    align-self: center;
+    align-items: center;
+}
+
+#novoComentario {
     position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    z-index: 2;
+}
+
+#formComentario {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    z-index: 2;
+    background-color: #FFF;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#formComentario label {
+    color: #000;
 }
 
 .fadein {

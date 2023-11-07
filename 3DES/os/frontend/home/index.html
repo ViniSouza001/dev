@@ -21,6 +21,7 @@
                 </div>
             </div>
         </header>
+        <span class="preto oculto"></span>
         <nav id="menu">
             <button onclick="novaOS.classList.remove('oculto')">Nova OS</button>
         </nav>
@@ -73,22 +74,22 @@
                     <textarea name="descricao"></textarea>
                     <label for="executor">Executor:</label>
                     <input type="text" name="executor" disabled="true">
-                    <input type="button" value="Cancelar" onclick="detalhesOS.classList.add('oculto')">
+                    <input type="button" value="Cancelar" onclick="doubleToggleCard(preto, detalhesOS)">
                     <input type="submit" value="Atualizar">
                     <label>Novo Comentário</label>
                     <input type="button" value="Adicionar"
-                        onclick="novoComentario.classList.remove('oculto'); formComentario.os.value = formAtualizarOS.id.value">
+                        onclick="trippleToggleCard(novoComentario, atualizarOs, divComentarios); formComentario.os.value = formAtualizarOS.id.value">
                 </form>
                 <section id="comentarios"></section>
-            </section>
-            <section id="novoComentario" class="modal oculto">
-                <form id="formComentario">
-                    <input type="hidden" name="os">
-                    <label for="comentario">Comentário:</label>
-                    <textarea name="comentario" placeholder="Descreva seu comentário:" required></textarea>
-                    <input type="button" value="Cancelar" onclick="novoComentario.classList.add('oculto')">
-                    <input type="submit" value="Salvar">
-                </form>
+                <section id="novoComentario" class="modal oculto">
+                    <form id="formComentario">
+                        <input type="hidden" name="os">
+                        <label for="comentario">Comentário:</label>
+                        <textarea name="comentario" placeholder="Descreva seu comentário:" required></textarea>
+                        <input type="button" value="Cancelar" onclick="trippleToggleCard(novoComentario, atualizarOs, divComentarios)">
+                        <input type="submit" value="Salvar">
+                    </form>
+                </section>
             </section>
         </main>
         <footer>

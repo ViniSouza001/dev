@@ -2,8 +2,10 @@
 const colaborador = JSON.parse(localStorage.getItem("colaborador"));
 const colaboradores = [];
 const uri = "http://localhost:3000";
+const preto = document.querySelector('.preto')
 const criaOS = document.getElementById("formOS");
 const criaComentario = document.getElementById("formComentario");
+const divComentarios = document.querySelector('#comentarios')
 const atualizarPerfil = document.getElementById("formPerfil");
 const atualizarOs = document.getElementById("formAtualizarOS");
 
@@ -117,7 +119,7 @@ async function preencherOSs () {
                 <p>Descrição: ${ os.descricao }</p>
                 <p>Colaborador: ${ colaborador.nome }</p>
                 <p>Designado á: ${ os.executor == null ? "Ainda não designado" : colaboradores[ colaboradores.findIndex((c) => c.matricula == os.executor) ].nome }</p>
-                <button onclick="toggleCard(detalhesOS, 'oculto');preencherDetalhesOS(${ os.id })">Detalhes</button>
+                <button onclick="doubleToggleCard(detalhesOS, preto);preencherDetalhesOS(${ os.id })">Detalhes</button>
                 <button onclick="excluirOS(${ os.id })">Excluir</button>
             </div>
         `;
@@ -322,4 +324,10 @@ function toggleCard (element, classe) {
 function doubleToggleCard (element1, element2) {
   element1.classList.toggle('oculto')
   element2.classList.toggle('oculto')
+}
+
+function trippleToggleCard(element1, element2, element3) {
+  element1.classList.toggle('oculto')
+  element2.classList.toggle('oculto')
+  element3.classList.toggle('oculto')
 }
